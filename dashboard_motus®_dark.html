@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Motus Pay ®</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tabler Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+    
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@100;200;300;400;500;600;700;800;900&display=swap");
+        * {
+            font-family: "Manrope", system-ui, -apple-system, sans-serif;
+        }
+        
+        body {
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+        
+        /* Custom scrollbar dark */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 3px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+        
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+
+        /* Sidebar transitions */
+        .sidebar {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .sidebar-open {
+            transform: translateX(0);
+        }
+
+        .sidebar-closed {
+            transform: translateX(-100%);
+        }
+
+        /* Dropdown */
+        .dropdown-content {
+            display: none;
+        }
+
+        .dropdown-content.show {
+            display: block;
+        }
+
+        /* Hidden by default */
+        .hidden {
+            display: none;
+        }
+
+        /* Smooth transitions */
+        * {
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-200">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Overlay móvil -->
+        <div id="overlay" class="lg:hidden fixed inset-0 bg-black/70 z-30 hidden"></div>
+
+        <!-- Sidebar -->
+        <aside id="sidebar" class="sidebar sidebar-closed lg:translate-x-0 fixed lg:static inset-y-0 left-0 z-40 w-64 flex flex-col bg-slate-800 border-r border-slate-700">
+
+            <!-- Logo -->
+       
+<div class="px-5 pt-6 pb-4 mb-4">
+  <div class="flex flex-col gap-1">
+    <img
+      src="img/logo_motus.svg"
+      alt="Motus"
+      class="w-[130px] h-auto"
+      loading="lazy"
+    />
+
+    <p class="text-sm text-slate-400 tracking-wide">
+      Pagos globales
+    </p>
+  </div>
+</div>
+
+            
+            <!-- Navigation -->
+            <div class="mx-4 mb-4 bg-slate-700/30 rounded-2xl overflow-hidden flex flex-col border border-slate-600">
+                <nav class="flex-1 px-4 py-5 overflow-y-auto">
+                    <div class="space-y-1">
+                        <a href="#" class="nav-active flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all text-sm font-medium bg-slate-500/20 text-teal-500 border border-slate-500/30">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="layout-dashboard" class="lucide lucide-layout-dashboard flex-shrink-0" style="width: 20px; height: 20px;"><rect width="7" height="9" x="3" y="3" rx="1"></rect><rect width="7" height="5" x="14" y="3" rx="1"></rect><rect width="7" height="9" x="14" y="12" rx="1"></rect><rect width="7" height="5" x="3" y="16" rx="1"></rect></svg>
+                            <span class="text-teal-500">Panel</span>
+                        </a>
+
+                        <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:text-teal-300 hover:bg-slate-700/50 transition-all text-sm">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-currency-dollar"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M16.7 8a3 3 0 0 0 -2.7 -2h-4a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6h-4a3 3 0 0 1 -2.7 -2"></path><path d="M12 3v3m0 12v3"></path></svg>
+                            <span>Transacciones</span>
+                        </a>
+
+                        <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:text-teal-300 hover:bg-slate-700/50 transition-all text-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="refresh-cw" class="lucide lucide-refresh-cw flex-shrink-0" style="width: 20px; height: 20px;"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M8 16H3v5"></path></svg>
+                            <span>Convertidor</span>
+                        </a>
+
+                        <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:text-teal-300 hover:bg-slate-700/50 transition-all text-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="credit-card" class="lucide lucide-credit-card flex-shrink-0" style="width: 20px; height: 20px;"><rect width="20" height="14" x="2" y="5" rx="2"></rect><line x1="2" x2="22" y1="10" y2="10"></line></svg>
+                            <span>Tarjetas</span>
+                        </a>
+
+                        <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:text-teal-300 hover:bg-slate-700/50 transition-all text-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="file-text" class="lucide lucide-file-text flex-shrink-0" style="width: 20px; height: 20px;"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"></path><path d="M14 2v5a1 1 0 0 0 1 1h5"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg>
+                            <span>Reportes</span>
+                        </a>
+                    </div>
+
+                    <!-- Wallets Section -->
+                    <div class="mt-6 pt-4 border-t border-slate-600">
+                        <p class="text-xs font-semibold text-slate-400 mb-3 px-3 uppercase tracking-wide">Cuentas</p>
+                        <div class="space-y-1">
+                            <button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-300 hover:text-teal-300 hover:bg-slate-700/50 transition-all text-sm group">
+                                <span class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
+                                    <span class="font-bold">USD</span>
+                                    <span class="text-xs text-slate-400 font-semibold">$1,420</span>
+                                </span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-right" class="lucide lucide-chevron-right text-slate-500 group-hover:text-teal-400" style="width: 16px; height: 16px;"><path d="m9 18 6-6-6-6"></path></svg>
+                            </button>
+
+                            <button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-300 hover:text-teal-300 hover:bg-slate-700/50 transition-all text-sm group">
+                                <span class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                                    <span  class="font-bold" >EUR</span>
+                                    <span class="text-xs text-slate-400 font-semibold">€842</span>
+                                </span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-right" class="lucide lucide-chevron-right text-slate-500 group-hover:text-teal-400" style="width: 16px; height: 16px;"><path d="m9 18 6-6-6-6"></path></svg>
+                            </button>
+
+                            <button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-300 hover:text-teal-300 hover:bg-slate-700/50 transition-all text-sm group">
+                                <span class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                                    <span class="font-bold">BTC</span>
+                                    <span class="text-xs text-slate-400 font-semibold">0.023</span>
+                                </span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-right" class="lucide lucide-chevron-right text-slate-500 group-hover:text-teal-400" style="width: 16px; height: 16px;"><path d="m9 18 6-6-6-6"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="mt-6 pt-4 border-t border-slate-600">
+                        <p class="text-xs font-semibold text-slate-400 mb-3 px-3 uppercase tracking-wide">Acceso Rápido</p>
+                        <div class="space-y-1">
+                            <button class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:text-teal-300 hover:bg-slate-700/50 transition-all text-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="settings" class="lucide lucide-settings flex-shrink-0" style="width: 18px; height: 18px;"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                <span>Ajustes</span>
+                            </button>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Menú Inferior Móvil -->
+        <div class="block lg:hidden">
+            <!-- Botón flotante para abrir menú -->
+            <button id="openBottomMenu" class="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-teal-500 text-white shadow-lg z-40 flex items-center justify-center hover:bg-teal-600 transition-colors">
+                <i class="ti ti-menu-2 text-2xl"></i>
+            </button>
+
+            <!-- Menú desplegable desde abajo -->
+            <div id="bottomMenuOverlay" class="fixed inset-0 bg-black/70 z-40 hidden"></div>
+
+            <!-- Panel del menú -->
+            <div id="bottomMenuPanel" class="fixed bottom-0 left-0 right-0 bg-slate-800 rounded-t-2xl shadow-xl z-50 transform translate-y-full transition-transform duration-300 border-t border-slate-700">
+                <!-- Encabezado del menú -->
+                <div class="flex items-center justify-between p-5 border-b border-slate-700">
+                    <h3 class="text-lg font-semibold text-slate-100">Menú Rápido</h3>
+                    <button id="closeBottomMenu" class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center">
+                        <i class="ti ti-x text-slate-300"></i>
+                    </button>
+                </div>
+
+                <!-- Opciones del menú -->
+                <div class="p-4">
+                    <div class="grid grid-cols-4 gap-4 mb-6">
+                        <!-- Dashboard -->
+                        <button class="flex flex-col items-center gap-2 p-3 rounded-xl hover:bg-slate-700 transition-colors">
+                            <div class="w-14 h-14 rounded-xl bg-teal-500/20 flex items-center justify-center">
+                                <i class="ti ti-layout-dashboard text-teal-400 text-2xl"></i>
+                            </div>
+                            <span class="text-xs font-medium text-slate-200">Dashboard</span>
+                        </button>
+
+                        <!-- Enviar Dinero -->
+                        <button class="flex flex-col items-center gap-2 p-3 rounded-xl hover:bg-slate-700 transition-colors">
+                            <div class="w-14 h-14 rounded-xl bg-slate-700 flex items-center justify-center">
+                                <i class="ti ti-send text-teal-400 text-2xl"></i>
+                            </div>
+                            <span class="text-xs font-medium text-slate-200">Enviar</span>
+                        </button>
+
+                        <!-- Convertidor -->
+                        <button class="flex flex-col items-center gap-2 p-3 rounded-xl hover:bg-slate-700 transition-colors">
+                            <div class="w-14 h-14 rounded-xl bg-slate-700 flex items-center justify-center">
+                                <i class="ti ti-arrows-exchange text-teal-400 text-2xl"></i>
+                            </div>
+                            <span class="text-xs font-medium text-slate-200">Convertir</span>
+                        </button>
+
+                        <!-- Notificaciones -->
+                        <button class="flex flex-col items-center gap-2 p-3 rounded-xl hover:bg-slate-700 transition-colors relative">
+                            <div class="w-14 h-14 rounded-xl bg-slate-700 flex items-center justify-center">
+                                <i class="ti ti-bell text-teal-400 text-2xl"></i>
+                            </div>
+                            <span class="text-xs font-medium text-slate-200">Alertas</span>
+                            <span class="absolute top-2 right-4 w-3 h-3 bg-red-500 rounded-full"></span>
+                        </button>
+
+                        <!-- Transacciones -->
+                        <button class="flex flex-col items-center gap-2 p-3 rounded-xl hover:bg-slate-700 transition-colors">
+                            <div class="w-14 h-14 rounded-xl bg-slate-700 flex items-center justify-center">
+                                <i class="ti ti-receipt text-teal-400 text-2xl"></i>
+                            </div>
+                            <span class="text-xs font-medium text-slate-200">Transacciones</span>
+                        </button>
+
+                        <!-- Tarjetas -->
+                        <button class="flex flex-col items-center gap-2 p-3 rounded-xl hover:bg-slate-700 transition-colors">
+                            <div class="w-14 h-14 rounded-xl bg-slate-700 flex items-center justify-center">
+                                <i class="ti ti-credit-card text-teal-400 text-2xl"></i>
+                            </div>
+                            <span class="text-xs font-medium text-slate-200">Tarjetas</span>
+                        </button>
+
+                        <!-- Reportes -->
+                        <button class="flex flex-col items-center gap-2 p-3 rounded-xl hover:bg-slate-700 transition-colors">
+                            <div class="w-14 h-14 rounded-xl bg-slate-700 flex items-center justify-center">
+                                <i class="ti ti-chart-bar text-teal-400 text-2xl"></i>
+                            </div>
+                            <span class="text-xs font-medium text-slate-200">Reportes</span>
+                        </button>
+
+                        <!-- Ajustes -->
+                        <button class="flex flex-col items-center gap-2 p-3 rounded-xl hover:bg-slate-700 transition-colors">
+                            <div class="w-14 h-14 rounded-xl bg-slate-700 flex items-center justify-center">
+                                <i class="ti ti-settings text-teal-400 text-2xl"></i>
+                            </div>
+                            <span class="text-xs font-medium text-slate-200">Ajustes</span>
+                        </button>
+                    </div>
+
+                    <!-- Sección de Accesos Rápidos -->
+                    <div class="mb-6">
+                        <h4 class="text-sm font-semibold text-slate-400 mb-3">Accesos Rápidos</h4>
+                        <div class="space-y-2">
+                            <button class="w-full flex items-center justify-between p-3 rounded-lg bg-slate-700 hover:bg-slate-600 transition-colors">
+                                <span class="flex items-center gap-3">
+                                    <i class="ti ti-wallet text-teal-400"></i>
+                                    <span class="text-sm font-medium text-slate-200">Ver Balance Total</span>
+                                </span>
+                                <i class="ti ti-chevron-right text-slate-400"></i>
+                            </button>
+                            <button class="w-full flex items-center justify-between p-3 rounded-lg bg-slate-700 hover:bg-slate-600 transition-colors">
+                                <span class="flex items-center gap-3">
+                                    <i class="ti ti-history text-teal-400"></i>
+                                    <span class="text-sm font-medium text-slate-200">Historial Completo</span>
+                                </span>
+                                <i class="ti ti-chevron-right text-slate-400"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Cuentas -->
+                    <div>
+                        <h4 class="text-sm font-semibold text-slate-400 mb-3">Tus Cuentas</h4>
+                        <div class="space-y-2">
+                            <button class="w-full flex items-center justify-between p-3 rounded-lg bg-slate-700 hover:bg-slate-600 transition-colors">
+                                <span class="flex items-center gap-3">
+                                    <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
+                                    <span class="text-sm font-medium text-slate-200">Cuenta USD</span>
+                                    <span class="text-xs text-slate-400">$1,420.50</span>
+                                </span>
+                                <i class="ti ti-chevron-right text-slate-400"></i>
+                            </button>
+                            <button class="w-full flex items-center justify-between p-3 rounded-lg bg-slate-700 hover:bg-slate-600 transition-colors">
+                                <span class="flex items-center gap-3">
+                                    <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                                    <span class="text-sm font-medium text-slate-200">Cuenta EUR</span>
+                                    <span class="text-xs text-slate-400">€842.00</span>
+                                </span>
+                                <i class="ti ti-chevron-right text-slate-400"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col overflow-hidden bg-slate-900">
+            <!-- Header -->
+            <header class="pr-6 py-4 bg-slate-900 border-b border-slate-800">
+                <div class="flex items-center justify-between gap-6">
+                    <div class="ml-2 md:ml-2 lg:ml-5 flex-shrink-0">
+                        <h1 class="text-2xl">
+                            <span class="text-slate-400">¡Buenos días,</span>
+                            <span class="font-medium text-slate-100">Alex!</span>
+                        </h1>
+                    </div>
+
+                    <!-- Right Section -->
+                    <div class="flex items-center gap-3">
+                        <!-- Search -->
+                        <div class="relative hidden md:block">
+                            <input 
+                                type="text" 
+                                placeholder="Ingrese su solicitud de búsqueda..." 
+                                class="bg-slate-800 border border-slate-600 rounded-full px-5 py-2.5 pr-12 text-sm text-slate-200 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500/30 focus:border-teal-500/50 focus:bg-slate-800 w-72 transition-all"
+                            />
+                            <span class="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> 
+                            </span>
+                        </div>
+
+                        <!-- Icons -->
+                        <button class="w-10 h-10 rounded-full bg-slate-800 border border-slate-600 hover:bg-slate-700 flex items-center justify-center transition-all hover:shadow-md">
+                            <span class="text-white text-lg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-settings"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065" /><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /></svg>
+                            </span>
+                        </button>
+                        <button class="w-10 h-10 rounded-full bg-slate-800 border border-slate-600 hover:bg-slate-700 flex items-center justify-center transition-all hover:shadow-md relative">
+                            <span class="text-white text-lg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-bell"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" /><path d="M9 17v1a3 3 0 0 0 6 0v-1" /></svg>
+                            </span>
+                            <span class="absolute top-1 right-1 w-2 h-2 bg-teal-500 rounded-full ring-2 ring-slate-800"></span>
+                        </button>
+                        <button class="w-10 h-10 rounded-full overflow-hidden ring-2 ring-slate-700 hover:ring-teal-500 transition-all hover:shadow-lg">
+                            <img src="img/avatar_01.png" alt="User" class="w-full h-full object-cover">
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="flex-1  overflow-y-auto p-5 ">
+
+                <!-- Top Grid -->
+                <div class="grid grid-cols-12 gap-4 md:gap-6 mb-6">
+                    <!-- Balance Global -->
+                    <div class="col-span-12 lg:col-span-5 bg-slate-800/50 rounded-2xl p-5 border border-slate-700">
+
+
+
+
+
+<!-- Balance Global Card -->
+<div class="bg-slate-800 border border-slate-700 rounded-xl p-6">
+    <!-- Header -->
+    <div class="flex items-start justify-between gap-4">
+        <h2 class="text-lg font-medium text-slate-100">
+            Balance Global
+        </h2>
+
+        <!-- Acciones principales -->
+        <div class="flex items-center gap-3">
+        
+            <!-- Convertir -->
+            <button
+                class="inline-flex items-center gap-2  pr-2 pl-4 py-2 text-sm
+                       rounded-full border border-slate-600
+                       text-slate-200 font-semibold
+                       hover:bg-slate-700 transition
+                       focus:ring-2 focus:ring-slate-500"
+            >
+               
+                Convertir
+                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
+                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 10h14l-4 -4" />
+                    <path d="M17 14h-14l4 4" />
+                </svg>
+            </button>
+
+
+                <!-- Enviar -->
+            <button
+                class="inline-flex items-center gap-2 pr-2 pl-4 py-2 text-sm border border-teal-500
+                       rounded-full bg-teal-500 text-slate-900 font-semibold
+                       hover:bg-teal-400 transition
+                       focus:ring-2 focus:ring-teal-400"
+            >
+                
+                Enviar
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class=" icon icon-tabler icons-tabler-outline icon-tabler-arrow-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M13 18l6 -6" /><path d="M13 6l6 6" /></svg>
+            </button>
+
+        </div>
+    </div>
+
+    <!-- Balance -->
+    <div class="mt-6">
+        <span class="block text-4xl font-light tracking-tight text-slate-100">
+            $1,420.50
+        </span>
+    </div>
+
+    <!-- Delta -->
+    <div class="mt-4">
+        <span
+            class="inline-flex items-center px-3 py-1 text-sm font-semibold
+                   rounded-full bg-teal-500/20 text-teal-300
+                   border border-teal-500/30"
+        >
+            +8.2% vs mes anterior
+        </span>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <!-- Tasas de cambio -->
+                        <section class="rounded-2xl pb-5 pt-3">
+                            <!-- Header -->
+                            <div class="flex items-center justify-between mb-3">
+                                <h4 class="text-md font-semibold text-slate-200 flex items-center gap-2">
+                                    Tasas de cambio
+                                </h4>
+                                <span class="text-xs text-slate-400 flex items-center gap-1">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-clock"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /><path d="M12 7v5l3 3" /></svg>
+                                    </span>
+                                    Actualizado hoy
+                                </span>
+                            </div>
+
+                            <!-- Grid -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-2">
+                                <!-- Card -->
+                                <div class="bg-slate-800 rounded-xl px-3 py-5 border border-slate-700 hover:border-teal-500/30 hover:shadow-sm transition-all">
+                                    <!-- Conversión + variación -->
+                                    <div class="flex items-center justify-between mb-2">
+                                        <p class="text-xs font-medium text-slate-400">
+                                            USD → USDT
+                                        </p>
+                                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-teal-500/20 text-teal-300 border border-teal-500/30">
+                                            ▲ 0.02%
+                                        </span>
+                                    </div>
+                                    <!-- Valor -->
+                                    <p class="text-2xl font-semibold text-slate-100 tracking-tight">
+                                        1.0002
+                                    </p>
+                                </div>
+
+                                <!-- Card -->
+                                <div class="bg-slate-800 rounded-xl px-3 py-5 border border-slate-700 hover:border-teal-500/30 hover:shadow-sm transition-all">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <p class="text-xs font-medium text-slate-400">
+                                            USD → EUR
+                                        </p>
+                                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-teal-500/20 text-teal-300 border border-teal-500/30">
+                                            ▲ 0.05%
+                                        </span>
+                                    </div>
+                                    <p class="text-2xl font-semibold text-slate-100 tracking-tight">
+                                        0.9205
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <!-- Comparación de gastos -->
+                    <div class="col-span-12 lg:col-span-7 bg-slate-800/50 rounded-2xl p-5 md:p-6 border border-slate-700 animate-fade-in shadow-sm">
+                        <div class="flex flex-col lg:flex-row">
+                            <!-- Izquierda - Chart -->
+                            <div class="w-full lg:w-2/2 pr-6 pl-2 border-b lg:border-b-0 border-slate-700">
+                                <h2 class="text-lg font-medium text-slate-100 flex items-center gap-2">
+                                    Comparación de gastos
+                                </h2>
+                                <p class="text-sm text-slate-400 mb-4">Gasto mensual — este año vs año anterior</p>
+
+                                <!-- Leyenda -->
+                                <div class="flex gap-6 text-sm mb-4">
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-2.5 h-2.5 bg-teal-500 rounded-full"></span>
+                                        <span class="text-slate-300">2026</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-2.5 h-2.5 bg-slate-600 rounded-full"></span>
+                                        <span class="text-slate-300">2025</span>
+                                    </div>
+                                </div>
+
+                                <!-- CHART -->
+                                <div class="relative h-56">
+                                    <!-- Eje Y -->
+                                    <div class="absolute left-0 top-0 bottom-0 w-10 flex flex-col justify-between text-xs text-slate-500">
+                                        <span>$2k</span>
+                                        <span class="font-medium text-slate-400">0</span>
+                                        <span>$-2k</span>
+                                    </div>
+
+                                    <!-- Guías -->
+                                    <div class="absolute left-10 right-0 top-0 bottom-0 flex flex-col justify-between pointer-events-none">
+                                        <div class="border-t border-dashed border-slate-700"></div>
+                                        <div class="border-t border-dashed border-slate-700"></div>
+                                        <div class="border-t border-slate-700"></div>
+                                        <div class="border-t border-dashed border-slate-700"></div>
+                                        <div class="border-t border-dashed border-slate-700"></div>
+                                    </div>
+
+                                    <!-- Barras -->
+                                    <div class="ml-10 h-full flex justify-between px-4">
+                                        <!-- Enero -->
+                                        <div class="relative w-8">
+                                            <div class="absolute bottom-1/2 mb-1 w-2.5 h-16 bg-teal-500 rounded-full"></div>
+                                            <div class="absolute top-1/2 mt-1 w-2.5 h-10 bg-slate-700 rounded-full"></div>
+                                            <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-slate-400">Ene</span>
+                                        </div>
+
+                                        <!-- Febrero -->
+                                        <div class="relative w-8">
+                                            <div class="absolute bottom-1/2 mb-1 w-2.5 h-10 bg-teal-500 rounded-full"></div>
+                                            <div class="absolute top-1/2 mt-1 w-2.5 h-14 bg-slate-700 rounded-full"></div>
+                                            <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-slate-400">Feb</span>
+                                        </div>
+
+                                        <!-- Marzo -->
+                                        <div class="relative w-8">
+                                            <div class="absolute bottom-1/2 mb-1 w-2.5 h-14 bg-teal-500 rounded-full"></div>
+                                            <div class="absolute top-1/2 mt-1 w-2.5 h-8 bg-slate-700 rounded-full"></div>
+                                            <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-slate-400">Mar</span>
+                                        </div>
+
+                                        <!-- Abril -->
+                                        <div class="relative w-8">
+                                            <div class="absolute bottom-1/2 mb-1 w-2.5 h-20 bg-teal-500 rounded-full"></div>
+                                            <div class="absolute top-1/2 mt-1 w-2.5 h-12 bg-slate-700 rounded-full"></div>
+                                            <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-slate-400">Abr</span>
+                                        </div>
+
+                                        <!-- Mayo -->
+                                        <div class="relative w-8">
+                                            <div class="absolute bottom-1/2 mb-1 w-2.5 h-14 bg-teal-500 rounded-full"></div>
+                                            <div class="absolute top-1/2 mt-1 w-2.5 h-7 bg-slate-700 rounded-full"></div>
+                                            <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-slate-400">May</span>
+                                        </div>
+
+                                        <!-- Junio -->
+                                        <div class="relative w-8">
+                                            <div class="absolute bottom-1/2 mb-1 w-2.5 h-9 bg-teal-500 rounded-full"></div>
+                                            <div class="absolute top-1/2 mt-1 w-2.5 h-13 bg-slate-700 rounded-full"></div>
+                                            <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-slate-400">Jun</span>
+                                        </div>
+
+                                        <!-- Julio -->
+                                        <div class="relative w-8">
+                                            <div class="absolute bottom-1/2 mb-1 w-2.5 h-20 bg-teal-500 rounded-full"></div>
+                                            <div class="absolute top-1/2 mt-1 w-2.5 h-12 bg-slate-700 rounded-full"></div>
+                                            <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-slate-400">Jul</span>
+                                        </div>
+
+                                        <!-- Agosto -->
+                                        <div class="relative w-8">
+                                            <div class="absolute bottom-1/2 mb-1 w-2.5 h-14 bg-teal-500 rounded-full"></div>
+                                            <div class="absolute top-1/2 mt-1 w-2.5 h-7 bg-slate-700 rounded-full"></div>
+                                            <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-slate-400">Ago</span>
+                                        </div>
+                                        <!-- Sep -->
+                                        <div class="relative w-8">
+                                           <div class="absolute bottom-1/2 mb-1 w-2.5 h-24 bg-teal-500 rounded-full"></div>
+                                            <div class="absolute top-1/2 mt-1 w-2.5 h-8 bg-slate-700 rounded-full"></div>
+                                            <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-slate-400">Sep</span>
+                                        </div>
+                                     
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Derecha - Stats -->
+                            <div class="bg-slate-800 rounded-xl w-full lg:w-1/3 px-4 py-6 flex flex-col items-center justify-start border border-slate-700">
+                                <!-- Year Selector -->
+                                <div class="text-sm font-medium text-slate-100">Variación anual</div>
+                                <div class="relative dropdown mt-2 mb-4">
+                                    <button onclick="toggleDropdown('yearDropdown')" class="px-4 py-1.5 bg-slate-500/20 text-white rounded-lg font-semibold hover:bg-slate-500/30 transition-colors">
+                                        <span id="selectedYear">2026</span>
+                                    </button>
+                                    <div id="yearDropdown" class="dropdown-content absolute mt-2 bg-slate-800 rounded-lg shadow-lg border border-slate-700 overflow-hidden z-10 w-full">
+                                        <button onclick="changeYear(2024)" class="block w-full px-4 py-2 text-left hover:bg-slate-700 transition-colors text-slate-300">2025</button>
+                                        <button onclick="changeYear(2023)" class="block w-full px-4 py-2 text-left hover:bg-slate-700 transition-colors text-slate-300">2024</button>
+                                        <button onclick="changeYear(2022)" class="block w-full px-4 py-2 text-left hover:bg-slate-700 transition-colors text-slate-300">2023</button>
+                                    </div>
+                                </div>
+
+                                <!-- Circular Progress -->
+                                <div class="relative w-21.42 h-21.42 mb-3.06">
+                                    <svg width="85.68" height="85.68" class="-rotate-90">
+                                        <circle cx="42.84" cy="42.84" r="40.1625" stroke="#334155" stroke-width="5.355" fill="none"/>
+                                        <circle id="progressCircle" cx="42.84" cy="42.84" r="40.1625" stroke="#14b8a6" stroke-width="5.355" fill="none" stroke-dasharray="252.35" stroke-dashoffset="55.516" stroke-linecap="round"/>
+                                    </svg>
+                                    <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                        <div id="growthPercent" class="text-lg font-bold text-slate-100">78%</div>
+                                    </div>
+                                </div>
+
+                                <p class="text-sm text-slate-300 text-center mt-2 mb-4">
+                                    Diferencia de gastos
+                                </p>
+
+                                <!-- Revenue Stats -->
+                                <div class="flex flex-col items-center gap-6 w-full">
+                                    <div class="flex items-center gap-3 group cursor-pointer">
+                                        <div class="w-10 h-10 rounded-lg bg-slate-500/20 flex items-center justify-center hover-scale">
+                                            <span class="text-red-400 text-xl">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-up-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 7l-10 10" /><path d="M8 7l9 0l0 9" /></svg>
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs text-slate-400">2026</p>
+                                            <p class="font-semibold text-slate-100">$54.2k</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center gap-3 group cursor-pointer">
+                                        <div class="w-10 h-10 rounded-lg bg-slate-500/20 flex items-center justify-center hover-scale">
+                                            <span class="text-teal-400 text-xl">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-down-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 7l-10 10" /><path d="M16 17l-9 0l0 -9" /></svg>
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs text-slate-400">2025</p>
+                                            <p class="font-semibold text-slate-100">$38.1k</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Grid -->
+                <div class="grid grid-cols-12 gap-4 md:gap-6">
+                    <!-- Tarjetas -->
+                    <div class="col-span-12 lg:col-span-5 bg-slate-800/50 rounded-2xl p-5 border border-slate-700">
+                        <!-- Header -->
+                        <div class="flex justify-between items-center mb-5">
+                            <h3 class="text-base md:text-lg font-semibold text-slate-100">
+                                Tarjetas (2)
+                            </h3>
+                            <button class="flex items-center gap-1.5 text-xs font-medium text-md hover:text-gray-300 transition">
+                                <span>Agregar</span>
+                               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-plus"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
+                            </button>
+                        </div>
+
+                        <!-- Lista de tarjetas -->
+                        <div class="space-y-4">
+                            <!-- Card 1 -->
+                            <div class="bg-slate-800 rounded-2xl border border-slate-700 p-5 hover:border-teal-500/30 transition-colors">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-11 h-11 rounded-xl bg-slate-500/20 flex items-center justify-center">
+                                            <span class="text-white text-xl">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-credit-card"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 8a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3l0 -8" /><path d="M3 10l18 0" /><path d="M7 15l.01 0" /><path d="M11 15l2 0" /></svg>
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-slate-400">Visa Débito</p>
+                                            <p class="font-semibold text-slate-100">•••• 4821</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs font-semibold text-teal-300 bg-teal-500/20 px-3 py-1 rounded-full border border-teal-500/30">
+                                        Activa
+                                    </span>
+                                </div>
+                                <div class="flex items-end justify-between">
+                                    <div>
+                                        <p class="text-xs text-slate-400">Saldo disponible</p>
+                                        <p class="text-lg font-bold text-slate-100">$12,450</p>
+                                    </div>
+                                    <button class="flex items-center gap-1.5 text-sm font-semibold text-white hover:text-gray-300 transition">
+                                        <span>Ver detalles</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                            <path d="M5 12l14 0" />
+                                            <path d="M15 16l4 -4" />
+                                            <path d="M15 8l4 4" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Card 2 -->
+                            <div class="bg-slate-800 rounded-2xl border border-slate-700 p-5 hover:border-teal-500/30 transition-colors">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-11 h-11 rounded-xl bg-slate-500/20 flex items-center justify-center">
+                                            <span class="text-white text-xl">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-device-mobile"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 5a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-14" /><path d="M11 4h2" /><path d="M12 17v.01" /></svg>
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-slate-400">Tarjeta Virtual</p>
+                                            <p class="font-semibold text-slate-100">•••• 9034</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs font-semibold text-indigo-300 bg-indigo-500/20 px-3 py-1 rounded-full border border-indigo-500/30">
+                                        Online
+                                    </span>
+                                </div>
+                                <div class="flex items-end justify-between">
+                                    <div>
+                                        <p class="text-xs text-slate-400">Saldo disponible</p>
+                                        <p class="text-lg font-bold text-slate-100">$12,450</p>
+                                    </div>
+                                    <button class="flex items-center gap-1.5 text-sm font-semibold text-white hover:text-gray-300 transition">
+                                        <span>Ver detalles</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                            <path d="M5 12l14 0" />
+                                            <path d="M15 16l4 -4" />
+                                            <path d="M15 8l4 4" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Transacciones Recientes -->
+                    <div class="col-span-12 lg:col-span-7 bg-slate-800/50 rounded-2xl p-5 md:p-6 border border-slate-700 animate-fade-in shadow-sm">
+                        <!-- Header -->
+                        <div class="flex justify-between items-center mb-5">
+                            <h3 class="text-base md:text-lg font-semibold text-slate-100">
+                                Transacciones Recientes
+                            </h3>
+                            <div class="flex items-center gap-3">
+                                <button class="text-slate-400 hover:text-teal-400">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-adjustments-horizontal"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M4 6l8 0" /><path d="M16 6l4 0" /><path d="M6 12a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M4 12l2 0" /><path d="M10 12l10 0" /><path d="M15 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M4 18l11 0" /><path d="M19 18l1 0" /></svg>
+                                    </span>
+                                </button>
+                                <button class="text-slate-400 hover:text-teal-400">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-download"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" /><path d="M7 11l5 5l5 -5" /><path d="M12 4l0 12" /></svg>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Table Head -->
+                        <div class="grid grid-cols-12 text-xs text-slate-500 uppercase tracking-wide pb-3 border-b border-slate-700">
+                            <div class="col-span-6">Descripción</div>
+                            <div class="col-span-3">Tipo</div>
+                            <div class="col-span-3 text-right">Monto</div>
+                        </div>
+
+                        <!-- List -->
+                        <div class="divide-y divide-slate-700">
+                            <!-- Item -->
+                            <div class="grid grid-cols-12 items-center py-4 hover:bg-slate-800/50  transition">
+                                <div class="col-span-6 flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center">
+                                        <span class="text-white">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-gavel"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13 10l7.383 7.418c.823 .82 .823 2.148 0 2.967a2.11 2.11 0 0 1 -2.976 0l-7.407 -7.385" /><path d="M6 9l4 4" /><path d="M13 10l-4 -4" /><path d="M3 21h7" /><path d="M6.793 15.793l-3.586 -3.586a1 1 0 0 1 0 -1.414l2.293 -2.293l.5 .5l3 -3l-.5 -.5l2.293 -2.293a1 1 0 0 1 1.414 0l3.586 3.586a1 1 0 0 1 0 1.414l-2.293 2.293l-.5 -.5l-3 3l.5 .5l-2.293 2.293a1 1 0 0 1 -1.414 0" /></svg>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-slate-100">Lawyer | Invoice</p>
+                                        <p class="text-xs text-slate-400">Ene 22 · Hoy</p>
+                                    </div>
+                                </div>
+                                <div class="col-span-3 text-sm text-slate-300 flex items-center gap-2">
+                                    <i class="ti ti-building-bank text-slate-500"></i>
+                                    ACH Transfer
+                                </div>
+                                <div class="col-span-3 text-right font-semibold text-red-400">
+                                    -$800.00
+                                </div>
+                            </div>
+
+                            <!-- Item -->
+                            <div class="grid grid-cols-12 items-center py-4 hover:bg-slate-800/50  transition">
+                                <div class="col-span-6 flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center">
+                                        <span class="text-white">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-amazon"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 12.5a15.198 15.198 0 0 1 -7.37 1.44a14.62 14.62 0 0 1 -6.63 -2.94" /><path d="M19.5 15c.907 -1.411 1.451 -3.323 1.5 -5c-1.197 -.773 -2.577 -.935 -4 -1" /></svg>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-slate-100">Amazon</p>
+                                        <p class="text-xs text-slate-400">Ene 22 · Hoy</p>
+                                    </div>
+                                </div>
+                                <div class="col-span-3 text-sm text-slate-300 flex items-center gap-2">
+                                    <i class="ti ti-credit-card text-slate-500"></i>
+                                    Card 4247
+                                </div>
+                                <div class="col-span-3 text-right font-semibold text-red-400">
+                                    -$84.44
+                                </div>
+                            </div>
+
+                            <!-- Item -->
+                            <div class="grid grid-cols-12 items-center py-4 hover:bg-slate-800/50  transition">
+                                <div class="col-span-6 flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center">
+                                        <span class="text-white">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-apple"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8.286 7.008c-3.216 0 -4.286 3.23 -4.286 5.92c0 3.229 2.143 8.072 4.286 8.072c1.165 -.05 1.799 -.538 3.214 -.538c1.406 0 1.607 .538 3.214 .538s4.286 -3.229 4.286 -5.381c-.03 -.011 -2.649 -.434 -2.679 -3.23c-.02 -2.335 2.589 -3.179 2.679 -3.228c-1.096 -1.606 -3.162 -2.113 -3.75 -2.153c-1.535 -.12 -3.032 1.077 -3.75 1.077c-.729 0 -2.036 -1.077 -3.214 -1.077" /><path d="M12 4a2 2 0 0 0 2 -2a2 2 0 0 0 -2 2" /></svg>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-slate-100">Apple</p>
+                                        <p class="text-xs text-slate-400">Ene 22 · Hoy</p>
+                                    </div>
+                                </div>
+                                <div class="col-span-3 text-sm text-slate-300 flex items-center gap-2">
+                                    <i class="ti ti-credit-card text-slate-500"></i>
+                                    Card 4247
+                                </div>
+                                <div class="col-span-3 text-right font-semibold text-red-400">
+                                    -$132.00
+                                </div>
+                            </div>
+
+                            <!-- Item positive -->
+                            <div class="grid grid-cols-12 items-center py-4 hover:bg-slate-800/50  transition">
+                                <div class="col-span-6 flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-teal-500/20 flex items-center justify-center">
+                                        <span class="text-white">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-building-bank"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 21l18 0" /><path d="M3 10l18 0" /><path d="M5 6l7 -3l7 3" /><path d="M4 10l0 11" /><path d="M20 10l0 11" /><path d="M8 14l0 3" /><path d="M12 14l0 3" /><path d="M16 14l0 3" /></svg>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-slate-100">
+                                            My Chase Account · Initial funding
+                                        </p>
+                                        <p class="text-xs text-slate-400">Ene 22 · Hoy</p>
+                                    </div>
+                                </div>
+                                <div class="col-span-3 text-sm text-slate-300 flex items-center gap-2">
+                                    <i class="ti ti-building-bank text-slate-500"></i>
+                                    ACH Transfer
+                                </div>
+                                <div class="col-span-3 text-right font-semibold text-emerald-400">
+                                    +$12,500.00
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Script para el menú desplegable desde abajo
+        document.addEventListener('DOMContentLoaded', function() {
+            const openBtn = document.getElementById('openBottomMenu');
+            const closeBtn = document.getElementById('closeBottomMenu');
+            const overlay = document.getElementById('bottomMenuOverlay');
+            const menuPanel = document.getElementById('bottomMenuPanel');
+
+            function openBottomMenu() {
+                menuPanel.classList.remove('translate-y-full');
+                menuPanel.classList.add('translate-y-0');
+                overlay.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeBottomMenu() {
+                menuPanel.classList.remove('translate-y-0');
+                menuPanel.classList.add('translate-y-full');
+                overlay.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+
+            openBtn.addEventListener('click', openBottomMenu);
+            closeBtn.addEventListener('click', closeBottomMenu);
+            overlay.addEventListener('click', closeBottomMenu);
+
+            const menuOptions = menuPanel.querySelectorAll('button');
+            menuOptions.forEach(option => {
+                option.addEventListener('click', function(e) {
+                    if (!this.id && !this.classList.contains('close-action')) {
+                        console.log('Opción seleccionada:', this.textContent.trim());
+                        setTimeout(closeBottomMenu, 300);
+                    }
+                });
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && !menuPanel.classList.contains('translate-y-full')) {
+                    closeBottomMenu();
+                }
+            });
+        });
+
+        // Sidebar toggle
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+
+        function openSidebar() {
+            sidebar.classList.remove('sidebar-closed');
+            sidebar.classList.add('sidebar-open');
+            overlay.classList.remove('hidden');
+        }
+
+        function closeSidebarFunc() {
+            sidebar.classList.remove('sidebar-open');
+            sidebar.classList.add('sidebar-closed');
+            overlay.classList.add('hidden');
+        }
+
+        overlay.addEventListener('click', closeSidebarFunc);
+
+        // Year dropdown
+        function toggleDropdown(id) {
+            const dropdown = document.getElementById(id);
+            dropdown.classList.toggle('show');
+        }
+
+        function changeYear(year) {
+            document.getElementById('selectedYear').textContent = year;
+            
+            const progressCircle = document.getElementById('progressCircle');
+            const growthPercent = document.getElementById('growthPercent');
+            
+            if (year === 2024) {
+                progressCircle.setAttribute('stroke-dashoffset', '103.67');
+                growthPercent.textContent = '78%';
+            } else if (year === 2023) {
+                progressCircle.setAttribute('stroke-dashoffset', '164.93');
+                growthPercent.textContent = '65%';
+            } else {
+                progressCircle.setAttribute('stroke-dashoffset', '235.62');
+                growthPercent.textContent = '50%';
+            }
+            
+            document.getElementById('yearDropdown').classList.remove('show');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.dropdown')) {
+                document.getElementById('yearDropdown').classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>

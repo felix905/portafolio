@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>FlowStride™ Rendimiento Máximo. Cero Lesiones.</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <!-- Tabler Icons -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+        <!-- Google Fonts Inter -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+        <!-- Tailwind Config: set Inter as default font + dark mode class -->
+        <script>
+            tailwind.config = {
+                darkMode: 'class',
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            sans: ["Archivo", "ui-sans-serif", "system-ui"],
+                        },
+                    },
+                },
+            };
+        </script>
+
+        <style>
+            /* Estilos mejorados para el menú móvil */
+            .header-transition {
+                transition: all 0.3s ease-in-out;
+            }
+            
+            /* Menú móvil que aparece desde arriba */
+            .menu-mobile {
+                max-height: 0;
+                opacity: 0;
+                visibility: hidden;
+                overflow: hidden;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                transform: translateY(-20px);
+            }
+            
+            .menu-mobile.open {
+                max-height: 90vh;
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+            
+            .hamburger-line {
+                transition: all 0.3s ease;
+            }
+            
+            .hamburger.active .hamburger-line:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .hamburger.active .hamburger-line:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active .hamburger-line:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+            
+            /* Overlay mejorado */
+            .menu-overlay {
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                background: rgba(0, 0, 0, 0.7);
+                backdrop-filter: blur(4px);
+            }
+            
+            .menu-overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            /* Asegurar que el header esté por encima de todo */
+            #mainHeader {
+                z-index: 9999;
+            }
+
+            /* Scroll suave para el body */
+            body.menu-open {
+                overflow: hidden;
+            }
+
+            /* Dark mode solo en mobile - implementación automática */
+            @media (max-width: 768px) {
+                :root {
+                    color-scheme: dark;
+                }
+                body {
+                    @apply dark:bg-gray-900 dark:text-gray-100;
+                }
+            }
+        </style>
+    </head>
+    <body class="dark:bg-gray-900 dark:text-gray-100">
+        <div class="flex overflow-hidden flex-col px-9 pt-7 bg-white dark:bg-gray-900 max-md:px-5 max-md:pb-24">
+
+            <!-- Header -->
+            <header id="mainHeader" class="fixed top-0 left-0 right-0 z-50 header-transition bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-sm dark:shadow-gray-800">
+                <div class="container mx-auto">
+                    <!-- Contenedor principal del header -->
+                    <div class="flex justify-between items-center py-4">
+                        <!-- Logo -->
+                        <div class="flex items-center">
+    <!-- Logo Desktop (con invert) -->
+    <img src="img/logo_header_02.svg" 
+         class="hidden md:block w-[120px] dark:invert" 
+         alt="Logo">
+    
+    <!-- Logo Mobile (sin invert) -->
+    <img src="img/logo_header.svg" 
+         class="block md:hidden w-[120px] ml-6" 
+         alt="Logo">
+</div>
+
+                      <!-- Menú Desktop (oculto en móvil) -->
+<nav class="hidden lg:flex items-center">
+  
+  <!-- Links -->
+  <div class="flex items-center gap-10 rounded-full bg-gray-200/50 dark:bg-gray-800/70 backdrop-blur-lg px-8 py-3">
+    <a href="#" class="relative text-sm font-medium text-gray-600 dark:text-gray-300 transition hover:text-lime-500 dark:hover:text-lime-400">
+      Precios
+      <span class="absolute -bottom-1 left-0 h-[2px] w-0 bg-lime-400 transition-all duration-300 group-hover:w-full"></span>
+    </a>
+
+    <a href="#" class="text-sm font-medium text-gray-600 dark:text-gray-300 transition hover:text-lime-500 dark:hover:text-lime-400">
+      Recursos
+    </a>
+
+    <a href="#" class="text-sm font-medium text-gray-600 dark:text-gray-300 transition hover:text-lime-500 dark:hover:text-lime-400">
+      Nosotros
+    </a>
+
+    <a href="#" class="flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-300 transition hover:text-lime-500 dark:hover:text-lime-400">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-headset"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 14v-3a8 8 0 1 1 16 0v3" /><path d="M18 19c0 1.657 -2.686 3 -6 3" /><path d="M4 14a2 2 0 0 1 2 -2h1a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2h-1a2 2 0 0 1 -2 -2v-3" /><path d="M15 14a2 2 0 0 1 2 -2h1a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2h-1a2 2 0 0 1 -2 -2v-3" /></svg>
+      Soporte
+    </a>
+  </div>
+
+  <!-- Actions -->
+  <div class="ml-8 flex items-center gap-3">
+    
+    <!-- Login (secundario) -->
+    <button class="flex h-11 items-center gap-2 rounded-full bg-lime-400 px-5 text-sm font-medium text-gray-800 transition hover:bg-lime-500 hover:scale-[1.03] dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-user"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg>
+      Iniciar sesión
+    </button>
+
+    <!-- CTA principal -->
+    <button class="group flex h-11 items-center gap-4 rounded-full bg-gray-900 pl-6 pr-2 text-sm font-semibold text-gray-100 transition hover:scale-[1.05] dark:bg-gray-900">
+      Obtener reporte
+      <span class="flex h-8 w-8 text-gray-800 items-center justify-center rounded-full bg-lime-400 transition-transform duration-300 group-hover:translate-x-1">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M13 18l6 -6" /><path d="M13 6l6 6" /></svg>
+      </span>
+    </button>
+
+  </div>
+</nav>
+
+
+                        <!-- Botón Hamburguesa (solo móvil) -->
+                        <button id="menuToggle" class="lg:hidden hamburger flex flex-col justify-center items-center mr-10">
+                            <span class="hamburger-line block w-6 h-0.5 bg-gray-800 dark:bg-gray-200 mb-1.5"></span>
+                            <span class="hamburger-line block w-6 h-0.5 bg-gray-800 dark:bg-gray-200 mb-1.5"></span>
+                            <span class="hamburger-line block w-6 h-0.5 bg-gray-800 dark:bg-gray-200"></span>
+                        </button>
+                    </div>
+
+                    <!-- Menú Móvil Desplegable MEJORADO -->
+                    <div id="mobileMenu" class="menu-mobile lg:hidden bg-white dark:bg-gray-800 rounded-b-2xl shadow-xl dark:shadow-gray-900 overflow-y-auto">
+                        <div class="px-4 py-6">
+                            <!-- Navegación Móvil -->
+                            <div class="space-y-1">
+                                <a href="#" class="bg-gray-700/50 flex items-center justify-between py-4 px-4 text-gray-700 dark:text-gray-300 hover:text-lime-500 dark:hover:text-lime-400 hover:bg-gray-50 dark:hover:bg-gray-700 text-lg font-medium rounded-xl transition-all duration-300">
+                                    <span class="flex items-center gap-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-credit-card"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 8a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3l0 -8" /><path d="M3 10l18 0" /><path d="M7 15l.01 0" /><path d="M11 15l2 0" /></svg>
+                                        Precios
+                                    </span>
+                                 
+                                </a>
+                                <a href="#" class="bg-gray-700/50 flex items-center justify-between py-4 px-4 text-gray-700 dark:text-gray-300 hover:text-lime-500 dark:hover:text-lime-400 hover:bg-gray-50 dark:hover:bg-gray-700 text-lg font-medium rounded-xl transition-all duration-300">
+                                    <span class="flex items-center gap-3">
+                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-folders"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 3h3l2 2h5a2 2 0 0 1 2 2v7a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2" /><path d="M17 16v2a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2h2" /></svg>
+                                        Recursos
+                                    </span>
+                                </a>
+                                <a href="#" class="bg-gray-700/50 flex items-center justify-between py-4 px-4 text-gray-700 dark:text-gray-300 hover:text-lime-500 dark:hover:text-lime-400 hover:bg-gray-50 dark:hover:bg-gray-700 text-lg font-medium rounded-xl transition-all duration-300">
+                                    <span class="flex items-center gap-3">
+                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-users"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /><path d="M21 21v-2a4 4 0 0 0 -3 -3.85" /></svg>
+                                        Nosotros
+                                    </span>
+                                </a>
+                                <a href="#" class="bg-gray-700/50 flex items-center justify-between py-4 px-4 text-gray-700 dark:text-gray-300 hover:text-lime-500 dark:hover:text-lime-400 hover:bg-gray-50 dark:hover:bg-gray-700 text-lg font-medium rounded-xl transition-all duration-300">
+                                    <span class="flex items-center gap-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-headset"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 14v-3a8 8 0 1 1 16 0v3" /><path d="M18 19c0 1.657 -2.686 3 -6 3" /><path d="M4 14a2 2 0 0 1 2 -2h1a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2h-1a2 2 0 0 1 -2 -2v-3" /><path d="M15 14a2 2 0 0 1 2 -2h1a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2h-1a2 2 0 0 1 -2 -2v-3" /></svg>
+                                        Soporte
+                                    </span>
+                                </a>
+                            </div>
+
+                            <!-- CTA Buttons Mobile -->
+                            <div class="mt-8 pt-6 border-t border-gray-100 dark:border-gray-700 space-y-3">
+                                <button class="w-full flex items-center justify-center gap-3 px-5 py-3.5 bg-lime-400 dark:bg-lime-500 text-black rounded-xl font-medium hover:bg-lime-300 dark:hover:bg-lime-400 text-base transition-all duration-300 shadow-md">
+                                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-player-play"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 4v16l13 -8l-13 -8" /></svg>
+                                    <span>Prueba Gratis</span>
+                                </button>
+                                <button class="w-full flex items-center justify-center gap-3 px-5 py-3.5 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-xl font-medium hover:bg-gray-200 dark:hover:bg-gray-600 text-base transition-all duration-300">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-calendar"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M11 15h1" /><path d="M12 15v3" /></svg>
+                                    <span>Agendar Demo</span>
+                                </button>
+                            </div>
+
+                            <!-- Info adicional -->
+                            <div class="mt-6 pt-6 border-t border-gray-100 dark:border-gray-700">
+                                <div class="flex items-center justify-center gap-2 text-gray-500 dark:text-gray-400 text-sm">
+                                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-clock"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /><path d="M12 7v5l3 3" /></svg>
+                                    <span>Demo de 15min • Sin compromisos</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+
+
+
+
+
+<!-- Hero Section -->
+<section class="pt-32 pb-16 relative overflow-hidden">
+  <div class="container mx-auto grid lg:grid-cols-12 gap-12 items-center">
+
+    <!-- Left Content -->
+    <div class="lg:col-span-5 flex flex-col gap-6 relative z-10">
+
+      <header class="space-y-3">
+        <h1 class="text-4xl md:text-5xl xl:text-6xl font-normal text-gray-900 dark:text-gray-100 leading-tight">
+          Análisis biomecánico<br />
+          en tiempo real.
+        </h1>
+
+        <h2 class="italic text-3xl md:text-4xl text-gray-500/70 dark:text-gray-400">
+          Rendimiento medible.<br />
+          Lesiones evitables.
+        </h2>
+      </header>
+
+     <p class="block sm:hidden text-lg text-gray-500 dark:text-gray-400 max-w-xl">
+    Convierte tu movimiento en datos claros para entrenar mejor,
+    reducir riesgos y tomar decisiones con evidencia real.
+</p>
+
+      <!-- CTA Hero -->
+      <div class="flex items-center gap-4 mt-4">
+        <button class="group flex items-center gap-4 rounded-full bg-gray-900 pl-6 pr-1.5 py-1.5 text-md font-medium text-gray-100 transition hover:scale-[1.05]">
+          Obtener análisis inicial
+          <span class="text-black text-lg flex h-12 w-12 items-center justify-center rounded-full bg-lime-400 transition-transform duration-300 group-hover:translate-x-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M13 18l6 -6" /><path d="M13 6l6 6" /></svg>
+          </span>
+        </button>
+
+        <span class="text-xl text-gray-500 dark:text-gray-500">
+          Sin tarjeta · 5 minutos
+        </span>
+      </div>
+
+      <!-- Social proof -->
+      <div class="flex items-center gap-4 mt-4">
+        <div class="flex -space-x-2">
+          <img src="img/gr3.png" class="w-12 h-12 rounded-full border-2 border-white dark:border-gray-900" />
+          <img src="img/gr5.png" class="w-12 h-12 rounded-full border-2 border-white dark:border-gray-900" />
+          <img src="img/avatar_01.png" class="w-12 h-12 rounded-full border-2 border-white dark:border-gray-900" />
+        </div>
+        <div class="text-md italic">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">+500 atletas</span><br />
+          <span class="text-gray-500 dark:text-gray-400">ya entrenan con datos</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right / Visual -->
+    <div class="lg:col-span-7 relative min-h-[480px]">
+
+      <!-- Background image -->
+      <img
+        src="img/01_033.png"
+        alt="FlowStride Dashboard"
+        class="absolute inset-0 w-full h-full object-cover rounded-[28px]"
+      />
+
+      <!-- BIG DATA CARD -->
+      <article class="absolute bottom-6 left-6 lg:left-6 bg-slate-950/60 backdrop-blur-md rounded-3xl p-6 lg:p-8 max-w-md text-white ">
+
+        <p class="tracking-wide text-sm text-white/70 mb-2">
+          <span class="italic font-semibold"> FlowStride™ </span>Index
+        </p>
+
+        <div class="flex items-end gap-2">
+          <span class="italic font-normal text-7xl lg:text-8xl xl:text-9xl">
+            87
+          </span>
+          <span class="text-4xl font-medium mb-4 text-white/30">%</span>
+        </div>
+
+        <p class="text-white/70 text-lg mb-3">
+          Rendimiento biomecánico general
+        </p>
+
+        <div class="grid grid-cols-3 gap-4 border-t border-white/10 pt-4">
+
+            <div class="text-sm">
+           <div class="text-xl text-lime-400 pb-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-trending-up"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 17l6 -6l4 4l8 -8" /><path d="M14 7l7 0l0 7" /></svg></div> 
+            <span class="italic text-white font-normal text-2xl">+32%</span><br />
+            <span class="text-white/50">Eficiencia</span>
+          </div>
+          <div class="text-sm">
+            <div class="text-xl text-red-500 pb-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-heartbeat"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19.5 13.572l-7.5 7.428l-2.896 -2.868m-6.117 -8.104a5 5 0 0 1 9.013 -3.022a5 5 0 1 1 7.5 6.572" /><path d="M3 13h2l2 3l2 -6l1 3h3" /></svg></div> 
+            <span class="italic text-white font-normal text-2xl">92%</span><br />
+            <span class="text-white/50">Salud</span>
+          </div>
+          
+          <div class="text-sm">
+             <div class="text-xl text-amber-400 pb-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-bolt"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13 3l0 7l6 0l-8 11l0 -7l-6 0l8 -11" /></svg></div>
+            <span class="italic text-white font-normal text-2xl">85%</span><br />
+            <span class="text-white/50">Energía</span>
+          </div>
+        </div>
+
+        <p class="text-[14px] text-white/50 mt-4   border-t border-slate-100/10 pt-4">
+          Estimaciones basadas en análisis biomecánico.<br />
+          No sustituyen evaluación clínica.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+            <!-- Features Section -->
+            <main>
+                <section class="py-16 md:py-24 pb-10 bg-white dark:bg-gray-900">
+                    <div class="container mx-auto">
+                        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                            <!-- Title Card - Spans full width -->
+                            <div class="lg:col-span-4">
+                                <header class="mb-6">
+                                    <h2 class="text-2xl md:text-3xl lg:text-4xl font-light text-gray-900 dark:text-gray-100 leading-tight">
+                                        Características que<br class="hidden md:block" />
+                                        <span class="text-gray-600 dark:text-gray-400 pt-2">Transforman tu Entrenamiento</span>
+                                    </h2>
+                                </header>
+                            </div>
+
+                            <!-- Card 1: Análisis Biométrico -->
+                            <div class="lg:col-span-1">
+                                <div class="bg-gray-200/50 dark:bg-gray-800/50 rounded-2xl p-6 md:p-8 flex flex-col h-full">
+                                    <div class="mb-6 relative">
+                                        <h3 class="text-xl md:text-3xl font-normal text-gray-900 dark:text-gray-100 mb-4 leading-tight pr-16">
+                                            Análisis<br class="hidden md:block" />
+                                            Biométrico
+                                        </h3>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="text-md text-gray-600 dark:text-gray-300 leading-relaxed">
+                                            Monitorea eficiencia del movimiento con wearables y sensores avanzados en tiempo real.
+                                        </p>
+                                    </div>
+                                    <div class="mt-2 pt-4 border-t border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100">
+                                        <div class="flex items-center gap-2 text-lg">
+                                            <div class="flex items-center justify-center bg-lime-300 dark:bg-lime-500 rounded-full w-10 h-10">
+                                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-wave-sine"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M21 12h-2c-.894 0 -1.662 -.857 -1.761 -2c-.296 -3.45 -.749 -6 -2.749 -6s-2.5 3.582 -2.5 8s-.5 8 -2.5 8s-2.452 -2.547 -2.749 -6c-.1 -1.147 -.867 -2 -1.763 -2h-2" /></svg>
+                                            </div>
+                                            <span class="font-semibold">Datos en tiempo real</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 2: Detección de Fatiga -->
+                            <div class="lg:col-span-1">
+                                <div class="bg-gray-200/50 dark:bg-gray-800/50 rounded-2xl p-6 md:p-8 flex flex-col h-full">
+                                    <div class="mb-6 relative">
+                                        <h3 class="text-xl md:text-3xl font-normal text-gray-900 dark:text-gray-100 mb-4 leading-tight pr-16">
+                                            Detección<br class="hidden md:block" />
+                                            de Fatiga
+                                        </h3>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="text-md text-gray-600 dark:text-gray-300 leading-relaxed">
+                                            Algoritmos IA que predicen y alertan sobre fatiga muscular antes de que ocurran lesiones.
+                                        </p>
+                                    </div>
+                                    <div class="mt-2 pt-4 border-t border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100">
+                                        <div class="flex items-center gap-2 text-lg">
+                                            <div class="flex items-center justify-center bg-lime-300 dark:bg-lime-500 rounded-full w-10 h-10">
+                                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brain"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15.5 13a3.5 3.5 0 0 0 -3.5 3.5v1a3.5 3.5 0 0 0 7 0v-1.8" /><path d="M8.5 13a3.5 3.5 0 0 1 3.5 3.5v1a3.5 3.5 0 0 1 -7 0v-1.8" /><path d="M17.5 16a3.5 3.5 0 0 0 0 -7h-.5" /><path d="M19 9.3v-2.8a3.5 3.5 0 0 0 -7 0" /><path d="M6.5 16a3.5 3.5 0 0 1 0 -7h.5" /><path d="M5 9.3v-2.8a3.5 3.5 0 0 1 7 0v10" /></svg>
+                                            </div>
+                                            <span class="font-semibold">IA predictiva</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 3: Reportes Personalizados -->
+                            <div class="lg:col-span-1">
+                                <div class="bg-gray-200/50 dark:bg-gray-800/50 rounded-2xl p-6 md:p-8 flex flex-col h-full">
+                                    <div class="mb-6 relative">
+                                        <h3 class="text-xl md:text-3xl font-normal text-gray-900 dark:text-gray-100 mb-4 leading-tight pr-16">
+                                            Reportes<br class="hidden md:block" />
+                                            Personalizados
+                                        </h3>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="text-md text-gray-600 dark:text-gray-300 leading-relaxed">
+                                            Dashboards interactivos con insights accionables y recomendaciones específicas para tu caso.
+                                        </p>
+                                    </div>
+                                    <div class="mt-2 pt-4 border-t border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100">
+                                        <div class="flex items-center gap-2 text-lg">
+                                            <div class="flex items-center justify-center bg-lime-300 dark:bg-lime-500 rounded-full w-10 h-10">
+                                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-target-arrow"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 7a5 5 0 1 0 5 5" /><path d="M13 3.055a9 9 0 1 0 7.941 7.945" /><path d="M15 6v3h3l3 -3h-3v-3l-3 3" /><path d="M15 9l-3 3" /></svg>
+                                            </div>
+                                            <span class="font-semibold">Insights accionables</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 4: Integraciones con Profesionales -->
+                            <div class="lg:col-span-1">
+                                <div class="bg-gray-200/50 dark:bg-gray-800/50 rounded-2xl p-6 md:p-8 flex flex-col h-full">
+                                    <div class="mb-6 relative">
+                                        <h3 class="text-xl md:text-3xl font-normal text-gray-900 dark:text-gray-100 mb-4 leading-tight pr-16">
+                                            Integraciones<br class="hidden md:block" />
+                                            Profesionales
+                                        </h3>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="text-md text-gray-600 dark:text-gray-300 leading-relaxed">
+                                            Comparte datos automáticamente con tu entrenador, fisioterapeuta o apps de seguimiento.
+                                        </p>
+                                    </div>
+                                    <div class="mt-2 pt-4 border-t border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100">
+                                        <div class="flex items-center gap-2 text-lg">
+                                            <div class="flex items-center justify-center bg-lime-300 dark:bg-lime-500 rounded-full w-10 h-10">
+                                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-share-2"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 9h-1a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-8a2 2 0 0 0 -2 -2h-1" /><path d="M12 14v-11" /><path d="M9 6l3 -3l3 3" /></svg>
+                                            </div>
+                                            <span class="font-semibold">Compartición segura</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Resources Section -->
+                <section class="py-16 md:py-24 bg-white dark:bg-gray-900">
+                    <div class="container mx-auto">
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+                            <!-- Main Resource Card (left) -->
+                            <article class="lg:col-span-1">
+                                <div class="flex flex-col h-full bg-lime-300/80 dark:bg-lime-500/80 rounded-2xl p-8 md:p-10 lg:p-12 relative overflow-hidden">
+                                    <div class="relative z-10">
+                                        <div class="flex items-center gap-3 mb-4">
+                                            <h2 class="text-3xl md:text-4xl font-normal leading-tight text-gray-900 dark:text-gray-900">
+                                                Obtén tu<br />
+                                                Reporte Gratis
+                                            </h2>
+                                        </div>
+
+                                        <p class="text-lg md:text-xl font-normal text-gray-800 dark:text-gray-900 mb-4">
+                                            Descubre tu capacidad actual y <br>tu potencial de mejora.
+                                        </p>
+
+                                        <!-- Lista de lo que se mide -->
+                                        <div class="space-y-3 mb-6">
+                                            <div class="flex items-center gap-3">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-cpu-2"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 6a1 1 0 0 1 1 -1h12a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-12a1 1 0 0 1 -1 -1l0 -12" /><path d="M8 10v-2h2m6 6v2h-2m-4 0h-2v-2m8 -4v-2h-2" /><path d="M3 10h2" /><path d="M3 14h2" /><path d="M10 3v2" /><path d="M14 3v2" /><path d="M21 10h-2" /><path d="M21 14h-2" /><path d="M14 21v-2" /><path d="M10 21v-2" /></svg>
+                                                <span class="text-gray-800 dark:text-gray-900 text-md font-normal">Eficiencia biomecánica</span>
+                                            </div>
+                                            <div class="flex items-center gap-3">
+                                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-wave-saw-tool"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12h5l4 8v-16l4 8h5" /></svg>
+                                                <span class="text-gray-800 dark:text-gray-900 text-md font-normal">Patrones de movimiento</span>
+                                            </div>
+                                            <div class="flex items-center gap-3">
+                                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-alert-triangle"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 9v4" /><path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0" /><path d="M12 16h.01" /></svg>
+                                                <span class="text-gray-800 dark:text-gray-900 text-md font-normal">Riesgo de lesión</span>
+                                            </div>
+                                            <div class="flex items-center gap-3">
+                                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-battery-3"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 7h11a2 2 0 0 1 2 2v.5a.5 .5 0 0 0 .5 .5a.5 .5 0 0 1 .5 .5v3a.5 .5 0 0 1 -.5 .5a.5 .5 0 0 0 -.5 .5v.5a2 2 0 0 1 -2 2h-11a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2" /><path d="M7 10l0 4" /><path d="M10 10l0 4" /><path d="M13 10l0 4" /></svg>
+                                                <span class="text-gray-800 dark:text-gray-900 text-md font-normal">Nivel de fatiga</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Requisitos -->
+                                     <!-- Requisitos -->
+<div class="bg-green-900/10 dark:bg-green-900/20 rounded-xl p-4 mb-3">
+    <p class="text-md font-semibold text-gray-900 dark:text-gray-900 mb-1 flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-checklist"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9.615 20h-2.615a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8" /><path d="M14 19l2 2l4 -4" /><path d="M9 8h4" /><path d="M9 12h2" /></svg>
+        Solo necesitas:
+    </p>
+    <div class="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-900">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-video-minus"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 10l4.553 -2.276a1 1 0 0 1 1.447 .894v6.764a1 1 0 0 1 -1.447 .894l-4.553 -2.276v-4" /><path d="M3 8a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2l0 -8" /><path d="M7 12l4 0" /></svg>
+        <span class="whitespace-nowrap">Video corto</span>
+        <span class="text-lg font-semibold">+</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-time-duration-off"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12v.01" /><path d="M7.5 19.8v.01" /><path d="M4.2 16.5v.01" /><path d="M4.2 7.5v.01" /><path d="M12 21a8.994 8.994 0 0 0 6.362 -2.634m1.685 -2.336a9 9 0 0 0 -8.047 -13.03" /><path d="M3 3l18 18" /></svg>
+        <span class="whitespace-nowrap">5 minutos</span>
+    </div>
+</div>
+                                    </div>
+
+                                    <!-- CTA -->
+                                    <button class="group mt-auto w-full bg-gray-900 dark:bg-gray-900 text-lime-300 rounded-full py-1.5 pr-2 pl-10 flex items-center justify-between gap-4 hover:bg-gray-900 transition-all duration-300 transform hover:scale-105">
+                                        <span class="flex items-center gap-3 text-md font-normal">
+                                            <span>Obtener Reporte Gratis</span>
+                                        </span>
+                                        <div class="bg-lime-300 dark:bg-lime-400 rounded-full px-2.5 py-2.5 group-hover:scale-110 transition-transform duration-300">
+                                         <div class="text-black text-xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M13 18l6 -6" /><path d="M13 6l6 6" /></svg></div>  
+                                        </div>
+                                    </button>
+                                </div>
+                            </article>
+
+                            <!-- Resources Grid -->
+                            <div class="lg:col-span-2">
+                                <div class="relative bg-lime-300 dark:bg-lime-500 rounded-2xl overflow-hidden min-h-[600px]">
+                                    <!-- Background Image with Overlay -->
+                                    <div class="absolute inset-0">
+                                        <img
+                                            src="img/bask_01.png"
+                                            class="object-cover w-full h-full object-top"
+                                            alt="Resources background"
+                                        />
+                                        <div class="absolute inset-0 bg-black bg-opacity-10 dark:bg-opacity-30"></div>
+                                    </div>
+
+                                    <!-- Resources Cards Container -->
+                                    <div class="relative z-10 p-6 md:p-8 lg:p-10 h-full flex flex-col justify-end">
+                                        <div class="space-y-4 md:space-y-6 max-w-md ml-auto">
+                                            <!-- Card 1: Técnica de Carrera -->
+                                            <article class="group relative bg-white/70 dark:bg-gray-800/60 backdrop-blur-sm rounded-xl p-5 w-full">
+                                                <div class="flex items-center justify-between mb-4">
+                                                    <div class="flex items-center gap-3">
+                                                        <div class="text-gray-900 dark:text-gray-100 text-2xl py-2 px-2 bg-gray-200/30 dark:bg-gray-700/50 rounded-full">
+                                                            
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-run"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 4a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M4 17l5 1l.75 -1.5" /><path d="M15 21l0 -4l-4 -3l1 -6" /><path d="M7 12l0 -3l5 -1l3 3l3 1" /></svg>
+                                                        </div>
+                                                     
+
+
+
+                                                        <h3 class="italic text-lg font-semibold text-gray-900 dark:text-gray-100">Técnica de Carrera</h3>
+                                                    </div>
+                                                    <span class="text-sm bg-gray-200/30 dark:bg-gray-700/50 text-gray-900 dark:text-gray-100 px-3 py-1 rounded-full">
+                                                        +12% mejora
+                                                    </span>
+                                                </div>
+                                                <div class="grid grid-cols-1 gap-4 text-lg">
+                                                    <div class="space-y-1">
+                                                        <div class="flex justify-between items-center">
+                                                            <span class="text-gray-800 dark:text-gray-200">Cadencia ideal:</span>
+                                                            <span class="font-medium ml-2">180 spm</span>
+                                                        </div>
+                                                        <div class="flex justify-between items-center">
+                                                            <span class="text-gray-800 dark:text-gray-200">Tu cadencia:</span>
+                                                            <span class="font-medium">172 spm</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </article>
+
+                                            <!-- Card 2: Rendimiento -->
+                                            <article class="bg-lime-300/70 dark:bg-lime-500/80 backdrop-blur-sm rounded-xl p-5 text-gray-900 dark:text-gray-900">
+                                                <div class="flex items-center justify-between mb-4">
+                                                    <div class="flex items-center gap-3">
+                                                        <div class="text-black text-2xl py-2 px-2 bg-green-900/60 dark:bg-green-900/30 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-activity"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12h4l3 8l4 -16l3 8h4" /></svg></div>
+                                                        
+                                                        <h3 class="italic text-lg font-medium">Rendimiento General</h3>
+                                                    </div>
+                                                    <div class="text-xs bg-green-900/10 dark:bg-green-900/20 px-3 py-1 rounded-full font-medium">
+                                                        Semana 3
+                                                    </div>
+                                                </div>
+
+                                                <!-- Contenido normal -->
+                                                <div class="group-hover:hidden">
+                                                    <div class="grid grid-cols-3 gap-3 mb-4">
+                                                        <div class="text-center">
+                                                            <span class="text-4xl font-normal leading-none">87</span>
+                                                            <span class="text-2xl font-semibold">%</span>
+                                                            <div class="text-sm text-black">Eficiencia</div>
+                                                            <div class="text-xs text-black/70 dark:text-gray-900 font-medium">+3%</div>
+                                                        </div>
+                                                        <div class="text-center">
+                                                            <span class="text-4xl font-normal leading-none">+5.2</span>
+                                                            <span class="text-2xl font-semibold">%</span>
+                                                            <div class="text-sm text-black">Economía</div>
+                                                            <div class="text-xs text-black/70 dark:text-gray-900 font-normal">↑ mejora</div>
+                                                        </div>
+                                                        <div class="text-center">
+                                                            <span class="text-4xl font-normal leading-none">-8</span>
+                                                            <span class="text-2xl font-semibold">%</span>
+                                                            <div class="text-sm text-black">Impacto</div>
+                                                            <div class="text-xs text-black/70 dark:text-gray-900 font-normal">↓ reducción</div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="flex items-center gap-2 text-md text-gray-900 dark:text-gray-900">
+                                                       <div class="text-black" > <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chart-bar-popular"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -6" /><path d="M9 9a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -10" /><path d="M15 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -14" /><path d="M4 20h14" /></svg></div>
+                                                        <span>Progreso constante en las últimas 4 semanas</span>
+                                                    </div>
+                                                </div>
+                                            </article>
+
+                                            <!-- Card 3: Plan de Recuperación -->
+                                            <article class="relative bg-gray-900/60 dark:bg-gray-900/80 backdrop-blur-sm rounded-xl p-5 md:p-5 text-white">
+                                                <!-- Header -->
+                                                <div class="flex items-center justify-between mb-2">
+                                                    <div class="flex items-center gap-3">
+                                                        <div class="text-lime-400 text-2xl py-2 px-2 bg-gray-800/70 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-heartbeat"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19.5 13.572l-7.5 7.428l-2.896 -2.868m-6.117 -8.104a5 5 0 0 1 9.013 -3.022a5 5 0 1 1 7.5 6.572" /><path d="M3 13h2l2 3l2 -6l1 3h3" /></svg></div>
+                                                       
+                                                        <h3 class="italic text-lg font-medium">Recuperación</h3>
+                                                    </div>
+                                                    <div class="text-xs bg-gray-400/20 text-lime-400 px-3 py-1 rounded-full">
+                                                        <i class="ti ti-moon text-sm"></i>
+                                                        <span class="text-xs">58% fatiga</span>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Recovery Metrics -->
+                                                <div class="space-y-4 pt-2">
+                                                    <div class="grid grid-cols-2 gap-4 text-sm">
+                                                        <div>
+                                                            <div class="flex items-baseline gap-1">
+                                                                <span class="text-4xl font-extralight leading-none text-lime-300">65</span>
+                                                                <span class="text-2xl font-normal text-lime-300">%</span>
+                                                                <span class="text-md font-normal text-gray-200">eficiencia</span>
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <div class="space-y-1 text-xs pt-3">
+                                                                <div class="flex items-center gap-2 text-gray-300">
+                                                                    <div class="text-green-600 text-lg"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-up-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 7l-10 10" /><path d="M8 7l9 0l0 9" /></svg></div>
+                                                                 
+                                                                    <p class="text-sm text-gray-300">Incremento semanal</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Performance Section -->
+                <section class="py-16 md:py-24 bg-white dark:bg-gray-900 min-h-[70vh]">
+                    <div class="container mx-auto">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+                            <!-- Performance Improvement -->
+                            <article class="relative rounded-2xl overflow-hidden h-[600px] group">
+                                <img src="img/0211.png" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04] brightness-[80%]" alt="">
+                                <div class="relative z-10 h-full flex flex-col justify-end p-8 md:p-12 space-y-2">
+                                    <h2 class="text-3xl md:text-3xl font-normal text-white leading-tight">
+                                        Mejora tu tiempo<br>
+                                        de carrera
+                                    </h2>
+                                    <p class="text-gray-300 font-normal text-lg max-w-sm">
+                                        Optimiza tu técnica con análisis biomecánico avanzado y mejora tus tiempos reales.
+                                    </p>
+                                    <div class="bg-gray-900/5 dark:bg-gray-900/20 backdrop-blur-sm rounded-xl p-5 border border-white/10 dark:border-gray-700/30 max-w-xs transition-all duration-300 hover:border-lime-400/30 group">
+                                        <div class="flex items-center gap-4">
+                                            <!-- Icono minimalista -->
+                                            <div class="bg-lime-400/70 dark:bg-lime-500/70 rounded-full px-3 py-3">
+                                                <div class="text-black text-4xl">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-run"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 4a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M4 17l5 1l.75 -1.5" /><path d="M15 21l0 -4l-4 -3l1 -6" /><path d="M7 12l0 -3l5 -1l3 3l3 1" /></svg>
+                                                </div>
+                                            </div>
+                                            <!-- Contenido textual -->
+                                            <div class="flex-1">
+                                                <div class="flex items-baseline gap-2">
+                                                    <p class="italic text-2xl font-normal text-lime-400/70 dark:text-lime-400">+3%</p>
+                                                    <p class="text-ld font-normal text-gray-400 dark:text-gray-300">Velocidad</p>
+                                                </div>
+                                                <!-- Indicador sutil -->
+                                                <div class="flex items-center gap-1">
+                                                    <div class="w-1 h-1 bg-lime-400 rounded-full animate-pulse"></div>
+                                                    <span class="text-md text-gray-500 dark:text-gray-400">Rendimiento en aumento</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- Right Column -->
+                            <div class="flex flex-col gap-8">
+                                <article class="bg-lime-300 dark:bg-lime-500 rounded-2xl p-8 relative overflow-hidden w-full h-70 flex flex-col">
+                                    <div class="relative z-10 flex flex-col h-full">
+                                        <!-- Espacio flexible que empuja el contenido hacia abajo -->
+                                        <div class="flex-1"></div>
+                                        <!-- Contenido que se mantiene al final -->
+                                        <div class="space-y-4 mt-auto">
+                                            <!-- Contenido Principal -->
+                                            <div>
+                                                <h3 class="text-3xl font-normal text-slate-900 leading-tight">
+                                                    IA Deportiva Predictiva
+                                                </h3>
+                                                <p class="text-lg font-normal text-slate-900 leading-relaxed">
+                                                    Nuestro sistema de IA analiza patrones biomecánicos <br> en tiempo real para optimizar tu rendimiento.
+                                                </p>
+                                            </div>
+                                            <!-- Estadísticas Refinadas -->
+                                            <div class="flex flex-wrap gap-2">
+                                                <div class="bg-lime-500/30 dark:bg-lime-600/40 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/20">
+                                                    <span class="text-md font-normal text-slate-900 flex items-center gap-2">
+                                                       
+                                                        <div class="text-red-500 text-xl">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-down-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7l10 10" /><path d="M17 8l0 9l-9 0" /></svg>
+                                                        </div>
+                                                        -60% lesiones
+                                                    </span>
+                                                </div>
+                                                <div class="bg-lime-500/30 dark:bg-lime-600/40 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/20">
+                                                    <span class="text-md font-normal text-slate-900 flex items-center gap-2">
+                                                       
+                                                        <div class="text-green-600 text-xl">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-up-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 7l-10 10" /><path d="M8 7l9 0l0 9" /></svg>
+                                                        </div>
+                                                        +15% rendimiento
+                                                    </span>
+                                                </div>
+                                                <div class="bg-lime-500/30 dark:bg-lime-600/40 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/20">
+                                                    <span class="text-md font-normal text-slate-900 flex items-center gap-2">
+                                                        <div class="text-gray-900 text-xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-clock-hour-4"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12l3 2" /><path d="M12 7v5" /></svg></div>
+                                                       
+                                                        24/7
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+
+                                <article class="relative rounded-2xl overflow-hidden min-h-[335px] group">
+                                    <img src="img/Gemini_Generated_Image_o2zyw3o2zyw3o2zy.png" class="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03] brightness-[80%]" alt="Biometric data background">
+                                    <div class="absolute inset-0 bg-black/35"></div>
+
+                                    <div class="relative z-10 h-full flex flex-col p-8 md:p-10">
+                                        <!-- Contenido pegado abajo automáticamente -->
+                                        <div class="mt-auto space-y-4">
+                                            <h3 class="text-3xl font-normal text-white leading-tight">Datos biométricos <br>que previenen</h3>
+                                            <p class="text-lg font-normal text-gray-200/85 max-w-md">
+                                                Analizamos tu forma, carga y técnica para anticipar lesiones antes de que ocurran.
+                                            </p>
+                                            <div class="bg-gray-900/20 dark:bg-gray-900/40 backdrop-blur-sm rounded-xl p-5 border border-white/10 dark:border-gray-600/30 max-w-xs transition-all duration-300 hover:border-lime-400/30 group">
+                                                <div class="flex items-center gap-4">
+                                                    <!-- Icono minimalista -->
+                                                    <div class="bg-lime-400/70 dark:bg-lime-500 px-3 py-3 rounded-full">
+                                                   
+                                                        <div class="text-black text-2xl">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brain"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15.5 13a3.5 3.5 0 0 0 -3.5 3.5v1a3.5 3.5 0 0 0 7 0v-1.8" /><path d="M8.5 13a3.5 3.5 0 0 1 3.5 3.5v1a3.5 3.5 0 0 1 -7 0v-1.8" /><path d="M17.5 16a3.5 3.5 0 0 0 0 -7h-.5" /><path d="M19 9.3v-2.8a3.5 3.5 0 0 0 -7 0" /><path d="M6.5 16a3.5 3.5 0 0 1 0 -7h.5" /><path d="M5 9.3v-2.8a3.5 3.5 0 0 1 7 0v10" /></svg>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Contenido textual -->
+                                                    <div class="flex-1">
+                                                        <div class="text-white text-base font-normal leading-tight">
+                                                            Reduce riesgo <span class="text-lime-300 font-medium">hasta 60%</span><br>
+                                                            Mejora técnica <span class="text-lime-300 font-medium">+15%</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Clients Section -->
+                <section class="py-16 md:py-24 bg-white dark:bg-gray-900">
+                    <div class="container mx-auto">
+                        <!-- Header -->
+                        <header class="mb-10">
+                            <h2 class="text-2xl md:text-3xl lg:text-4xl font-light text-gray-900 dark:text-gray-100 leading-tight mb-2">
+                                Nuestros Clientes
+                            </h2>
+                            <p class="text-gray-500 dark:text-gray-400 text-lg md:text-xl font-normal mx-auto">
+                                Atletas y equipos confían en nuestra tecnología para alcanzar su máximo rendimiento.
+                            </p>
+                        </header>
+
+                        <!-- Grid -->
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-8">
+                            <!-- Testimonial Card 1 -->
+                            <article class="group bg-gray-200/70 dark:bg-gray-800/70 rounded-2xl p-8 md:p-10">
+                                <div class="mb-4">                                   
+                                    <div class="text-[36px] text-lime-500 opacity-70">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-quote"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 5a2 2 0 0 1 2 2v6c0 3.13 -1.65 5.193 -4.757 5.97a1 1 0 1 1 -.486 -1.94c2.227 -.557 3.243 -1.827 3.243 -4.03v-1h-3a2 2 0 0 1 -1.995 -1.85l-.005 -.15v-3a2 2 0 0 1 2 -2z" /><path d="M18 5a2 2 0 0 1 2 2v6c0 3.13 -1.65 5.193 -4.757 5.97a1 1 0 1 1 -.486 -1.94c2.227 -.557 3.243 -1.827 3.243 -4.03v-1h-3a2 2 0 0 1 -1.995 -1.85l-.005 -.15v-3a2 2 0 0 1 2 -2z" /></svg></div>
+                                </div>
+                                <blockquote class="text-lg md:text-xl font-normal leading-relaxed text-gray-700 dark:text-gray-300 mb-6 italic">
+                                    "Como corredor de maratones, siempre busqué mejorar mi técnica. FlowStride detectó patrones que ni mi entrenador veía. En 3 meses reduje mi tiempo en 8 minutos y eliminé el dolor de rodillas que me perseguía por años."
+                                </blockquote>
+                                <footer class="flex items-center gap-4 pt-6 border-t border-gray-300 dark:border-gray-700">
+                                    <div class="w-20 h-20 rounded-full flex items-center justify-center border border-lime-200 dark:border-lime-700 overflow-hidden">
+                                        <img src="img/avatar_01.png" alt="Avatar de Carlos Mendoza" class="w-full h-full object-cover">
+                                    </div>
+                                    <div>
+                                        <div class="text-gray-900 dark:text-gray-100 font-medium text-lg">Carlos Mendoza</div>
+                                        <div class="text-gray-600 dark:text-gray-400 text-md font-normal">Maratonista, 12 años de experiencia</div>
+                                        <div class="flex items-center gap-1 mt-1">
+                                         
+                                            <div class="text-md text-gray-600 dark:text-gray-500"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-map-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /><path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0" /></svg></div>
+                                            <span class="text-sm text-gray-500 dark:text-gray-400">Ciudad de México</span>
+                                        </div>
+                                    </div>
+                                </footer>
+                            </article>
+
+                            <!-- Testimonial Card 2 -->
+                            <article class="group bg-gray-200/70 dark:bg-gray-800/70 rounded-2xl p-8 md:p-10">
+                                <div class="mb-4">                                   
+                                    <div class="text-[36px] text-lime-500 opacity-70">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-quote"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 5a2 2 0 0 1 2 2v6c0 3.13 -1.65 5.193 -4.757 5.97a1 1 0 1 1 -.486 -1.94c2.227 -.557 3.243 -1.827 3.243 -4.03v-1h-3a2 2 0 0 1 -1.995 -1.85l-.005 -.15v-3a2 2 0 0 1 2 -2z" /><path d="M18 5a2 2 0 0 1 2 2v6c0 3.13 -1.65 5.193 -4.757 5.97a1 1 0 1 1 -.486 -1.94c2.227 -.557 3.243 -1.827 3.243 -4.03v-1h-3a2 2 0 0 1 -1.995 -1.85l-.005 -.15v-3a2 2 0 0 1 2 -2z" /></svg></div>
+                                </div>
+                                <blockquote class="text-lg md:text-xl font-normal leading-relaxed text-gray-700 dark:text-gray-300 mb-6 italic">
+                                    "Trabajo con atletas de alto rendimiento y FlowStride se ha convertido en nuestra herramienta principal. El análisis biomecánico nos permite prevenir lesiones antes de que ocurran y optimizar el entrenamiento de manera científica."
+                                </blockquote>
+                                <footer class="flex items-center gap-4 pt-6 border-t border-gray-300 dark:border-gray-700">
+                                    <div class="w-20 h-20 rounded-full flex items-center justify-center border border-blue-200 dark:border-blue-700 overflow-hidden">
+                                        <img src="img/avatar_02.png" alt="Avatar de Carlos Mendoza" class="w-full h-full object-cover">
+                                    </div>
+                                    <div>
+                                        <div class="text-gray-900 dark:text-gray-100 font-medium text-lg">Valeria González</div>
+                                        <div class="text-gray-600 dark:text-gray-400 text-md font-normal">Preparadora Física Deportiva</div>
+                                        <div class="flex items-center gap-1 mt-1">
+                                            <div class="text-md text-gray-600 dark:text-gray-500"><svg xmlns="http://www.w3.org/2000/svg"width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-map-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /><path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0" /></svg></div>
+                                            <span class="text-sm text-gray-500 dark:text-gray-400">Buenos Aires, Argentina</span>
+                                        </div>
+                                    </div>
+                                </footer>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+
+
+<!-- Pricing Section -->
+<section class="py-16 md:py-24 bg-white dark:bg-gray-900">
+  <div class="container mx-auto">
+    <header class="mb-14 text-center">
+      <h2 class="text-2xl md:text-3xl lg:text-4xl font-light text-gray-900 dark:text-gray-100 leading-tight mb-2">
+        Entrena con Información, no con Suposiciones
+      </h2>
+      <p class="text-gray-500 dark:text-gray-400 text-lg max-w-2xl mx-auto">
+        Elige el nivel de análisis y acompañamiento que mejor se adapte a tu entrenamiento o a tu equipo.
+      </p>
+    </header>
+
+    <div class="grid gap-8 md:grid-cols-3">
+
+      <!-- Plan Starter -->
+      <article class="flex flex-col rounded-3xl bg-gray-100/70 dark:bg-gray-800/70 p-12">
+        <div>
+          <h3 class="text-2xl font-normal tracking-tight text-gray-900 dark:text-gray-100 mb-2">
+            Análisis Inicial
+          </h3>
+          <p class="text-gray-500 dark:text-gray-400 mb-6">
+            Conoce tu estado actual y detecta oportunidades de mejora desde el primer día.
+          </p>
+
+          <div class="text-4xl font-medium text-gray-900 dark:text-gray-100 mb-1">
+            Gratis
+          </div>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">
+            Sin tarjeta · Sin compromiso
+          </p>
+
+          <ul class="space-y-3 text-sm">
+            <li class="flex gap-3"><div class="text-lime-500"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-square-check"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14" /><path d="M9 12l2 2l4 -4" /></svg></div> FlowStride™ Index inicial</li>
+            <li class="flex gap-3"><div class="text-lime-500"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-square-check"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14" /><path d="M9 12l2 2l4 -4" /></svg></div> Salud, energía y eficiencia</li>
+            <li class="flex gap-3"><div class="text-lime-500"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-square-check"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14" /><path d="M9 12l2 2l4 -4" /></svg></div> Riesgos detectados</li>
+            <li class="flex gap-3"><div class="text-lime-500"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-square-check"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14" /><path d="M9 12l2 2l4 -4" /></svg></div> Reporte digital descargable</li>
+          </ul>
+        </div>
+
+       <button class="mt-8 w-full h-12 inline-flex items-center justify-center gap-2 rounded-full bg-gray-800 text-md font-semibold text-neutral-50 transition hover:scale-[1.02]">
+          Obtener mi análisis
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M13 18l6 -6" /><path d="M13 6l6 6" /></svg>
+        </button>
+      </article>
+
+      <!-- Plan Pro (Destacado) -->
+      <article class="relative flex flex-col rounded-3xl bg-gray-800 text-neutral-50 p-12 ring-1 ring-lime-400/40">
+        <span class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-lime-400 px-4 py-2 text-sm font-semibold text-black">
+          Recomendado
+        </span>
+
+        <div>
+          <h3 class="text-2xl font-normal tracking-tight mb-2">
+            Atleta Pro
+          </h3>
+          <p class="text-neutral-400 mb-6">
+            Seguimiento continuo, insights accionables y prevención activa.
+          </p>
+
+          <div class="flex items-end gap-1 mb-1">
+            <span class="text-4xl font-medium">$29</span>
+            <span class="text-base text-neutral-400 mb-1">/mes</span>
+          </div>
+          <p class="text-sm text-neutral-400 mb-6">
+            Cancela cuando quieras
+          </p>
+
+          <ul class="space-y-3 text-sm">
+            <li class="flex gap-3"><div class="text-lime-400"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-square-check"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14" /><path d="M9 12l2 2l4 -4" /></svg></div> FlowStride™ Index continuo</li>
+            <li class="flex gap-3"><div class="text-lime-400"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-square-check"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14" /><path d="M9 12l2 2l4 -4" /></svg></div> Tendencias y comparativas</li>
+            <li class="flex gap-3"><div class="text-lime-400"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-square-check"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14" /><path d="M9 12l2 2l4 -4" /></svg></div> Fatiga y recuperación estimada</li>
+            <li class="flex gap-3"><div class="text-lime-400"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-square-check"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14" /><path d="M9 12l2 2l4 -4" /></svg></div> Recomendaciones IA</li>
+            <li class="flex gap-3"><div class="text-lime-400"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-square-check"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14" /><path d="M9 12l2 2l4 -4" /></svg></div> Historial completo</li>
+          </ul>
+        </div>
+
+        <button class="mt-8 w-full h-12 inline-flex items-center justify-center gap-2 rounded-full bg-lime-400 text-md font-semibold text-black transition hover:bg-lime-300 hover:scale-[1.02]">
+          Activar Pro
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-bolt"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13 3l0 7l6 0l-8 11l0 -7l-6 0l8 -11" /></svg>
+        </button>
+      </article>
+
+      <!-- Plan Studio -->
+      <article class="flex flex-col rounded-3xl bg-gray-100/70 dark:bg-gray-800/70 p-12">
+        <div>
+          <h3 class="text-2xl font-normal tracking-tight text-gray-900 dark:text-gray-100 mb-2">
+            Coach / Studio
+          </h3>
+          <p class="text-gray-500 dark:text-gray-400 mb-6">
+            Gestiona múltiples atletas con datos claros y alertas tempranas.
+          </p>
+
+          <div class="text-4xl font-medium text-gray-900 dark:text-gray-100 mb-1">
+            Desde $99
+          </div>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">
+            Por mes · Según número de atletas
+          </p>
+
+          <ul class="space-y-3 text-sm">
+            <li class="flex gap-3"><div class="text-lime-500"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-square-check"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14" /><path d="M9 12l2 2l4 -4" /></svg></div> Dashboard multi-atleta</li>
+            <li class="flex gap-3"><div class="text-lime-500"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-square-check"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14" /><path d="M9 12l2 2l4 -4" /></svg></div> Alertas de riesgo</li>
+            <li class="flex gap-3"><div class="text-lime-500"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-square-check"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14" /><path d="M9 12l2 2l4 -4" /></svg></div> Historial y reportes</li>
+            <li class="flex gap-3"><div class="text-lime-500"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-square-check"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14" /><path d="M9 12l2 2l4 -4" /></svg></div> Compartir con atletas</li>
+          </ul>
+        </div>
+
+        <button class="mt-8 w-full h-12 inline-flex items-center justify-center gap-2 rounded-full bg-gray-800 text-md font-semibold text-neutral-50 transition hover:scale-[1.02]">
+          Solicitar acceso
+         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M13 18l6 -6" /><path d="M13 6l6 6" /></svg>
+        </button>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+               
+                <!-- CTA Section -->
+                <section class="py-16 md:py-24 bg-white dark:bg-gray-900">
+                    <div class="container mx-auto">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center bg-gray-900 rounded-2xl px-6 md:px-12 py-8 mt-10 md:py-12">
+                            <!-- Text Content -->
+                            <div class="text-center lg:text-left">
+                                <h2 class="text-3xl md:text-4xl lg:text-5xl font-extralight leading-tight mb-3 text-white">
+                                    Únete al<br />
+                                    <span class="font-light text-lime-300">
+                                        movimiento
+                                    </span>
+                                    <br />
+                                    <span class="italic font-normal">FlowStride™</span>
+                                </h2>
+                                <p class="text-xl md:text-2xl text-gray-300 font-normal leading-relaxed max-w-md mx-auto lg:mx-0">
+                                    Tecnología de movimiento de nivel élite para entrenadores y profesionales de la salud.
+                                </p>
+                               
+                            </div>
+
+                            <!-- CTA Buttons -->
+                            <div class="space-y-6">
+                                <!-- Descarga Button -->
+                                <a href="#" class="group flex items-center justify-between bg-lime-500 text-gray-900 font-medium text-lg px-8 py-5 rounded-xl hover:from-yellow-300 hover:to-yellow-400 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl shadow-lg border border-yellow-300/20">
+                                    <span class="flex items-center gap-3">
+                                        
+                                        <span class="text-base md:text-lg">Descargar Reporte Gratis</span>
+                                    </span>
+                                    <div class="bg-lime-400/50 flex items-center justify-center text-gray-900 rounded-full w-12 h-12 ">
+                                   
+                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-download"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" /><path d="M7 11l5 5l5 -5" /><path d="M12 4l0 12" /></svg>
+                                    </div>
+                                </a>
+
+                                <!-- Reserva Button -->
+                                <a href="#" class="bg-gray-800 group flex items-center justify-between text-gray-900 font-medium text-lg px-8 py-5 rounded-xl hover:bg-gray-800/50 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl">
+                                    <span class="flex items-center gap-3">
+                                        
+                                        <span class="text-white md:text-lg">Reservar Demo Personalizada</span>
+                                    </span>
+                                    <div class="flex items-center justify-center bg-gray-700 text-white rounded-full w-12 h-12 ">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-calendar-check"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11.5 21h-5.5a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v6" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M15 19l2 2l4 -4" /></svg>
+                                    </div>
+                                </a>
+
+                                <!-- Additional Info -->
+                       
+                                <div class="text-center lg:text-left">
+                                    <p class="text-gray-400 text-md font-normal flex items-center justify-center lg:justify-start gap-2">
+                                        <span class="text-lime-400 text-xl">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-clock-hour-4">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                                <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                                                <path d="M12 12l3 2" />
+                                                <path d="M12 7v5" />
+                                            </svg>
+                                        </span>
+                                        <span>Demo de 15min • Sin compromisos</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+
+
+
+<!-- Footer FlowStride -->
+<section class="pt-16 pb-5 bg-white dark:bg-gray-900">
+  <div class="container mx-auto">
+    <div class="bg-gray-200/70 dark:bg-gray-800/70 rounded-2xl px-6 md:px-12 pt-10 md:py-12">
+
+      <!-- Mensaje principal -->
+      <div class="flex flex-col md:flex-row items-start md:items-end gap-4 mb-10 pb-10 border-b border-gray-300 dark:border-gray-700">
+        <h2 class="text-4xl md:text-5xl font-light text-gray-900 dark:text-gray-100">
+          Ciencia del <span class="block md:inline">Movimiento</span>
+        </h2>
+        <span class="italic text-3xl md:text-4xl text-lime-500">+</span>
+        <h3 class="text-4xl md:text-5xl font-extralight text-gray-600/70 dark:text-gray-100">
+          Rendimiento <span class="block md:inline">Real</span>
+        </h3>
+      </div>
+
+      <!-- Branding -->
+      <div class="flex flex-col md:flex-row gap-10 mb-10 pb-10 border-b border-gray-300 dark:border-gray-700">
+        <div class="flex items-center gap-6">
+          <img src="img/logo_footer_01.svg" class="w-[130px] dark:invert" alt="FlowStride">
+          <div class="text-sm tracking-wide">
+            
+            <p class="opacity-70 italic">Análisis <br>Biomecánico </p>
+          </div>
+        </div>
+
+        <p class="max-w-xl  pt-1.5  text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+          Transforma tu movimiento en datos accionables para mejorar rendimiento,
+          reducir lesiones y entrenar con evidencia real, no suposiciones.
+        </p>
+      </div>
+
+      <!-- Navegación -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-10 pb-10 border-b border-gray-300 dark:border-gray-700">
+        <div>
+          <h4 class="text-sm opacity-60 mb-3">Producto</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:opacity-60">Cómo funciona</a></li>
+            <li><a href="#" class="hover:opacity-60">Planes</a></li>
+            <li><a href="#" class="hover:opacity-60">Demo</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-sm opacity-60 mb-3">Ciencia</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:opacity-60">Metodología</a></li>
+            <li><a href="#" class="hover:opacity-60">IA predictiva</a></li>
+            <li><a href="#" class="hover:opacity-60">Validación</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-sm opacity-60 mb-3">Profesionales</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:opacity-60">Entrenadores</a></li>
+            <li><a href="#" class="hover:opacity-60">Fisioterapeutas</a></li>
+            <li><a href="#" class="hover:opacity-60">Equipos</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-sm opacity-60 mb-3">Legal</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:opacity-60">Privacidad</a></li>
+            <li><a href="#" class="hover:opacity-60">Términos</a></li>
+            <li><a href="#" class="hover:opacity-60">Contacto</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CTA + Legal -->
+  
+<div class="flex flex-col md:flex-row items-center justify-between gap-6 pt-11">
+
+  <!-- CTA -->
+  <button class="font-medium group flex items-center gap-4 rounded-full bg-gray-900 pl-6 pr-2 py-2 text-gray-100 hover:scale-[1.04] transition">
+    Obtener reporte gratuito
+   <span class="text-black text-lg flex h-10 w-10 items-center justify-center rounded-full bg-lime-400 transition-transform duration-300 group-hover:translate-x-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 12l14 0"></path><path d="M13 18l6 -6"></path><path d="M13 6l6 6"></path></svg>
+          </span>
+  </button>
+
+  <!-- Redes + Legal -->
+  <div class="flex flex-col md:flex-row items-center gap-6">
+
+    <!-- Redes sociales -->
+    <div class="flex items-center gap-4 text-gray-700 dark:text-gray-300">
+      <a href="#" aria-label="Instagram" class="opacity-60 hover:opacity-100 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-instagram"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4l0 -8" /><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /><path d="M16.5 7.5v.01" /></svg>
+      </a>
+      <a href="#" aria-label="X / Twitter" class="opacity-60 hover:opacity-100 transition">
+       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4l11.733 16h4.267l-11.733 -16l-4.267 0" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg>
+      </a>
+      <a href="#" aria-label="LinkedIn" class="opacity-60 hover:opacity-100 transition">
+       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-linkedin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 11v5" /><path d="M8 8v.01" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 1 0 -4 0" /><path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4l0 -10" /></svg>
+      </a>
+      <a href="#" aria-label="YouTube" class="opacity-60 hover:opacity-100 transition">
+       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-youtube"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8" /><path d="M10 9l5 3l-5 3l0 -6" /></svg>
+      </a>
+    </div>
+
+    <!-- Legal -->
+    <p class="text-sm opacity-50 text-center md:text-right">
+      © 2026 FlowStride™ · Datos que te mueven mejor
+    </p>
+
+  </div>
+</div>
+
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+            </main>
+        </div>
+
+        <script>
+            // Aplicar clase dark automáticamente en mobile
+            function applyDarkModeForMobile() {
+                if (window.innerWidth <= 768) {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+            }
+
+            // Aplicar al cargar y al redimensionar
+            window.addEventListener('DOMContentLoaded', applyDarkModeForMobile);
+            window.addEventListener('resize', applyDarkModeForMobile);
+
+            // Control del menú móvil
+            const menuToggle = document.getElementById('menuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mainHeader = document.getElementById('mainHeader');
+            const body = document.body;
+
+            // Abrir menú móvil
+            menuToggle.addEventListener('click', () => {
+                const isOpen = mobileMenu.classList.contains('open');
+                
+                if (!isOpen) {
+                    mobileMenu.classList.add('open');
+                    menuToggle.classList.add('active');
+                    body.classList.add('menu-open');
+                    mainHeader.classList.add('bg-white', 'dark:bg-gray-900', 'shadow-lg');
+                } else {
+                    closeMobileMenu();
+                }
+            });
+
+            // Cerrar menú móvil
+            function closeMobileMenu() {
+                mobileMenu.classList.remove('open');
+                menuToggle.classList.remove('active');
+                body.classList.remove('menu-open');
+                
+                if (window.scrollY < 50) {
+                    mainHeader.classList.remove('bg-white', 'dark:bg-gray-900', 'shadow-lg');
+                }
+            }
+
+            // Cerrar menú al hacer clic en enlaces
+            const mobileLinks = mobileMenu.querySelectorAll('a, button');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
+
+            // Control del header al hacer scroll
+            let lastScrollTop = 0;
+            const headerHeight = mainHeader.offsetHeight;
+
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > 20) {
+                    mainHeader.classList.add('bg-white', 'dark:bg-gray-900', 'shadow-md', 'backdrop-blur-md');
+                    mainHeader.classList.remove('bg-white/95', 'dark:bg-gray-900/95');
+                } else {
+                    mainHeader.classList.remove('shadow-md');
+                    mainHeader.classList.add('bg-white/95', 'dark:bg-gray-900/95');
+                }
+
+                if (!mobileMenu.classList.contains('open')) {
+                    if (scrollTop > lastScrollTop && scrollTop > 100) {
+                        mainHeader.style.transform = 'translateY(-100%)';
+                    } else {
+                        mainHeader.style.transform = 'translateY(0)';
+                    }
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+
+            // Cerrar menú al redimensionar a desktop
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 1024) {
+                    closeMobileMenu();
+                }
+                applyDarkModeForMobile();
+            });
+
+            // Cerrar menú con tecla ESC
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeMobileMenu();
+                }
+            });
+
+            // Cerrar menú al hacer clic fuera del menú
+            document.addEventListener('click', (event) => {
+                if (mobileMenu.classList.contains('open') && 
+                    !mobileMenu.contains(event.target) && 
+                    !menuToggle.contains(event.target)) {
+                    closeMobileMenu();
+                }
+            });
+
+            // Inicializar header según posición inicial
+            window.addEventListener('DOMContentLoaded', () => {
+                if (window.scrollY > 20) {
+                    mainHeader.classList.add('bg-white', 'dark:bg-gray-900', 'shadow-md', 'backdrop-blur-md');
+                }
+                applyDarkModeForMobile();
+            });
+        </script>
+    </body>
+</html>

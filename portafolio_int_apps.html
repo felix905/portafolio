@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Felix Mijares | Portafolio</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <style>
+            @media (max-width: 768px) {
+                .text-responsive {
+                    font-size: 3.5rem;
+                    line-height: 1;
+                }
+                .name-container {
+                    flex-direction: column;
+                    gap: 0.5rem;
+                }
+            }
+        </style>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            sans: ["Manrope", "system-ui", "sans-serif"],
+                        },
+                        colors: {
+                            mono: {
+                                20: "#e0e0e0",
+                                40: "#b8b8b8",
+                                70: "#555555",
+                                90: "#1f1f1f",
+                            },
+                        },
+                    },
+                },
+            };
+        </script>
+    </head>
+    <body class="bg-white font-sans">
+        <div class="pb-5 bg-white">
+            <div class="flex flex-col pt-5 w-full max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- NAV -->
+                 <!-- NAV -->
+                <nav class="sticky top-0 z-40 bg-white/80 backdrop-blur">
+                    <div
+                        class="container mx-auto py-4 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6"
+                    >
+                        <!-- Left: Brand -->
+                        <div class="flex items-center gap-3">
+                            <img
+                                src="img/perfil.png"
+                                class="w-10 h-10 rounded-full"
+                                alt="Felix Mijares"
+                            />
+                            <div class="flex flex-col leading-tight">
+                               <a href="index.html"><span class="text-sm font-semibold uppercase">Felix Mijares</span></a> 
+                                <span class="text-sm text-zinc-500">Product Design end-to-end para SaaS y startups</span>
+                            </div>
+                        </div>
+
+                        <!-- Center: Social -->
+                        <div class="flex items-center gap-6 font-medium text-sm">
+                           
+                            <a href="https://dribbble.com/felix_905" class="flex items-center gap-1.5">
+                                <span>Dribbble</span>
+                                
+                            </a>
+                            <a href="https://www.linkedin.com/in/felix-mijares-32b1782b/" class="flex items-center gap-1.5">
+                                <span>LinkedIn</span>
+                               
+                            </a>
+                        </div>
+
+                        <!-- Right: Navigation -->
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 lg:gap-8">
+                            <div class="flex flex-col">
+    <a href="proyectos.html" class="text-sm font-semibold uppercase">Proyectos</a>
+    <p class="text-sm text-zinc-500 mt-1">Explorar + </p>
+</div>
+<div class="flex flex-col">
+    <a href="about.html" class="text-sm font-semibold uppercase">Sobre mí</a>
+    <p class="text-sm text-zinc-500 mt-1">Desde 2005</p>
+</div>
+
+                            <a
+                                href="#footer"
+                                class="px-6 py-3 bg-mono-90 text-white rounded-full font-semibold text-sm"
+                            >
+                                Iniciar un proyecto
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+
+
+                <!-- HERO -->
+                <!-- HERO / PORTFOLIO HEADER -->
+                <header id="header" class="pt-16">
+                    <div class="container mx-auto grid lg:grid-cols-1 gap-3">
+                        <div class="max-w-3xl space-y-8">
+                            <h1 class="text-4xl lg:text-5xl leading-tight">
+                                Interfaces digitales <br />
+                                claras y humanas.
+                            </h1>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Projects Section -->
+                <section class="w-full">
+                    <div class="container mx-auto">
+                        <!-- Project Pairs -->
+                        <div class="grid grid-cols-1 md:grid-cols-1 gap-y-16 gap-x-8 mt-12 md:mt-16">
+                            <!-- Project 1 -->
+                            <article class="w-full">
+                                <!-- Header info -->
+                                <div class="flex justify-between items-baseline text-sm font-medium">
+                                    <div class="text-black">
+                                        Agora.<br />
+                                        <span class="text-zinc-500">Catologo Online para Vendedoras</span>
+
+                                        <!-- Tags -->
+                                        <div class="flex flex-wrap gap-2 mt-5">
+                                            <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">
+                                                iOS App
+                                            </span>
+                                            <span class="bg-sky-100 text-sky-800 text-xs px-3 py-1 rounded-full">
+                                                UX/UI Design
+                                            </span>
+                                            <span
+                                                class="bg-emerald-100 text-emerald-800 text-xs px-3 py-1 rounded-full"
+                                            >
+                                                Product Design
+                                            </span>
+                                            <span class="bg-violet-100 text-violet-800 text-xs px-3 py-1 rounded-full">
+                                                Interaction Design
+                                            </span>
+                                            <span class="bg-amber-100 text-amber-800 text-xs px-3 py-1 rounded-full">
+                                                Onboarding
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-zinc-500">2025</div>
+                                </div>
+
+                                <!-- Visual container -->
+                                <div class="relative mt-6 bg-violet-300 rounded-xl overflow-hidden py-20">
+                                    <!-- Grid de apps -->
+                                    <div class="flex items-center justify-center gap-8 px-6">
+                                        <img
+                                            src="img/portafolio/apps/01/01.svg"
+                                            alt="App screen 1"
+                                            class="w-64 rounded-xl"
+                                        />
+                                        <img
+                                            src="img/portafolio/apps/01/02.svg"
+                                            alt="App screen 2"
+                                            class="w-64 rounded-xl"
+                                        />
+                                        <img
+                                            src="img/portafolio/apps/01/03.svg"
+                                            alt="App screen 3"
+                                            class="w-64 rounded-xl"
+                                        />
+                                        <img
+                                            src="img/portafolio/apps/01/04.svg"
+                                            alt="App screen 4"
+                                            class="w-64 rounded-xl"
+                                        />
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- Project 2 -->
+                            <article class="w-full">
+                                <!-- Header info -->
+                                <div class="flex justify-between items-baseline text-sm font-medium">
+                                    <div class="text-black">
+                                        Exocrypto<br />
+                                        <span class="text-zinc-500">Compra y venta de Criptomoneda</span>
+
+                                        <!-- Tags -->
+                                        <div class="flex flex-wrap gap-2 mt-5">
+                                            <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">
+                                                iOS App
+                                            </span>
+                                            <span class="bg-sky-100 text-sky-800 text-xs px-3 py-1 rounded-full">
+                                                UX/UI Design
+                                            </span>
+                                            <span
+                                                class="bg-emerald-100 text-emerald-800 text-xs px-3 py-1 rounded-full"
+                                            >
+                                                Product Design
+                                            </span>
+                                            <span class="bg-violet-100 text-violet-800 text-xs px-3 py-1 rounded-full">
+                                                Interaction Design
+                                            </span>
+                                            <span class="bg-amber-100 text-amber-800 text-xs px-3 py-1 rounded-full">
+                                                Onboarding
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-zinc-500">2021</div>
+                                </div>
+
+                                <!-- Visual container -->
+                                <div class="relative mt-6 bg-slate-300/70 rounded-xl overflow-hidden py-20">
+                                    <!-- Grid de apps -->
+                                    <div class="flex items-center justify-center gap-8 px-6">
+                                        <img
+                                            src="img/portafolio/apps/02/01.svg"
+                                            alt="App screen 1"
+                                            class="w-64 rounded-xl"
+                                        />
+                                        <img
+                                            src="img/portafolio/apps/02/02.svg"
+                                            alt="App screen 2"
+                                            class="w-64 rounded-xl"
+                                        />
+                                        <img
+                                            src="img/portafolio/apps/02/03.svg"
+                                            alt="App screen 3"
+                                            class="w-64 rounded-xl"
+                                        />
+                                        <img
+                                            src="img/portafolio/apps/02/04.svg"
+                                            alt="App screen 4"
+                                            class="w-64 rounded-xl"
+                                        />
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- Project 3 -->
+                            <article class="w-full">
+                                <!-- Header info -->
+                                <div class="flex justify-between items-baseline text-sm font-medium">
+                                    <div class="text-black">
+                                        App de recargas Movistar.<br />
+                                        <span class="text-zinc-500">Propuesta para aplicativo móvil para Movistar Venezuela</span>
+
+                                        <!-- Tags -->
+                                        <div class="flex flex-wrap gap-2 mt-5">
+                                            <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">
+                                                Andorid App
+                                            </span>
+                                            <span class="bg-sky-100 text-sky-800 text-xs px-3 py-1 rounded-full">
+                                                UX/UI Design
+                                            </span>
+                                            <span
+                                                class="bg-emerald-100 text-emerald-800 text-xs px-3 py-1 rounded-full"
+                                            >
+                                                Product Design
+                                            </span>
+                                           
+                                            <span class="bg-amber-100 text-amber-800 text-xs px-3 py-1 rounded-full">
+                                                Onboarding
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-zinc-500">2022</div>
+                                </div>
+
+                                <!-- Visual container -->
+                                <div class="relative mt-6 bg-slate-300/70 rounded-xl overflow-hidden py-20">
+                                    <!-- Grid de apps -->
+                                    <div class="flex items-center justify-center gap-8 px-6">
+                                        <img
+                                            src="img/portafolio/apps/03/01.svg"
+                                            alt="App screen 1"
+                                            class="w-64 rounded-xl"
+                                        />
+                                        <img
+                                            src="img/portafolio/apps/03/02.svg"
+                                            alt="App screen 2"
+                                            class="w-64 rounded-xl"
+                                        />
+                                        <img
+                                            src="img/portafolio/apps/03/03.svg"
+                                            alt="App screen 3"
+                                            class="w-64 rounded-xl"
+                                        />
+                                       
+                                    </div>
+                                </div>
+                            </article>
+
+                       
+                            <!-- Project 4-->
+                            <article class="w-full">
+                                <!-- Header info -->
+                                <div class="flex justify-between items-baseline text-sm font-medium">
+                                    <div class="text-black">
+                                        Ternua.<br />
+                                        <span class="text-zinc-500">Catologo Online y aplicativo para senderismo</span>
+
+                                        <!-- Tags -->
+                                        <div class="flex flex-wrap gap-2 mt-5">
+                                            <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">
+                                                iOS App
+                                            </span>
+                                            <span class="bg-sky-100 text-sky-800 text-xs px-3 py-1 rounded-full">
+                                                UX/UI Design
+                                            </span>
+                                            <span
+                                                class="bg-emerald-100 text-emerald-800 text-xs px-3 py-1 rounded-full"
+                                            >
+                                                Product Design
+                                            </span>
+                                            <span class="bg-violet-100 text-violet-800 text-xs px-3 py-1 rounded-full">
+                                                Interaction Design
+                                            </span>
+                                            <span class="bg-amber-100 text-amber-800 text-xs px-3 py-1 rounded-full">
+                                                Onboarding
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-zinc-500">2021</div>
+                                </div>
+
+                                <!-- Visual container -->
+                                <div class="relative mt-6 bg-slate-300/70 rounded-xl overflow-hidden py-20">
+                                    <!-- Grid de apps -->
+                                    <div class="flex items-center justify-center gap-8 px-6">
+                                        <img
+                                            src="img/portafolio/apps/04/01.svg"
+                                            alt="App screen 1"
+                                            class="w-64 rounded-xl"
+                                        />
+                                        <img
+                                            src="img/portafolio/apps/04/02.svg"
+                                            alt="App screen 2"
+                                            class="w-64 rounded-xl"
+                                        />
+                                        <img
+                                            src="img/portafolio/apps/04/03.svg"
+                                            alt="App screen 3"
+                                            class="w-64 rounded-xl"
+                                        />
+                                        <img
+                                            src="img/portafolio/apps/04/04.svg"
+                                            alt="App screen 4"
+                                            class="w-64 rounded-xl"
+                                        />
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+
+
+<!-- Contact Section -->
+<section class="w-full mt-20 md:mt-32">
+    <div class="container mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+            <!-- Contact Info & Navigation -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-26">
+                <!-- Contact -->
+                <div class="flex flex-col">
+                    <p class="text-sm text-zinc-500 font-medium">Contáctame</p>
+                    <button
+                        class="mt-4 flex items-center space-x-3 text-md text-black font-medium hover:text-gray-600 transition-colors"
+                        onclick="navigator.clipboard.writeText('felixmijares311@gmail.com')"
+                    >
+                        <span class="text-ea">felixmijares311@gmail.com</span>
+                        <i class="ti ti-copy text-xl"></i>
+                    </button>
+                  <a
+  href="https://wa.me/584242759724"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="mt-4 flex items-center gap-2 text-black hover:opacity-80 transition"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    class="h-5 w-5"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
+    <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
+  </svg>
+
+  <span>+58 424 275 97 24</span>
+</a>
+
+
+                </div>
+
+                <!-- Navigation -->
+                <div class="flex flex-col">
+                    <p class="text-sm text-zinc-500 font-medium">Explorar</p>
+                    <nav class="flex flex-col mt-4 space-y-2">
+                        <a href="#home" class="text-sm text-black font-semibold uppercase hover:underline">Inicio</a>
+                        <a href="#projects" class="text-sm text-black font-semibold uppercase hover:underline">Proyectos</a>
+                        <a href="#about" class="text-sm text-black font-semibold uppercase hover:underline">Sobre mí</a>
+                       
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Services Highlight -->
+            <div class="grid grid-cols-1 gap-6">
+                <p class="text-lg md:text-xl font-medium text-black  mt-6">
+                    Transformo ideas en productos listos para crecer. Desde estrategia hasta diseño, prototipado y front-end funcional, todo pensado para que tu proyecto escale.
+                </p>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer id="footer" class="mt-20 md:mt-32 py-8 border-t border-neutral-200">
+  <div class="container mx-auto">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+      
+      <p class="text-zinc-500 text-sm">
+        © 2026 Felix Mijares.
+      </p>
+
+      <!-- Social links -->
+      <div class="flex gap-5 mt-4 md:mt-0">
+
+        <!-- Instagram -->
+        <a
+          href="https://instagram.com/tuusuario"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-zinc-500 hover:text-black transition"
+          aria-label="Instagram"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-instagram"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4l0 -8" /><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /><path d="M16.5 7.5v.01" /></svg>
+        </a>
+
+        <!-- Dribbble -->
+        <a
+          href="https://dribbble.com/felix_905"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-zinc-500 hover:text-black transition"
+          aria-label="Dribbble"
+        >
+         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-dribbble"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M9 3.6c5 6 7 10.5 7.5 16.2" /><path d="M6.4 19c3.5 -3.5 6 -6.5 14.5 -6.4" /><path d="M3.1 10.75c5 0 9.814 -.38 15.314 -5" /></svg>
+        </a>
+
+        <!-- LinkedIn -->
+        <a
+          href="https://www.linkedin.com/in/felix-mijares-32b1782b/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-zinc-500 hover:text-black transition"
+          aria-label="LinkedIn"
+        >
+         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-linkedin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 11v5" /><path d="M8 8v.01" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 1 0 -4 0" /><path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4l0 -10" /></svg>
+        </a>
+
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+            </div>
+        </div>
+
+
+        <script>
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      const target = document.querySelector(this.getAttribute('href'));
+      if (!target) return;
+
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    });
+  });
+</script>
+    </body>
+</html>
