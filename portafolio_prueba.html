@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BIDDER — Prism</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { manrope: ['Manrope', 'sans-serif'] },
+          colors: {
+            ink:    '#0D0E17',
+            muted:  '#6C7078',
+            line:   '#C2C5CC',
+            danger: '#AD7979',
+            soft:   '#F5F5FA',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Manrope', sans-serif; cursor: none; }
+    a, button, input, textarea { cursor: none; }
+
+    /* Cursor personalizado */
+    #cursor {
+      position: fixed;
+      top: 0; left: 0;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      mix-blend-mode: difference;
+      border: 1.5px solid #fff;
+      transition: width .18s ease, height .18s ease, border-color .18s ease, background .18s ease;
+      transform: translate(-50%, -50%);
+      will-change: transform;
+    }
+    #cursor.dot {
+      width: 8px; height: 8px;
+      background: #fff;
+      border-color: transparent;
+    }
+    #cursor.hover {
+      width: 56px; height: 56px;
+      background: rgba(255,255,255,.15);
+      border-color: #fff;
+    }
+    @media (max-width: 768px) {
+      body, a, button, input, textarea { cursor: auto; }
+      #cursor { display: none; }
+    }
+
+    /* Animaciones de entrada */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1);
+    }
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Preferencia reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      #cursor { display: none; }
+      body, a, button { cursor: auto; }
+    }
+
+    /* Menú */
+    #menu-panel {
+      transform: translateY(-100%);
+      transition: transform .5s cubic-bezier(.22,.61,.36,1);
+    }
+    #menu-panel.open { transform: translateY(0); }
+    #menu-overlay {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .35s ease;
+    }
+    #menu-overlay.open { opacity: 1; pointer-events: auto; }
+  </style>
+</head>
+<body class="bg-ink text-ink antialiased">
+
+  <!-- Cursor personalizado -->
+  <div id="cursor" aria-hidden="true"></div>
+
+  <!-- ===================== MENÚ SUPERIOR ===================== -->
+  <button id="menu-toggle"
+          class="fixed top-4 right-4 z-[60] rounded-full bg-white px-5 py-3 text-[14px] font-extrabold tracking-[4px] text-ink shadow-md hover:scale-105 transition-transform"
+          aria-expanded="false" aria-controls="menu-panel">
+    <span id="menu-label">MENU</span>
+  </button>
+
+  <div id="menu-overlay" class="fixed inset-0 z-[55] bg-black/40 backdrop-blur-sm" aria-hidden="true"></div>
+
+  <aside id="menu-panel"
+         class="fixed inset-x-0 top-0 z-[58] bg-white shadow-2xl"
+         role="dialog" aria-modal="true" aria-labelledby="menu-title">
+    <div class="mx-auto max-w-4xl px-6 py-12">
+      <h2 id="menu-title" class="text-xs font-bold uppercase tracking-[2px] text-muted">Navigation</h2>
+      <nav class="mt-6 flex flex-col divide-y divide-line">
+        <a href="../index.html"    class="menu-link flex items-center justify-between py-4 text-lg font-bold tracking-[1.5px] text-muted hover:text-ink transition">HOME    <span class="text-ink">→</span></a>
+        <a href="../portfolio"     class="menu-link flex items-center justify-between py-4 text-lg font-bold tracking-[1.5px] text-muted hover:text-ink transition">WORKS   <span class="text-ink">→</span></a>
+        <a href="../about-me"      class="menu-link flex items-center justify-between py-4 text-lg font-bold tracking-[1.5px] text-muted hover:text-ink transition">ABOUT   <span class="text-ink">→</span></a>
+        <a href="../visual"        class="menu-link flex items-center justify-between py-4 text-lg font-bold tracking-[1.5px] text-muted hover:text-ink transition">BLOG    <span class="text-ink">→</span></a>
+        <a href="../contact-me"    class="menu-link flex items-center justify-between py-4 text-lg font-bold tracking-[1.5px] text-muted hover:text-ink transition">CONTACT <span class="text-ink">→</span></a>
+      </nav>
+    </div>
+  </aside>
+
+  <!-- ===================== HERO / PROJECT SUMMARY ===================== -->
+  <header id="project-summary" class="bg-white">
+    <div class="mx-auto max-w-6xl px-6 pt-10 pb-16">
+
+      <a href="../portfolio"
+         class="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-[12px] font-extrabold uppercase tracking-[2.1px] text-ink hover:bg-ink hover:text-white transition">
+        <svg viewBox="0 0 24 24" class="h-4 w-4 fill-current"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        All Project
+      </a>
+
+      <div class="mt-10 reveal">
+        <h1 class="text-[60px] leading-[60px] font-extrabold tracking-tight text-ink">BIDDER</h1>
+      </div>
+
+      <div class="mt-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between text-[14px] font-bold uppercase tracking-[1.12px] text-muted reveal">
+        <p>Product Design · Enterprise UX</p>
+        <p>2026</p>
+      </div>
+
+      <div class="mt-10 space-y-2 reveal">
+        <p class="text-[16px] font-semibold leading-6 text-ink">
+          Building Trust Into an Autonomous Energy Trading Agent
+        </p>
+        <p class="text-[16px] font-semibold leading-6 text-danger">
+          Project subject to a Non-Disclosure Agreement (NDA); Limited Features/Information Disclosed at Present.
+        </p>
+      </div>
+
+      <div class="mt-8 flex flex-wrap gap-2 reveal">
+        <span class="rounded-full border border-line px-3 py-1.5 text-[8px] font-extrabold uppercase tracking-[2.1px] text-muted">User Research</span>
+        <span class="rounded-full border border-line px-3 py-1.5 text-[8px] font-extrabold uppercase tracking-[2.1px] text-muted">Product Design</span>
+        <span class="rounded-full border border-line px-3 py-1.5 text-[8px] font-extrabold uppercase tracking-[2.1px] text-muted">Motion Design</span>
+        <span class="rounded-full border border-line px-3 py-1.5 text-[8px] font-extrabold uppercase tracking-[2.1px] text-muted">UI Design</span>
+        <span class="rounded-full border border-line px-3 py-1.5 text-[8px] font-extrabold uppercase tracking-[2.1px] text-muted">Design System</span>
+        <span class="rounded-full border border-line px-3 py-1.5 text-[8px] font-extrabold uppercase tracking-[2.1px] text-muted">UX Design</span>
+      </div>
+
+      <div class="mt-12 overflow-hidden rounded-2xl border border-line reveal">
+        <img src="https://framerusercontent.com/images/EvuqAyeKry8X16UHK777bCwoSs.png?width=2508&height=1411"
+             alt="Bidder opening visual" class="h-auto w-full object-cover" loading="eager" />
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== CONTENIDO ===================== -->
+  <main class="bg-white">
+    <div class="mx-auto max-w-6xl px-6 pb-24">
+      <div class="grid grid-cols-1 gap-12 lg:grid-cols-[260px_1fr]">
+
+        <!-- Quick links -->
+        <aside class="lg:sticky lg:top-8 lg:self-start">
+          <p class="text-[14px] font-bold uppercase tracking-[1.12px] text-muted">Quick Links</p>
+          <nav id="quick-links" class="mt-4 flex flex-col">
+            <a href="#overview"     class="ql-link group flex items-center justify-between border-b border-line py-4 text-[16px] font-bold tracking-[1.5px] text-muted hover:text-ink transition"><span>OVERVIEW</span></a>
+            <a href="#introduction" class="ql-link group flex items-center justify-between border-b border-line py-4 text-[16px] font-bold tracking-[1.5px] text-muted hover:text-ink transition"><span>INTRODUCTION</span></a>
+            <a href="#problem"      class="ql-link group flex items-center justify-between border-b border-line py-4 text-[16px] font-bold tracking-[1.5px] text-muted hover:text-ink transition"><span>PROBLEM</span></a>
+            <a href="#research"     class="ql-link group flex items-center justify-between border-b border-line py-4 text-[16px] font-bold tracking-[1.5px] text-muted hover:text-ink transition"><span>RESEARCH</span></a>
+            <a href="#ideation"     class="ql-link group flex items-center justify-between border-b border-line py-4 text-[16px] font-bold tracking-[1.5px] text-muted hover:text-ink transition"><span>IDEATION</span></a>
+            <a href="#solution"     class="ql-link group flex items-center justify-between border-b border-line py-4 text-[16px] font-bold tracking-[1.5px] text-muted hover:text-ink transition"><span>SOLUTION</span></a>
+            <a href="#impact"       class="ql-link group flex items-center justify-between border-b border-line py-4 text-[16px] font-bold tracking-[1.5px] text-muted hover:text-ink transition"><span>IMPACTS</span></a>
+          </nav>
+        </aside>
+
+        <!-- Article -->
+        <article class="space-y-16">
+
+          <section id="overview" class="scroll-mt-8 reveal">
+            <h2 class="text-3xl font-extrabold tracking-tight text-ink">Overview</h2>
+            <p class="mt-4 text-base leading-7 text-ink/80">
+              As sole UX designer on GridBidder, an autonomous bid-optimization platform for battery energy storage
+              trading, I designed the interface that lets energy traders and asset operators work alongside an
+              algorithmic bidding engine — trusting its recommendations across volatile real-time markets, while
+              keeping a fast, auditable way to step in when something needs a human call.
+            </p>
+          </section>
+
+          <section id="introduction" class="scroll-mt-8 reveal">
+            <h2 class="text-3xl font-extrabold tracking-tight text-ink">Introduction</h2>
+            <p class="mt-4 text-base leading-7 text-ink/80">
+              GridBidder's optimization engine bids battery storage assets into the CAISO day-ahead and real-time
+              markets automatically, reacting to price signals faster than any person could. But traders and operators
+              were being asked to hand real financial and operational decisions to a system they couldn't see inside —
+              no visibility into why a bid was placed, and no fast way to intervene if market conditions changed
+              underneath it.
+            </p>
+          </section>
+
+          <section id="problem" class="scroll-mt-8 reveal">
+            <h2 class="text-3xl font-extrabold tracking-tight text-ink">Problem</h2>
+            <p class="mt-4 text-base leading-7 text-ink/80">
+              How might we let energy traders and asset operators trust an autonomous bidding engine with real
+              financial and operational stakes — without asking them to babysit every bid, and without losing the
+              ability to override a decision the moment it stops making sense?
+            </p>
+            <div class="mt-8 overflow-hidden rounded-2xl border border-line">
+              <img src="https://framerusercontent.com/images/2KUDOIE4fNMQILarA5ByaWQv9D8.png?width=2508&height=1411"
+                   alt="Problem visualization" class="h-auto w-full object-contain" loading="lazy" />
+            </div>
+          </section>
+
+          <section id="research" class="scroll-mt-8 reveal">
+            <h2 class="text-3xl font-extrabold tracking-tight text-ink">Research</h2>
+            <p class="mt-4 text-base leading-7 text-ink/80">
+              Interviews with two personas — the Energy Trader, focused on market strategy and P&amp;L, and the Asset
+              Operator, focused on physical battery health and availability — mapped out where each needed visibility
+              versus where they needed control.
+              <em class="italic">Full research detail is in the presentation deck.</em>
+            </p>
+          </section>
+
+          <blockquote class="rounded-2xl border border-line bg-soft p-8 reveal">
+            <p class="text-4xl leading-none font-serif text-ink">“</p>
+            <p class="mt-2 text-2xl font-semibold leading-snug text-ink">
+              I'm not going to let a black box touch my book.
+            </p>
+          </blockquote>
+
+          <section id="ideation" class="scroll-mt-8 reveal">
+            <h2 class="text-3xl font-extrabold tracking-tight text-ink">Ideation</h2>
+            <p class="mt-4 text-base leading-7 text-ink/80">
+              Explored how much of the optimizer's logic to expose without overwhelming a trader mid-session — landing
+              on a layered approach: a portfolio-level view for status at a glance, with drill-down into reasoning and
+              controls only when something needs attention.
+              <em class="italic">Full exploration in the presentation deck.</em>
+            </p>
+          </section>
+
+          <section id="solution" class="scroll-mt-8 reveal">
+            <div class="overflow-hidden rounded-2xl border border-line">
+              <img src="https://framerusercontent.com/images/kXpBlK5BVz6VRgh3kaGEcCggQs.png?width=2508&height=1411"
+                   alt="Solution overview" class="h-auto w-full object-contain" loading="lazy" />
+            </div>
+            <h2 class="mt-10 text-3xl font-extrabold tracking-tight text-ink">Solution</h2>
+            <div class="mt-4 space-y-4 text-base leading-7 text-ink/80">
+              <p><strong class="text-ink">1. A Portfolio Dashboard for at-a-glance status.</strong> A fleet-wide view of battery storage assets — power output, availability, active alerts — across every market the portfolio trades in, so traders and operators can tell in seconds whether anything needs attention.</p>
+              <p><strong class="text-ink">2. Explainability over opacity in Bidding &amp; Settlements.</strong> Every bid ties back to the price and market signal that drove it, so a trader sees the <em class="italic">why</em>, not just the <em class="italic">what</em> — turning the optimizer from a black box into something they can reason about and stand behind.</p>
+              <p><strong class="text-ink">3. A Bid Override built for speed, with a full audit trail.</strong> Overriding an autonomous bid takes as few steps as approving one — intervention needed to be as fast as the market moves — and every override is logged, so stepping in never creates risk of its own.</p>
+            </div>
+            <div class="mt-10 grid gap-6 md:grid-cols-2">
+              <div class="overflow-hidden rounded-2xl border border-line">
+                <img src="https://framerusercontent.com/images/zGDxAqgaKalYgCB8JLIEPUlnog.png?width=2508&height=1411"
+                     alt="Solution detail 1" class="h-auto w-full object-cover" loading="lazy" />
+              </div>
+              <div class="overflow-hidden rounded-2xl border border-line">
+                <img src="https://framerusercontent.com/images/tnQSnF3CxmzfbWiPQ6fGaQ5Ork.png?width=2508&height=1411"
+                     alt="Solution detail 2" class="h-auto w-full object-cover" loading="lazy" />
+              </div>
+            </div>
+          </section>
+
+          <section id="impact" class="scroll-mt-8 reveal">
+            <h2 class="text-3xl font-extrabold tracking-tight text-ink">Impacts</h2>
+            <p class="mt-4 text-base leading-7 text-ink/80">
+              GridBidder is on track to fully replace the trading team's existing insights platform. Two concrete wins
+              came directly out of the design: day-ahead CAISO price data that used to require a manual pull-and-send
+              handoff to a third-party forecasting partner is now visible directly in the platform ahead of the daily
+              trading stand-up, and settlement/P&amp;L review no longer needs a separate reporting tool — traders can
+              ask Gridbidder AI about any anomaly (like why state-of-charge was held back on a given day) and get an
+              explained answer in place, without leaving the workflow. The team is currently validating the interface
+              against live CAISO day-ahead and real-time trading workflows ahead of full production rollout.
+            </p>
+          </section>
+
+        </article>
+      </div>
+    </div>
+
+    <!-- Otros proyectos -->
+    <section class="border-t border-line bg-white">
+      <div class="mx-auto max-w-6xl px-6 py-16">
+        <div class="flex items-center justify-between">
+          <h2 class="text-3xl font-extrabold tracking-tight text-ink">Other projects</h2>
+          <a href="../portfolio"
+             class="hidden md:inline-flex items-center gap-2 rounded-full border border-line px-5 py-3 text-[12px] font-extrabold uppercase tracking-[2.1px] text-ink hover:bg-ink hover:text-white transition">
+            All Project
+            <svg viewBox="0 0 24 24" class="h-4 w-4 stroke-current" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12h12.5m0 0l-6-6m6 6l-6 6"/></svg>
+          </a>
+        </div>
+
+        <div class="mt-8 grid gap-6 md:grid-cols-2">
+          <a href="./helios.html" class="group overflow-hidden rounded-2xl border border-line bg-white hover:shadow-lg transition reveal">
+            <div class="aspect-[16/10] overflow-hidden">
+              <img src="https://framerusercontent.com/images/atrB5ggZexKh4iQ19HuWLYbaNrI.png?width=2508&height=1411"
+                   alt="Helios project" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            </div>
+            <div class="p-5">
+              <p class="text-xl font-semibold tracking-tight text-ink">HELIOS</p>
+              <p class="mt-1 text-sm font-medium text-muted">Designing Human-in-the-Loop AI for Data Center Operations</p>
+            </div>
+          </a>
+
+          <a href="./google-news.html" class="group overflow-hidden rounded-2xl border border-line bg-white hover:shadow-lg transition reveal">
+            <div class="aspect-[16/10] overflow-hidden">
+              <img src="https://framerusercontent.com/images/k3zhsgapQa2qnQ5EetaqApQWj44.png?width=2508&height=1411"
+                   alt="Google News project" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            </div>
+            <div class="p-5">
+              <p class="text-xl font-semibold tracking-tight text-ink">GOOGLE NEWS</p>
+              <p class="mt-1 text-sm font-medium text-muted">Enhancing News Accessibility and Engagement</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Formulario -->
+    <section class="border-t border-line bg-white">
+      <div class="mx-auto max-w-6xl px-6 py-16">
+        <h2 class="text-3xl font-extrabold tracking-tight text-ink">Let's work together</h2>
+        <p class="mt-2 max-w-2xl text-[15.4px] leading-6 text-ink/80">
+          Ready to bring your vision to life? Let's connect and explore the possibilities together. Reach out today!
+        </p>
+
+        <form id="contact-form" class="mt-8 grid gap-4 max-w-xl" novalidate>
+          <div>
+            <input type="text" name="name" required placeholder="Name"
+                   class="w-full rounded-lg border border-line bg-white px-4 py-3 text-sm outline-none focus:border-ink transition" />
+            <p class="error-msg mt-1 hidden text-xs text-red-600">Please enter your name.</p>
+          </div>
+          <div>
+            <input type="email" name="email" required placeholder="Email"
+                   class="w-full rounded-lg border border-line bg-white px-4 py-3 text-sm outline-none focus:border-ink transition" />
+            <p class="error-msg mt-1 hidden text-xs text-red-600">Please enter a valid email.</p>
+          </div>
+          <div>
+            <textarea name="message" required placeholder="Message" rows="4"
+                      class="w-full rounded-lg border border-line bg-white px-4 py-3 text-sm outline-none focus:border-ink transition"></textarea>
+            <p class="error-msg mt-1 hidden text-xs text-red-600">Please write a message.</p>
+          </div>
+          <button type="submit"
+                  class="inline-flex items-center justify-center rounded-lg bg-ink px-6 py-3 text-[16px] font-extrabold text-white hover:opacity-90 transition disabled:opacity-50">
+            LET'S TALK
+          </button>
+          <p id="form-status" class="hidden text-sm text-green-700">Thanks! Your message has been sent (demo).</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="bg-[#262833] text-white">
+    <div class="mx-auto max-w-6xl px-6 py-16">
+      <div class="flex flex-wrap gap-3">
+        <a href="https://www.linkedin.com/in/abhijithajithdesigns/" target="_blank" rel="noopener" class="flex h-11 w-11 items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+        </a>
+        <a href="https://bento.me/abhijithajith" target="_blank" rel="noopener" class="flex h-11 w-11 items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition" aria-label="Bento">
+          <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current"><path d="M16 11V5h4c1.1 0 2 .9 2 2v4h-6zm4 8c1.1 0 2-.9 2-2v-4h-6v6h4zM14 5v14H4c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2h10zm-4.5 7c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5.67 1.5 1.5 1.5 1.5-.67 1.5-1.5z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@abhijithajith9159" target="_blank" rel="noopener" class="flex h-11 w-11 items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/_wisskeyy_/" target="_blank" rel="noopener" class="flex h-11 w-11 items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+        </a>
+      </div>
+
+      <div class="my-10 h-px w-full bg-white/10"></div>
+
+      <a href="mailto:abhijithajithdesigns@gmail.com" class="block text-center text-2xl font-bold tracking-tight text-[#B4B9C2] hover:text-white transition sm:text-4xl md:text-[64px] md:leading-[130%]">
+        abhijithajithdesigns@gmail.com
+      </a>
+
+      <div class="my-10 h-px w-full bg-white/10"></div>
+
+      <nav class="flex flex-wrap justify-center gap-x-8 gap-y-2 text-[16px] font-bold tracking-[1.2px] text-muted">
+        <a href="../portfolio"  class="hover:text-white transition">HOME</a>
+        <a href="../portfolio"  class="hover:text-white transition">WORKS</a>
+        <a href="../visual"     class="hover:text-white transition">VISUALS</a>
+        <a href="../about-me"   class="hover:text-white transition">ABOUT</a>
+        <a href="../contact-me" class="hover:text-white transition">CONTACT</a>
+      </nav>
+
+      <div class="my-10 h-px w-full bg-white/10"></div>
+
+      <div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
+        <p class="text-sm text-[#B4B9C2]">Abhijith Ajith</p>
+        <a href="https://www.linkedin.com/in/abhijithajithdesigns/" target="_blank" rel="noopener"
+           class="inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-2 text-[12px] font-extrabold uppercase tracking-[2.1px] text-[#B4B9C2] hover:bg-white/10 transition">
+          Connect on Linkedin
+          <svg viewBox="0 0 24 24" class="h-3.5 w-3.5 fill-current"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== SCRIPT ===================== -->
+  <script src="main.js" defer></script>
+</body>
+</html>

@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Felix Mijares | Portafolio</title>
+        <title>Felix Mijares | Senior Product Designer</title>
         <script src="https://cdn.tailwindcss.com"></script>
         <style>
             @media (max-width: 768px) {
@@ -14,6 +14,37 @@
                 .name-container {
                     flex-direction: column;
                     gap: 0.5rem;
+                }
+            }
+        
+            /* ===== Animaciones al hacer scroll ===== */
+            html, body { overflow-x: clip; }
+
+            .reveal {
+                opacity: 0;
+                transition:
+                    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+                transition-delay: var(--d, 0ms);
+                will-change: transform, opacity;
+            }
+            .reveal-left  { transform: translateX(-90px); }
+            .reveal-right { transform: translateX(90px); }
+            .reveal-up    { transform: translateY(40px); }
+            .reveal.is-visible { opacity: 1; transform: none; }
+
+            /* En móvil/tablet las cards van en carrusel horizontal: entran desde abajo */
+            @media (max-width: 1023px) {
+                .reveal-card.reveal-left,
+                .reveal-card.reveal-right { transform: translateY(40px); }
+                .reveal-card.is-visible { transform: none; }
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                .reveal, .reveal-left, .reveal-right, .reveal-up {
+                    opacity: 1 !important;
+                    transform: none !important;
+                    transition: none !important;
                 }
             }
         </style>
@@ -62,13 +93,13 @@
                         <!-- Left: Brand -->
                         <div class="flex items-center gap-3">
                             <img
-                                src="img/perfil.png"
+                                src="img/perfil.jfif"
                                 class="w-10 h-10 rounded-full"
                                 alt="Felix Mijares"
                             />
                             <div class="flex flex-col leading-tight">
                                <a href="index.html"><span class="text-sm font-semibold uppercase">Felix Mijares</span></a> 
-                                <span class="text-sm text-zinc-500">Product Design end-to-end para SaaS y startups</span>
+                                <span class="text-sm text-zinc-500">Senior Product Designer</span>
                             </div>
                         </div>
 
@@ -86,21 +117,18 @@
                         </div>
 
                         <!-- Right: Navigation -->
-                        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 lg:gap-8">
-                            <div class="flex flex-col">
-    <a href="proyectos.html" class="text-sm font-bold uppercase">Proyectos</a>
-    <p class="text-sm text-zinc-500 mt-1">Explorar + </p>
-</div>
-<div class="flex flex-col">
-    <a href="about.html" class="text-sm font-bold uppercase">Sobre mí</a>
-    <p class="text-sm text-zinc-500 mt-1">Desde 2005</p>
-</div>
+                        <div class="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-4 lg:gap-6">
+                            <a href="#trabajo" class="text-sm font-bold uppercase">Proyectos</a>
+                            <a href="#como-trabajo" class="text-sm font-bold uppercase">Cómo trabajo</a>
+                            <a href="#como-colaborar" class="text-sm font-bold uppercase">Cómo colaborar</a>
+                            <a href="about.html" class="text-sm font-bold uppercase">Sobre mí</a>
+
 
                             <a
                                 href="#footer"
                                 class="px-6 py-3 bg-mono-90 text-white rounded-full font-semibold text-sm"
                             >
-                                Iniciar un proyecto
+                                Hablemos de tu producto
                             </a>
                         </div>
                     </div>
@@ -110,248 +138,185 @@
                 <header id="header" class="pt-16 pb-16">
                     <div class="container mx-auto grid lg:grid-cols-1 gap-3">
                         <div class="max-w-3xl space-y-8">
+                            <p class="text-sm text-zinc-500 font-medium">Más de 20 años diseñando productos digitales.</p>
                             <h1 class="text-4xl lg:text-5xl leading-tight">
-                                Diseño y construyo productos digitales end-to-end.
+                                Diseño productos digitales para resolver problemas reales y hacerlos crecer.
                             </h1>
                             <p class="text-lg text-mono-70">
-                                Product Designer con más de 10 años de experiencia en banca, e-commerce y productos SaaS. De la estrategia y el UX/UI al front-end en código real, creando soluciones claras, escalables y centradas en el usuario.
+                                Ayudo a equipos de producto y desarrollo a mejorar experiencias, definir nuevas funcionalidades y construir Design Systems escalables. Combino estrategia, UX/UI y criterio técnico para llevar las soluciones del problema a la implementación.
                             </p>
-                            <a href="#footer" class="inline-flex items-center gap-3 px-6 py-2 bg-mono-20 rounded-full">
-                                <span class="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></span>
-                                <span class="font-medium">Abierto a nuevos proyectos</span>
-                            </a>
+                            <div class="flex flex-wrap items-center gap-4">
+                                <a href="#footer" class="inline-flex items-center gap-3 px-6 py-2 bg-mono-20 rounded-full">
+                                    <span class="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></span>
+                                    <span class="font-medium">Hablemos de tu producto</span>
+                                </a>
+                                <a href="#trabajo" class="inline-flex items-center px-6 py-2 rounded-full border border-gray-300 font-medium hover:bg-gray-100 transition-colors">Ver proyectos</a>
+                            </div>
                         </div>
                     </div>
                 </header>
 
-                <!-- Projects Section -->
-                <section class="w-full mt-2">
+<!-- Para quién -->
+<section id="problemas" class="py-16 md:py-24 border-t border-gray-200">
+    <div class="container mx-auto">
+        <div class="text-gray-500 text-sm uppercase tracking-widest mb-6">Para quién</div>
+        <h2 class="text-2xl md:text-3xl font-normal max-w-3xl">Product Design senior para productos que necesitan evolucionar.</h2>
+        <p class="mt-4 text-lg text-mono-70 max-w-2xl">Trabajo con empresas que necesitan mejorar un producto existente, desarrollar nuevas funcionalidades o reforzar su capacidad de diseño sin incorporar necesariamente un equipo interno completo.</p>
+
+        <div class="mt-12 flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4 lg:mx-0 lg:px-0 lg:overflow-visible lg:grid lg:grid-cols-5">
+
+            <div class="snap-start shrink-0 w-72 lg:w-auto rounded-xl bg-cyan-100 p-6 ">
+                <span class="text-sm font-medium text-cyan-800/70">01</span>
+                <h3 class="mt-3 text-lg font-medium text-black">Mejorar un producto existente</h3>
+                <p class="mt-3 text-zinc-700">Identifico fricciones, problemas de usabilidad y oportunidades para que tu producto funcione mejor.</p>
+            </div>
+
+            <div class="snap-start shrink-0 w-72 lg:w-auto rounded-xl bg-teal-100 p-6 ">
+                <span class="text-sm font-medium text-teal-800/70">02</span>
+                <h3 class="mt-3 text-lg font-medium text-black">Optimizar experiencias y flujos</h3>
+                <p class="mt-3 text-zinc-700">Reviso procesos como onboarding, checkout y dashboards para simplificar tareas y mejorar la experiencia de uso.</p>
+            </div>
+
+            <div class="snap-start shrink-0 w-72 lg:w-auto rounded-xl bg-emerald-100 p-6 ">
+                <span class="text-sm font-medium text-emerald-800/70">03</span>
+                <h3 class="mt-3 text-lg font-medium text-black">Diseñar nuevas funcionalidades</h3>
+                <p class="mt-3 text-zinc-700">Defino y diseño nuevas experiencias que encajan con el producto, sus usuarios y sus objetivos.</p>
+            </div>
+
+            <div class="snap-start shrink-0 w-72 lg:w-auto rounded-xl bg-green-100 p-6 ">
+                <span class="text-sm font-medium text-green-800/70">04</span>
+                <h3 class="mt-3 text-lg font-medium text-black">Escalar un Design System</h3>
+                <p class="mt-3 text-zinc-700">Construyo patrones, componentes y criterios de diseño que aportan consistencia y facilitan la evolución del producto.</p>
+            </div>
+
+            <div class="snap-start shrink-0 w-72 lg:w-auto rounded-xl bg-lime-100 p-6 ">
+                <span class="text-sm font-medium text-lime-800/70">05</span>
+                <h3 class="mt-3 text-lg font-medium text-black">Conectar diseño y desarrollo</h3>
+                <p class="mt-3 text-zinc-700">Preparo soluciones con especificaciones claras y colaboro con desarrollo para facilitar su implementación.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Trabajo -->
+                <section id="trabajo" class="py-16 md:py-24 border-t border-gray-200">
                     <div class="container mx-auto">
-                        <!-- Full Width Project -->
-                   <!-- Full Width Project -->
-<article class="relative w-full group">
+                        <div class="text-gray-500 text-sm uppercase tracking-widest mb-6">Trabajo</div>
+                        <h2 class="text-2xl md:text-3xl font-normal max-w-3xl">Proyectos y productos en los que he participado.</h2>
+                        <p class="mt-4 text-lg text-mono-70 max-w-2xl">Una selección de proyectos que muestra cómo abordo el diseño de productos digitales, desde la experiencia de usuario hasta los sistemas y la implementación.</p>
+                        <!-- Módulo de proyectos -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-y-16 gap-x-8 mt-12 md:mt-16">
+                        <!-- Proyecto: Motus Pay. -->
+                        <article class="group relative cursor-pointer">
+                            <a href="portafolio_int_motus.html" class="absolute inset-0 z-10" aria-label="Ver proyecto Motus Pay"></a>
+                            <div class="flex justify-between items-baseline text-sm font-medium relative z-0">
+                                <div class="text-black">
+                                    Motus Pay.<br />
+                                    <span class="text-zinc-500">Fintech / pagos</span>
+                                    <div class="flex flex-wrap gap-2 mt-5">
+                                    <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Product Design</span>
+                                    <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">UX Research</span>
+                                    <span class="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full">UI Design</span>
+                                    <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">Design System</span>
+                                    <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Front-end Integration</span>
+                                    </div>
+                                </div>
+                                <div class="text-zinc-500">2026</div>
+                            </div>
+                            <div class="relative mt-6">
+                                <div class="relative bg-slate-300/70 rounded-xl overflow-hidden py-20">
+                                    <div class="flex items-center justify-center gap-8 px-6">
+                                        <img src="img/portafolio/proyectos/01.svg" alt="Motus Pay App preview" class="w-[500px] max-w-full h-full" />
+                                    </div>
+                                </div>
+                                <div class="absolute bottom-4 right-4 flex h-11 w-11 items-center justify-center rounded-full bg-black/60 text-white opacity-0 scale-90 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:bg-black/80">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-300 ease-out group-hover:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7" /><path d="M7 7h10v10" /></svg>
+                            </div>
+                            </div>
+                        </article>
 
-  <!-- Link overlay -->
-  <a href="portafolio_int_motus.html"
-     class="absolute inset-0 z-10"
-     aria-label="Ver proyecto Motus Pay "></a>
+                        <!-- Proyecto: FlowStride™. -->
+                        <article class="group relative cursor-pointer">
+                            <a href="portafolio_int_flow.html" class="absolute inset-0 z-10" aria-label="Ver proyecto FlowStride"></a>
+                            <div class="flex justify-between items-baseline text-sm font-medium relative z-0">
+                                <div class="text-black">
+                                    FlowStride™.<br />
+                                    <span class="text-zinc-500">Fitness / tecnología</span>
+                                    <div class="flex flex-wrap gap-2 mt-5">
+                                    <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">iOS App</span>
+                                    <span class="bg-sky-100 text-sky-800 text-xs px-3 py-1 rounded-full">UX/UI</span>
+                                    <span class="bg-emerald-100 text-emerald-800 text-xs px-3 py-1 rounded-full">Product Design</span>
+                                    </div>
+                                </div>
+                                <div class="text-zinc-500">2024</div>
+                            </div>
+                            <div class="relative mt-6">
+                                <div class="relative bg-slate-300/70 rounded-xl overflow-hidden py-20">
+                                    <div class="flex items-center justify-center gap-8 px-6">
+                                        <img src="img/portafolio/proyectos/02.svg" alt="FlowStride App preview" class="w-[500px] max-w-full h-full" />
+                                    </div>
+                                </div>
+                                <div class="absolute bottom-4 right-4 flex h-11 w-11 items-center justify-center rounded-full bg-black/60 text-white opacity-0 scale-90 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:bg-black/80">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-300 ease-out group-hover:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7" /><path d="M7 7h10v10" /></svg>
+                            </div>
+                            </div>
+                        </article>
 
-  <!-- Header info -->
-  <div class="flex justify-between items-baseline w-full text-sm font-medium relative z-0">
-    <div class="text-black">
-      Motus Pay.<br />
-      <span class="text-zinc-500">Neobanco Digital</span>
+                        <!-- Proyecto: Aplicativos móviles. -->
+                        <article class="group relative cursor-pointer">
+                            <a href="portafolio_int_apps.html" class="absolute inset-0 z-10" aria-label="Ver proyecto Aplicativos móviles"></a>
+                            <div class="flex justify-between items-baseline text-sm font-medium relative z-0">
+                                <div class="text-black">
+                                    Aplicativos móviles.<br />
+                                    <span class="text-zinc-500">Diseño de Apps</span>
+                                    <div class="flex flex-wrap gap-2 mt-5">
+                                    <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">iOS App</span>
+                                    <span class="bg-sky-100 text-sky-800 text-xs px-3 py-1 rounded-full">Android App</span>
+                                    <span class="bg-emerald-100 text-emerald-800 text-xs px-3 py-1 rounded-full">Product Design</span>
+                                    </div>
+                                </div>
+                                <div class="text-zinc-500">2025</div>
+                            </div>
+                            <div class="relative mt-6">
+                                <div class="relative bg-slate-300/70  rounded-xl overflow-hidden py-20">
+                                    <div class="flex items-center justify-center gap-8 px-6">
+                                        <img src="img/portafolio/proyectos/03.svg" alt="Aplicativos móviles preview" class="w-[500px] max-w-full h-full" />
+                                    </div>
+                                </div>
+                                <div class="absolute bottom-4 right-4 flex h-11 w-11 items-center justify-center rounded-full bg-black/60 text-white opacity-0 scale-90 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:bg-black/80">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-300 ease-out group-hover:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7" /><path d="M7 7h10v10" /></svg>
+                            </div>
+                            </div>
+                        </article>
 
-      <!-- Tags -->
-      <div class="flex flex-wrap gap-2 mt-5">
-        <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Product Design</span>
-        <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">UX Research</span>
-        <span class="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full">UI Design</span>
-        <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">Design System</span>
-        <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Front-end Integration</span>
-       
-      
-    </div>
-    </div>
-
-    <div class="text-zinc-500">2026</div>
-  </div>
-
-  <!-- Visual container -->
-  <div class="relative w-full mt-6 rounded-xl overflow-hidden cursor-pointer">
-    <img
-      src="img/background_motus.png"
-      alt="Motus Pay background"
-      class="w-full h-[760px] object-cover"
-    />
-
-    <!-- App UI centrada -->
-    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-      <img
-        src="img/01_02_03.svg"
-        alt="Motus Pay App UI"
-        class="w-[85%] max-w-6xl rounded-2xl shadow-2xl"
-      />
-    </div>
-
-    <!-- Hover action -->
-    <div
-      class="absolute bottom-4 right-4 flex h-11 w-11 items-center justify-center rounded-full
-             bg-black/60 text-white opacity-0 scale-90 translate-y-2
-             transition-all duration-300 ease-out
-             group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0
-             group-hover:bg-black/80"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5 transition-transform duration-300 ease-out group-hover:rotate-45"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path d="M7 17L17 7" />
-        <path d="M7 7h10v10" />
-      </svg>
-    </div>
-  </div>
-
-</article>
-
-
-
-
-                        <!-- Project Pairs -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 md:mt-16">
-                      
-                            
-
-                             <!-- Project 2 -->
-                        <!-- Project 2 -->
-<article class="group relative cursor-pointer">
-
-    <!-- Link overlay -->
-    <a
-        href="portafolio_int_flow.html"
-        class="absolute inset-0 z-10"
-        aria-label="Ver proyecto Dune"
-    ></a>
-
-    <div class="flex justify-between items-baseline text-sm font-medium relative z-0">
-        <div class="text-black">
-            FlowStride™<br />
-            <span class="text-zinc-500">Análisis biomecánico</span>
-
-            <!-- Tags -->
-            <div class="flex flex-wrap gap-2 mt-5">
-                <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">
-                    iOS App
-                </span>
-                <span class="bg-sky-100 text-sky-800 text-xs px-3 py-1 rounded-full">
-                    UX/UI
-                </span>
-                <span class="bg-emerald-100 text-emerald-800 text-xs px-3 py-1 rounded-full">
-                    Product Design
-                </span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Image wrapper -->
-    <div class="relative mt-6">
-        <!-- Visual container -->
-        <div class="relative bg-slate-300/70 rounded-xl overflow-hidden py-20">
-            <div class="flex items-center justify-center gap-8 px-6">
-                <img
-                    src="img/portafolio/proyectos/02.svg"
-                    alt="Dune App preview"
-                    class="w-[500px] rounded-xl"
-                />
-            </div>
-        </div>
-
-        <!-- Hover action (solo visual) -->
-        <div
-            class="absolute bottom-4 right-4 flex h-11 w-11 items-center justify-center rounded-full
-                   bg-black/60 text-white opacity-0 scale-90 translate-y-2
-                   transition-all duration-300 ease-out
-                   group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0
-                   group-hover:bg-black/80"
-        >
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5 transition-transform duration-300 ease-out group-hover:rotate-45"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-            >
-                <path d="M7 17L17 7" />
-                <path d="M7 7h10v10" />
-            </svg>
-        </div>
-    </div>
-
-</article>
-
-
-                        
-                          
-
-                            <!-- Project 2 -->
-                         <article class="group relative cursor-pointer">
-
-    <!-- Link overlay -->
-    <a
-        href="portafolio_int_logos.html"
-        class="absolute inset-0 z-10"
-        aria-label="Ver proyecto Dune – Logos"
-    ></a>
-
-    <div class="flex justify-between items-baseline text-sm font-medium relative z-0">
-        <div class="text-black">
-            Logototipos<br />
-              <span class="text-zinc-500">Diseño de logos</span>
-
-            <!-- Tags -->
-            <div class="flex flex-wrap gap-2 mt-5">
-                <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">
-                    Brand Designer
-                </span>
-                <span class="bg-sky-100 text-sky-800 text-xs px-3 py-1 rounded-full">
-                   Visual Identity Designer
-                </span>
-                
-            </div>
-        </div>
-    </div>
-
-    <!-- Image wrapper -->
-    <div class="relative mt-6">
-        <!-- Visual container -->
-        <div class="relative bg-slate-900/70 rounded-xl overflow-hidden py-20">
-            <div class="flex items-center justify-center gap-8 px-6">
-                <img
-                    src="img/portafolio/proyectos/04.svg"
-                    alt="Dune project preview"
-                    class="w-[500px] rounded-xl"
-                />
-            </div>
-        </div>
-
-        <!-- Hover action (solo visual) -->
-        <div
-            class="absolute bottom-4 right-4 flex h-11 w-11 items-center justify-center rounded-full
-                   bg-black/60 text-white opacity-0 scale-90 translate-y-2
-                   transition-all duration-300 ease-out
-                   group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0
-                   group-hover:bg-black/80"
-        >
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5 transition-transform duration-300 ease-out group-hover:rotate-45"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-            >
-                <path d="M7 17L17 7" />
-                <path d="M7 7h10v10" />
-            </svg>
-        </div>
-    </div>
-
-</article>
-
-
-
-
+                        <!-- Proyecto: Logotipos -->
+                        <article class="group relative cursor-pointer">
+                            <a href="portafolio_int_logos.html" class="absolute inset-0 z-10" aria-label="Ver proyecto Logotipos"></a>
+                            <div class="flex justify-between items-baseline text-sm font-medium relative z-0">
+                                <div class="text-black">
+                                    Logotipos<br />
+                                    <span class="text-zinc-500">Diseño de logos</span>
+                                    <div class="flex flex-wrap gap-2 mt-5">
+                                    <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Brand Designer</span>
+                                    <span class="bg-sky-100 text-sky-800 text-xs px-3 py-1 rounded-full">Visual Identity Designer</span>
+                                    </div>
+                                </div>
+                                <div class="text-zinc-500">2024</div>
+                            </div>
+                            <div class="relative mt-6">
+                                <div class="relative bg-slate-300/70  rounded-xl overflow-hidden py-20">
+                                    <div class="flex items-center justify-center gap-8 px-6">
+                                        <img src="img/portafolio/proyectos/04.svg" alt="Logotipos preview" class="w-[500px] max-w-full h-full" />
+                                    </div>
+                                </div>
+                                <div class="absolute bottom-4 right-4 flex h-11 w-11 items-center justify-center rounded-full bg-black/60 text-white opacity-0 scale-90 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:bg-black/80">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-300 ease-out group-hover:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7" /><path d="M7 7h10v10" /></svg>
+                            </div>
+                            </div>
+                        </article>
 
                         </div>
                     </div>
@@ -369,172 +334,142 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-<!-- How I Work -->
-<section class="py-20 md:py-32 px-4 xl:px-8">
+<!-- Cómo trabajo + Cómo colaborar -->
+<section id="como-trabajo" class="py-16 md:py-24 border-t border-gray-200">
     <div class="container mx-auto">
-        <div class="text-gray-500 text-sm uppercase tracking-widest mb-12 md:mb-20">
-            Cómo trabajo
-        </div>
-
+        <div class="text-gray-500 text-sm uppercase tracking-widest mb-12 md:mb-20">Cómo trabajo</div>
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
-            <!-- Left Column -->
+
+            <!-- Columna fija -->
             <div class="lg:col-span-5">
                 <div class="sticky top-32">
                     <h3 class="text-2xl md:text-3xl font-normal mb-6 md:mb-8">
-                        Así es como convierto ideas en
-                        <span class="inline-block text-gray-400">
-                            productos digitales reales
-                        </span>.
+                        De entender el problema a <span class="inline-block text-gray-400">construir la solución</span>.
                     </h3>
-
-                    <!-- Button -->
-                    <a
-                        href="#footer"
-                        class="inline-flex items-center bg-gray-900 text-white px-8 py-4 rounded-full hover:bg-gray-800 transition-all duration-300 group"
-                    >
-                        
-                        <span
-                            class="text-lg font-medium mr-4 group-hover:-translate-x-2 transition-transform duration-300"
-                        >
-                            Hablemos de su producto
-                        </span>
-                        <svg
-                            class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M14 5l7 7m0 0l-7 7m7-7H3"
-                            />
-                        </svg>
+                    <p class="text-lg text-gray-500 mb-8 max-w-md">
+                        Un proceso adaptable al contexto, la complejidad y la madurez de cada producto.
+                    </p>
+                    <a href="#footer" class="inline-flex items-center bg-gray-900 text-white px-8 py-4 rounded-full hover:bg-gray-800 transition-all duration-300 group">
+                        <span class="text-lg font-medium mr-4 group-hover:-translate-x-2 transition-transform duration-300">Hablemos de tu producto</span>
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                     </a>
                 </div>
             </div>
 
-            <!-- Right Column - Services List -->
+            <!-- Columna con scroll -->
             <div class="lg:col-span-7">
-                <div class="space-y-1 border-t border-gray-200">
-                    <!-- Item 1 -->
-                    <div class="py-6 md:py-8 border-b border-gray-200 stagger-animate">
+
+                <!-- Proceso -->
+                <div class="text-gray-500 text-sm uppercase tracking-widest mb-4">Proceso</div>
+                <div class="border-t border-gray-200">
+
+                    <div class="py-6 md:py-8 border-b border-gray-200">
                         <div class="flex flex-col md:flex-row md:items-start gap-4">
                             <span class="text-zinc-400 font-medium text-xl md:text-2xl">01.</span>
-                            <h4
-                                class="text-xl md:text-2xl text-gray-600 font-medium w-full md:w-64 flex-shrink-0"
-                            >
-                                Estrategia de producto
-                            </h4>
-                            <div class="text-gray-500 text-lg mt-2">
-                                Discovery, investigación y definición clara de objetivos antes de diseñar.
+                            <h4 class="text-xl md:text-2xl text-gray-600 font-medium w-full md:w-64 flex-shrink-0">Entender</h4>
+                            <div class="text-gray-500 text-lg">
+                                Analizo el contexto, las necesidades de los usuarios y los objetivos del negocio.
+                                <p class="mt-3 text-base text-gray-500 flex gap-2 items-start">
+                                    <span class="shrink-0 mt-0.5 inline-flex items-center rounded-full bg-violet-100 text-violet-700 text-xs font-semibold px-2.5 py-1">✦ IA</span>
+                                    Síntesis de briefs, documentación y transcripciones de reuniones para llegar con contexto desde el día uno. Análisis de feedback, reseñas y tickets de soporte para detectar patrones, y benchmarks rápidos de la competencia.
+                                </p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Item 2 -->
-                    <div class="py-6 md:py-8 border-b border-gray-200 stagger-animate">
+                    <div class="py-6 md:py-8 border-b border-gray-200">
                         <div class="flex flex-col md:flex-row md:items-start gap-4">
                             <span class="text-zinc-400 font-medium text-xl md:text-2xl">02.</span>
-                            <h4
-                                 class="text-xl md:text-2xl text-gray-600 font-medium w-full md:w-64 flex-shrink-0"
-                            >
-                                UX/UI & sistemas
-                            </h4>
+                            <h4 class="text-xl md:text-2xl text-gray-600 font-medium w-full md:w-64 flex-shrink-0">Definir</h4>
                             <div class="text-gray-500 text-lg">
-                                Flujos claros, interfaces usables y sistemas de diseño pensados para escalar.
+                                Identifico el problema prioritario, las oportunidades y el alcance de la solución.
+                                <p class="mt-3 text-base text-gray-500 flex gap-2 items-start">
+                                    <span class="shrink-0 mt-0.5 inline-flex items-center rounded-full bg-violet-100 text-violet-700 text-xs font-semibold px-2.5 py-1">✦ IA</span>
+                                    Contraste de hipótesis y redacción de problem statements para detectar huecos antes de diseñar.
+                                </p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Item 3 -->
-                    <div class="py-6 md:py-8 border-b border-gray-200 stagger-animate">
+                    <div class="py-6 md:py-8 border-b border-gray-200">
                         <div class="flex flex-col md:flex-row md:items-start gap-4">
                             <span class="text-zinc-400 font-medium text-xl md:text-2xl">03.</span>
-                            <h4
-                                class="text-xl md:text-2xl text-gray-600 font-medium w-full md:w-64 flex-shrink-0"
-                            >
-                                Prototipado y validación
-                            </h4>
+                            <h4 class="text-xl md:text-2xl text-gray-600 font-medium w-full md:w-64 flex-shrink-0">Diseñar y validar</h4>
                             <div class="text-gray-500 text-lg">
-                                Prototipos funcionales y tests tempranos para reducir riesgos.
+                                Estructuro los flujos, diseño las interfaces y prototipo las experiencias para evaluar las decisiones antes de construir.
+                                <p class="mt-3 text-base text-gray-500 flex gap-2 items-start">
+                                    <span class="shrink-0 mt-0.5 inline-flex items-center rounded-full bg-violet-100 text-violet-700 text-xs font-semibold px-2.5 py-1">✦ IA</span>
+                                    Exploración de arquitecturas y flujos alternativos, variantes visuales, microcopy y contenido realista, más prototipos funcionales construidos con IA para validar interacciones reales sin esperar a desarrollo.
+                                </p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Item 4 -->
-                    <div class="py-6 md:py-8 border-b border-gray-200 stagger-animate">
+                    <div class="py-6 md:py-8 border-b border-gray-200">
                         <div class="flex flex-col md:flex-row md:items-start gap-4">
                             <span class="text-zinc-400 font-medium text-xl md:text-2xl">04.</span>
-                            <h4
-                                 class="text-xl md:text-2xl text-gray-600 font-medium w-full md:w-64 flex-shrink-0"
-                            >
-                                Front-end real
-                            </h4>
+                            <h4 class="text-xl md:text-2xl text-gray-600 font-medium w-full md:w-64 flex-shrink-0">Preparar e implementar</h4>
                             <div class="text-gray-500 text-lg">
-                                Implementación en código con Tailwind CSS y Bootstrap.
+                                Documento la solución, preparo el handoff y colaboro con desarrollo durante la implementación.
+                                <p class="mt-3 text-base text-gray-500 flex gap-2 items-start">
+                                    <span class="shrink-0 mt-0.5 inline-flex items-center rounded-full bg-violet-100 text-violet-700 text-xs font-semibold px-2.5 py-1">✦ IA</span>
+                                    Documentación, especificaciones y revisión de casos borde y estados, más revisión de la implementación contra el diseño y chequeos de accesibilidad.
+                                </p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Item 5 -->
-                    <div class="py-6 md:py-8 border-b border-gray-200 stagger-animate">
-                        <div class="flex flex-col md:flex-row md:items-start gap-4">
-                            <span class="text-zinc-400 font-medium text-xl md:text-2xl">05.</span>
-                            <h4
-                                class="text-xl md:text-2xl text-gray-600 font-medium w-full md:w-64 flex-shrink-0"
-                            >
-                                Entrega y escalabilidad
-                            </h4>
-                            <div class="text-gray-500 text-lg">
-                                Productos listos para producción y preparados para crecer.
+                </div>
+
+                <!-- Cómo colaborar -->
+                <div id="como-colaborar" class="mt-16 md:mt-20">
+                    <div class="text-gray-500 text-sm uppercase tracking-widest mb-4">Cómo colaborar</div>
+                    <h3 class="text-2xl md:text-3xl font-normal mb-4 max-w-xl">La forma de colaboración que tu producto necesita.</h3>
+                    <p class="text-lg text-gray-500 mb-6 max-w-xl">
+                        Podemos trabajar sobre un problema concreto, desarrollar un proyecto con objetivos definidos o colaborar de forma continua con tu equipo.
+                    </p>
+                    <div class="border-t border-gray-200">
+
+                        <div class="py-6 md:py-8 border-b border-gray-200">
+                            <div class="flex flex-col md:flex-row md:items-start gap-4">
+                                <span class="text-zinc-400 font-medium text-xl md:text-2xl">A.</span>
+                                <h4 class="text-xl md:text-2xl text-gray-600 font-medium w-full md:w-64 flex-shrink-0">Sprint</h4>
+                                <div class="text-gray-500 text-lg">Una intervención enfocada en un problema específico, con alcance y entregables definidos.</div>
                             </div>
                         </div>
+
+                        <div class="py-6 md:py-8 border-b border-gray-200">
+                            <div class="flex flex-col md:flex-row md:items-start gap-4">
+                                <span class="text-zinc-400 font-medium text-xl md:text-2xl">B.</span>
+                                <h4 class="text-xl md:text-2xl text-gray-600 font-medium w-full md:w-64 flex-shrink-0">Proyecto</h4>
+                                <div class="text-gray-500 text-lg">Un trabajo con objetivos claros que puede abarcar discovery, arquitectura, UX/UI, Design Systems y preparación para desarrollo.</div>
+                            </div>
+                        </div>
+
+                        <div class="py-6 md:py-8 border-b border-gray-200">
+                            <div class="flex flex-col md:flex-row md:items-start gap-4">
+                                <span class="text-zinc-400 font-medium text-xl md:text-2xl">C.</span>
+                                <h4 class="text-xl md:text-2xl text-gray-600 font-medium w-full md:w-64 flex-shrink-0">Colaboración continua</h4>
+                                <div class="text-gray-500 text-lg">Acompañamiento senior de Product Design integrado en el flujo de trabajo de tu equipo durante un periodo acordado.</div>
+                            </div>
+                        </div>
+
+                        <div class="my-6 md:my-8 rounded-xl bg-mono-90 text-white p-6 md:p-8">
+                            <div class="flex flex-col md:flex-row md:items-start gap-4">
+                                <span class="text-mono-40 font-medium text-xl md:text-2xl">D.</span>
+                                <h4 class="text-xl md:text-2xl font-medium w-full md:w-64 flex-shrink-0">Design Partner</h4>
+                                <div class="text-mono-40 text-lg">Una relación de colaboración a largo plazo en la que aporto criterio de producto, dirección de diseño y capacidad de ejecución para acompañar la evolución de tu producto digital.</div>
+                            </div>
+                        </div>
+
                     </div>
+                    
                 </div>
+
             </div>
         </div>
     </div>
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -585,9 +520,10 @@
                 <div class="flex flex-col">
                     <p class="text-sm text-zinc-500 font-medium">Explorar</p>
                     <nav class="flex flex-col mt-4 space-y-2">
-                        <a href="#home" class="text-sm text-black font-semibold uppercase hover:underline">Inicio</a>
-                        <a href="#projects" class="text-sm text-black font-semibold uppercase hover:underline">Proyectos</a>
-                        <a href="#about" class="text-sm text-black font-semibold uppercase hover:underline">Sobre mí</a>
+                        <a href="#header" class="text-sm text-black font-semibold uppercase hover:underline">Inicio</a>
+                        <a href="#trabajo" class="text-sm text-black font-semibold uppercase hover:underline">Proyectos</a>
+                        <a href="#sobre-mi" class="text-sm text-black font-semibold uppercase hover:underline">Sobre mí</a>
+                        <a href="https://www.linkedin.com/in/felix-mijares-32b1782b/" target="_blank" rel="noopener noreferrer" class="text-sm text-black font-semibold uppercase hover:underline">LinkedIn</a>
                        
                     </nav>
                 </div>
@@ -595,73 +531,61 @@
 
             <!-- Services Highlight -->
             <div class="grid grid-cols-1 gap-6">
-                <p class="text-lg md:text-xl font-medium text-black  mt-6">
-                    Transformo ideas en productos listos para crecer. Desde estrategia hasta diseño, prototipado y front-end funcional, todo pensado para que tu proyecto escale.
+                <h2 class="text-2xl md:text-3xl font-normal text-black mt-6">Hablemos de tu producto.</h2>
+                <p class="text-lg text-mono-70">
+                    ¿Necesitas mejorar una experiencia, definir una nueva funcionalidad o dar consistencia a un producto que está creciendo? Cuéntame qué estás construyendo y evaluemos cómo puedo ayudarte.
                 </p>
-                
+               
             </div>
         </div>
     </div>
 </section>
+    <!-- Footer -->
+                <footer id="footer" class="mt-20 md:mt-32 py-8 border-t border-neutral-200">
+                    <div class="container mx-auto">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                            <p class="text-zinc-500 text-sm">
+                                © 2026 Felix Mijares.
+                            </p>
 
-<!-- Footer -->
-<footer id="footer" class="mt-20 md:mt-32 py-8 border-t border-neutral-200">
-  <div class="container mx-auto">
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
-      
-      <p class="text-zinc-500 text-sm">
-        © 2026 Felix Mijares.
-      </p>
+                            <!-- Social links -->
+                            <div class="flex gap-5 mt-4 md:mt-0">
+                                <!-- Instagram -->
+                                <a
+                                    href="https://www.instagram.com/arnaldo_905/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="text-zinc-500 hover:text-black transition"
+                                    aria-label="Instagram"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-instagram"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4l0 -8" /><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /><path d="M16.5 7.5v.01" /></svg>
+                                </a>
 
-      <!-- Social links -->
-      <div class="flex gap-5 mt-4 md:mt-0">
+                                <!-- Dribbble -->
+                                <a
+                                    href="https://dribbble.com/felix_905"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="text-zinc-500 hover:text-black transition"
+                                    aria-label="Dribbble"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-dribbble"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M9 3.6c5 6 7 10.5 7.5 16.2" /><path d="M6.4 19c3.5 -3.5 6 -6.5 14.5 -6.4" /><path d="M3.1 10.75c5 0 9.814 -.38 15.314 -5" /></svg>
+                                </a>
 
-        <!-- Instagram -->
-        <a
-          href="https://instagram.com/tuusuario"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-zinc-500 hover:text-black transition"
-          aria-label="Instagram"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-instagram"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4l0 -8" /><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /><path d="M16.5 7.5v.01" /></svg>
-        </a>
-
-        <!-- Dribbble -->
-        <a
-          href="https://dribbble.com/felix_905"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-zinc-500 hover:text-black transition"
-          aria-label="Dribbble"
-        >
-         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-dribbble"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M9 3.6c5 6 7 10.5 7.5 16.2" /><path d="M6.4 19c3.5 -3.5 6 -6.5 14.5 -6.4" /><path d="M3.1 10.75c5 0 9.814 -.38 15.314 -5" /></svg>
-        </a>
-
-        <!-- LinkedIn -->
-        <a
-          href="https://www.linkedin.com/in/felix-mijares-32b1782b/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-zinc-500 hover:text-black transition"
-          aria-label="LinkedIn"
-        >
-         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-linkedin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 11v5" /><path d="M8 8v.01" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 1 0 -4 0" /><path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4l0 -10" /></svg>
-        </a>
-
-      </div>
-    </div>
-  </div>
-</footer>
-
-
-
-
-
-
-
-
-
+                                <!-- LinkedIn -->
+                                <a
+                                    href="https://www.linkedin.com/in/felix-mijares-32b1782b/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="text-zinc-500 hover:text-black transition"
+                                    aria-label="LinkedIn"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-linkedin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 11v5" /><path d="M8 8v.01" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 1 0 -4 0" /><path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4l0 -10" /></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
 
 
 
@@ -693,5 +617,81 @@
   });
 </script>
 
+    
+        <script>
+            (function () {
+                var $ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
+                var targets = [];
+
+                function add(el, dir, delay, isCard) {
+                    if (!el) return;
+                    el.classList.add('reveal', 'reveal-' + dir);
+                    if (isCard) el.classList.add('reveal-card');
+                    el.style.setProperty('--d', (delay || 0) + 'ms');
+                    targets.push(el);
+                }
+
+                // Encabezado de sección (etiqueta, título, párrafo)
+                function heading(sectionSel, dir) {
+                    var c = document.querySelector(sectionSel + ' > .container');
+                    if (!c) return;
+                    Array.prototype.slice.call(c.children, 0, 3).forEach(function (el, i) {
+                        add(el, dir, i * 110);
+                    });
+                }
+
+                // Para quién: encabezado desde la izquierda, cards alternando lados
+                heading('#problemas', 'left');
+                $('#problemas .snap-start').forEach(function (el, i) {
+                    add(el, i % 2 === 0 ? 'left' : 'right', i * 90, true);
+                });
+
+                // Capacidades y Sobre mí
+                heading('#capacidades', 'left');
+                $('#capacidades .grid > div').forEach(function (el, i) {
+                    add(el, 'up', i * 60);
+                });
+                heading('#sobre-mi', 'right');
+
+                // Trabajo: encabezado desde la derecha, proyectos alternando lados
+                heading('#trabajo', 'right');
+                $('#trabajo article').forEach(function (el, i) {
+                    add(el, i % 2 === 0 ? 'left' : 'right', 0);
+                });
+
+                // Cómo trabajo: columna fija desde la izquierda, contenido desde la derecha
+                add(document.querySelector('#como-trabajo > .container > .uppercase'), 'up', 0);
+                add(document.querySelector('#como-trabajo .sticky'), 'left', 100);
+                $('#como-trabajo .lg\\:col-span-7 .uppercase, #como-trabajo .lg\\:col-span-7 h3, #como-trabajo .lg\\:col-span-7 p.text-lg, #como-trabajo .lg\\:col-span-7 .py-6, #como-trabajo .lg\\:col-span-7 .my-6')
+                    .forEach(function (el) { add(el, 'right', 0); });
+
+                // Contacto: info desde la izquierda, servicios desde la derecha
+                var contact = document.querySelector('section.w-full.mt-20 > .container > .grid');
+                if (contact) {
+                    Array.prototype.slice.call(contact.children).forEach(function (el, i) {
+                        add(el, i % 2 === 0 ? 'left' : 'right', i * 120);
+                    });
+                }
+
+                // Footer
+                add(document.querySelector('#footer > .container'), 'up', 0);
+
+                if (!('IntersectionObserver' in window)) {
+                    targets.forEach(function (el) { el.classList.add('is-visible'); });
+                    return;
+                }
+
+                var io = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            io.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+
+                targets.forEach(function (el) { io.observe(el); });
+            })();
+        </script>
     </body>
 </html>
