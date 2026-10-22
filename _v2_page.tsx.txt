@@ -1,0 +1,145 @@
+import { Hero } from "@/components/sections/Hero";
+import { Section } from "@/components/ui/Section";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { ProblemCard } from "@/components/sections/ProblemCard";
+import { CapabilityCard } from "@/components/sections/CapabilityCard";
+import { ProcessStep } from "@/components/sections/ProcessStep";
+import { ProjectCard } from "@/components/sections/ProjectCard";
+import { CollaborationModel } from "@/components/sections/CollaborationModel";
+import { CTA } from "@/components/sections/CTA";
+import { Button } from "@/components/ui/Button";
+import { StaggerGrid, StaggerItem } from "@/components/motion/StaggerGrid";
+import {
+  capabilities,
+  collaborationModels,
+  problems,
+  processSteps,
+  projects,
+  siteConfig,
+} from "@/lib/content/site";
+
+export default function Home() {
+  return (
+    <>
+      <Hero />
+
+      {/* Problemas: equipos y empresas que ya desarrollan productos digitales
+          y necesitan capacidad senior de Product Design (docs/02-target-market.md, HYPOTHESIS). */}
+      <Section className="border-b border-border-subtle">
+        <SectionHeading
+          eyebrow="Para quién"
+          title="Para equipos que ya desarrollan productos digitales"
+          description="Si tu producto necesita mejorar, crecer o resolver un problema concreto de UX, puedo aportar capacidad senior de Product Design, de forma puntual o continua."
+        />
+        <StaggerGrid className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {problems.map((problem) => (
+            <StaggerItem key={problem.slug}>
+              <ProblemCard
+                title={problem.title}
+                description={problem.description}
+              />
+            </StaggerItem>
+          ))}
+        </StaggerGrid>
+      </Section>
+
+      {/* Capacidades */}
+      <Section className="border-b border-border-subtle">
+        <SectionHeading
+          eyebrow="Capacidades"
+          title="Product Design + producto + tecnología"
+          description="Diseño + producto + tecnología: no solo interfaces, sino soluciones estructuradas y listas para desarrollo."
+        />
+        <StaggerGrid className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+          {capabilities.map((capability) => (
+            <StaggerItem key={capability}>
+              <CapabilityCard label={capability} />
+            </StaggerItem>
+          ))}
+        </StaggerGrid>
+      </Section>
+
+      {/* Cómo trabajo */}
+      <Section className="border-b border-border-subtle">
+        <SectionHeading
+          eyebrow="Cómo trabajo"
+          title="Un proceso claro, de la definición a la implementación"
+        />
+        <div className="mt-10 max-w-2xl">
+          {processSteps.map((step, index) => (
+            <ProcessStep
+              key={step.title}
+              index={index + 1}
+              title={step.title}
+              description={step.description}
+            />
+          ))}
+        </div>
+      </Section>
+
+      {/* Trabajo / Casos */}
+      <Section className="border-b border-border-subtle">
+        <SectionHeading
+          eyebrow="Trabajo"
+          title="Proyectos en los que he trabajado"
+          description="La documentación de cada caso se está construyendo de forma individual. Por ahora, este es el inventario de proyectos reales."
+        />
+        <StaggerGrid className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project, index) => (
+            <StaggerItem key={project.slug}>
+              <ProjectCard project={project} tone={index} />
+            </StaggerItem>
+          ))}
+        </StaggerGrid>
+        <div className="mt-10">
+          <Button href="/trabajo" variant="secondary">
+            Ver todo el trabajo
+          </Button>
+        </div>
+      </Section>
+
+      {/* Cómo colaborar */}
+      <Section className="border-b border-border-subtle">
+        <SectionHeading
+          eyebrow="Cómo colaborar"
+          title="De un problema concreto a una relación continua"
+          description="Design Partner es un modelo de relación continua, no necesariamente la puerta de entrada. La mayoría de colaboraciones empiezan con un Sprint o un Proyecto."
+        />
+        <StaggerGrid className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {collaborationModels.map((model) => (
+            <StaggerItem key={model.slug}>
+              <CollaborationModel
+                title={model.title}
+                description={model.description}
+                highlight={model.slug === "design-partner"}
+              />
+            </StaggerItem>
+          ))}
+        </StaggerGrid>
+      </Section>
+
+      {/* Sobre Felix */}
+      <Section className="border-b border-border-subtle">
+        <SectionHeading
+          eyebrow="Sobre mí"
+          title={siteConfig.name}
+          description={`${siteConfig.role} con más de 15 años de experiencia en Product Design, UX/UI y Design Systems.`}
+        />
+        <div className="mt-8">
+          <Button href="/sobre-mi" variant="secondary">
+            Conocer más
+          </Button>
+        </div>
+      </Section>
+
+      {/* CTA final */}
+      <Section>
+        <CTA
+          title={siteConfig.contactCtaFinal}
+          description="Si tienes un producto existente, un problema de UX o una nueva funcionalidad en mente, hablemos."
+          ctaLabel={siteConfig.primaryCta}
+        />
+      </Section>
+    </>
+  );
+}

@@ -1,0 +1,134 @@
+// Fuente de verdad de contenido del sitio.
+// Alineado con docs/00-business-model.md, docs/01-offer.md, docs/03-site-architecture.md
+// y docs/05-positioning-and-messaging.md.
+//
+// Todo el copy marcado como HYPOTHESIS en docs/ debe tratarse aquí como provisional:
+// centralizado en este archivo para poder reemplazarlo sin tocar componentes.
+
+export const siteConfig = {
+  name: "Felix Mijares",
+  role: "Senior Product Designer",
+  // Copy provisional (HYPOTHESIS) — ver docs/03-site-architecture.md
+  tagline:
+    "Product Design senior para equipos que necesitan mejorar y evolucionar productos digitales.",
+  subtext:
+    "Ayudo a resolver problemas de UX, diseñar nuevas funcionalidades y escalar Design Systems, desde la definición hasta una solución lista para desarrollo.",
+  primaryCta: "Hablemos de tu producto",
+  contactCtaFinal: "Cuéntame qué estás construyendo",
+  // Contacto: sin datos definitivos todavía (ver docs/03-site-architecture.md)
+  contactEmail: null as string | null,
+};
+
+export const navigation = [
+  { href: "/problemas", label: "Qué problemas puedo resolver" },
+  { href: "/trabajo", label: "Trabajo" },
+  { href: "/como-trabajo", label: "Cómo trabajo" },
+  { href: "/como-colaborar", label: "Cómo colaborar" },
+  { href: "/sobre-mi", label: "Sobre mí" },
+  { href: "/insights", label: "Insights" },
+  { href: "/contacto", label: "Contacto" },
+] as const;
+
+// QUÉ trabajo se puede hacer sobre el producto (docs/01-offer.md)
+// No son servicios independientes obligatorios; describen tipos de necesidad.
+export const problems = [
+  {
+    slug: "mejorar-producto-existente",
+    title: "Un producto existente que necesita mejorar",
+    description:
+      "El producto ya está en el mercado, pero hay fricción, deuda de UX o decisiones que ya no escalan.",
+  },
+  {
+    slug: "ux-que-necesita-revision",
+    title: "UX que necesita revisión",
+    description:
+      "Flujos, onboarding, checkout o dashboards que generan confusión o abandono.",
+  },
+  {
+    slug: "nuevas-funcionalidades",
+    title: "Nuevas funcionalidades que necesitan diseño",
+    description:
+      "Construir una nueva experiencia dentro de un producto que ya existe, sin romper lo que ya funciona.",
+  },
+  {
+    slug: "consistencia-y-escala",
+    title: "Un producto que crece y necesita consistencia",
+    description:
+      "Design Systems, patrones y una base visual/de interacción que escale con el equipo.",
+  },
+  {
+    slug: "capacidad-senior-para-desarrollo",
+    title: "Un equipo de desarrollo que necesita capacidad senior de diseño",
+    description:
+      "Diseño que se piensa para implementarse: handoff claro y colaboración directa con desarrollo.",
+  },
+] as const;
+
+// Capacidades (docs/01-offer.md) — HTML/CSS/Tailwind como capacidad complementaria, no como eje.
+export const capabilities = [
+  "Product Design",
+  "UX/UI",
+  "UX Research",
+  "Information Architecture",
+  "User Flows",
+  "Prototyping",
+  "Design Systems",
+  "UI",
+  "Design/Developer collaboration",
+  "Handoff",
+  "HTML/CSS/Tailwind (capacidad complementaria)",
+] as const;
+
+// Proceso conceptual (docs/03-site-architecture.md) — TODO: no cerrado como definitivo.
+export const processSteps = [
+  { title: "Entender", description: "Entender el problema y el contexto del producto." },
+  { title: "Investigar / analizar", description: "Analizar el producto, los datos disponibles y el flujo actual." },
+  { title: "Definir", description: "Definir el problema real a resolver y el alcance." },
+  { title: "Estructurar", description: "Estructurar la solución: arquitectura, flujos, jerarquía." },
+  { title: "Diseñar", description: "Diseñar la interfaz y la interacción." },
+  { title: "Prototipar", description: "Prototipar para validar antes de construir." },
+  { title: "Preparar para desarrollo", description: "Dejar la solución lista para implementarse: handoff claro." },
+  { title: "Colaborar con desarrollo", description: "Acompañar la construcción junto al equipo de desarrollo." },
+] as const;
+
+// Modelos de colaboración (docs/00-business-model.md, docs/01-offer.md)
+// Design Partner = relación continua de largo plazo, NO puerta de entrada obligatoria,
+// NO servicio premium, NO cuarta categoría de trabajo.
+export const collaborationModels = [
+  {
+    slug: "sprint",
+    title: "Sprint",
+    description: "Intervención enfocada en un problema concreto y acotado.",
+  },
+  {
+    slug: "proyecto",
+    title: "Proyecto",
+    description: "Trabajo más amplio con un objetivo definido: discovery, arquitectura, UX, UI, Design System, handoff.",
+  },
+  {
+    slug: "colaboracion-continua",
+    title: "Colaboración continua",
+    description:
+      "Capacidad senior de Product Design integrada en el equipo durante un periodo prolongado.",
+  },
+  {
+    slug: "design-partner",
+    title: "Design Partner",
+    description:
+      "Relación de colaboración continua de largo plazo en la que Felix actúa como capacidad externa senior de Product Design. No es un servicio premium ni una categoría de trabajo separada: es un modelo de relación al que se puede llegar desde un Sprint o un Proyecto.",
+  },
+] as const;
+
+// Inventario de proyectos (docs/04-content-and-case-studies.md).
+// NO inventar métricas, resultados, testimonios ni datos no documentados.
+// status "TODO" = contenido pendiente de investigación individual.
+export const projects = [
+  { slug: "visual-presencia", name: "Visual Presencia", sector: "RRHH / gestión empresarial", status: "TODO" },
+  { slug: "motus-pay", name: "Motus Pay", sector: "Fintech / pagos", status: "TODO" },
+  { slug: "tokenflow", name: "TokenFlow", sector: "Fintech / Web3", status: "TODO" },
+  { slug: "universe-mexico", name: "Universe México", sector: "Entretenimiento / gaming", status: "TODO" },
+  { slug: "flowstride", name: "FlowStride", sector: "Fitness / tecnología", status: "TODO" },
+  { slug: "rotau", name: "Rotau", sector: "RRHH / SaaS", status: "TODO" },
+] as const;
+
+export type Project = (typeof projects)[number];

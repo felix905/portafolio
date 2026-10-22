@@ -16,6 +16,22 @@
                     gap: 0.5rem;
                 }
             }
+
+            /* ===== Interna de proyecto: animaciones y enlaces rápidos ===== */
+            html { scroll-behavior: smooth; }
+            html, body { overflow-x: clip; }
+            .reveal {
+                opacity: 0;
+                transform: translateY(36px);
+                transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+                will-change: transform, opacity;
+            }
+            .reveal.is-visible { opacity: 1; transform: none; }
+            .ql-link.is-active { color: #1f1f1f; border-color: #1f1f1f; }
+            @media (prefers-reduced-motion: reduce) {
+                html { scroll-behavior: auto; }
+                .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+            }
         </style>
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -58,13 +74,13 @@
                         <!-- Left: Brand -->
                         <div class="flex items-center gap-3">
                             <img
-                                src="img/perfil.png"
+                                src="img/perfil.jfif"
                                 class="w-10 h-10 rounded-full"
                                 alt="Felix Mijares"
                             />
                             <div class="flex flex-col leading-tight">
                                <a href="index.html"><span class="text-sm font-semibold uppercase">Felix Mijares</span></a> 
-                                <span class="text-sm text-zinc-500">Product Design end-to-end para SaaS y startups</span>
+                                <span class="text-sm text-zinc-500">Senior Product Designer</span>
                             </div>
                         </div>
 
@@ -82,21 +98,18 @@
                         </div>
 
                         <!-- Right: Navigation -->
-                        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 lg:gap-8">
-                            <div class="flex flex-col">
-    <a href="proyectos.html" class="text-sm font-semibold uppercase">Proyectos</a>
-    <p class="text-sm text-zinc-500 mt-1">Explorar + </p>
-</div>
-<div class="flex flex-col">
-    <a href="about.html" class="text-sm font-semibold uppercase">Sobre mí</a>
-    <p class="text-sm text-zinc-500 mt-1">Desde 2005</p>
-</div>
+                        <div class="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-4 lg:gap-6">
+                            <a href="index.html#trabajo" class="text-sm font-bold uppercase">Proyectos</a>
+                            <a href="index.html#como-trabajo" class="text-sm font-bold uppercase">Cómo trabajo</a>
+                            <a href="index.html#como-colaborar" class="text-sm font-bold uppercase">Cómo colaborar</a>
+                            <a href="about.html" class="text-sm font-bold uppercase">Sobre mí</a>
+
 
                             <a
                                 href="#footer"
                                 class="px-6 py-3 bg-mono-90 text-white rounded-full font-semibold text-sm"
                             >
-                                Iniciar un proyecto
+                                Hablemos de tu producto
                             </a>
                         </div>
                     </div>
@@ -120,19 +133,48 @@
 <!-- ========================= -->
 <!-- 1. ENCABEZADO DEL PROYECTO -->
 <!-- ========================= -->
-<section class="container mx-auto pt-20 pb-6">
-    <h2 class="project-title mb-4 text-5xl font-medium">Motus®</h2>
-   
+<section class="container mx-auto pt-12 md:pt-16 pb-6 reveal">
 
-    <!-- Project Tags -->
+    <!-- Enlace de retorno -->
+    <a href="index.html#trabajo" class="inline-flex items-center gap-2 rounded-full border border-gray-300 px-4 py-2 text-xs font-bold tracking-widest uppercase text-mono-90 hover:bg-mono-90 hover:text-white transition-colors mb-10">
+        <span aria-hidden="true">←</span> Todos los proyectos
+    </a>
+
+    <!-- Título -->
+    <h1 class="project-title text-5xl md:text-6xl font-bold uppercase tracking-tight text-mono-90 mb-4">Motus®</h1>
+
+    <!-- Metadatos: categorías · año -->
+    <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between text-xs font-semibold tracking-wider text-zinc-500 uppercase mb-8">
+        <p>Product Design · Fintech / pagos</p>
+        <p>2026</p>
+    </div>
+
+    <!-- Tagline -->
+    <p class="text-lg md:text-xl font-medium text-mono-90 max-w-2xl mb-3">
+        Pagos internacionales claros y rápidos para freelancers y equipos remotos.
+    </p>
+
+    <!-- Aviso NDA (opcional): descomentar solo si el proyecto está bajo confidencialidad
+    <p class="text-xs text-rose-700/80 mb-6 max-w-xl">
+        Proyecto sujeto a un acuerdo de confidencialidad (NDA); se muestra información limitada.
+    </p>
+    -->
+
+    <!-- Tags de competencias / rol -->
     <div class="flex flex-wrap gap-2 mt-5">
         <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Product Design</span>
         <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">UX Research</span>
         <span class="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full">UI Design</span>
         <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">Design System</span>
         <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Front-end Integration</span>
-       
-      
+    </div>
+
+    <!-- Hero asset -->
+    <div class="relative w-full mt-10 md:mt-14 rounded-xl overflow-hidden">
+        <img src="img/background_motus.png" alt="Fondo del proyecto Motus Pay" class="w-full h-[360px] md:h-[560px] lg:h-[760px] object-cover" />
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <img src="img/01_02_03.svg" alt="Interfaz de la plataforma Motus Pay" class="w-[85%] max-w-6xl rounded-2xl shadow-2xl" />
+        </div>
     </div>
 </section>
 
@@ -140,91 +182,67 @@
 <!-- ========================= -->
 <!-- 2. ABOUT THE PROJECT -->
 <!-- ========================= -->
-<section class="container mx-auto pb-16">
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-12 md:gap-20 items-stretch">
+<!-- ========================= -->
+<!-- CUERPO: enlaces rápidos + artículo -->
+<!-- ========================= -->
+<section class="container mx-auto pt-16 pb-16">
+    <div class="grid grid-cols-1 gap-12 lg:grid-cols-[240px_1fr]">
 
-        <!-- Description Column -->
-<div class="lg:col-span-2 flex">
-    <div class="flex flex-col justify-between w-full h-full space-y-4">
-      <div class="space-y-6 pt-10">
-   
-    <p class="text-lg text-gray-800 leading-relaxed">
-        Motus Pay es un neobanco global diseñado para freelancers, profesionales remotos y pequeñas empresas que necesitan mover dinero entre países de forma frecuente.
-    </p>
-    
-    <p class="text-lg text-gray-800 leading-relaxed">
-        El proyecto aborda la complejidad, falta de transparencia y tiempos prolongados de los pagos internacionales tradicionales. El enfoque se centró en crear una experiencia unificada donde los usuarios puedan gestionar múltiples monedas, visualizar costos claramente y completar transacciones en segundos.
-    </p>
+        <!-- Enlaces rápidos -->
+        <aside class="lg:sticky lg:top-28 lg:self-start">
+            <p class="text-sm font-bold uppercase tracking-widest text-zinc-500">Enlaces rápidos</p>
+            <nav id="quick-links" class="mt-4 flex gap-4 overflow-x-auto lg:flex-col lg:gap-0 lg:overflow-visible">
+                    <a href="#resumen" class="ql-link shrink-0 border-b border-gray-200 py-3 pr-4 text-sm font-bold uppercase tracking-widest text-zinc-400 hover:text-black transition-colors">Resumen</a>
+                    <a href="#problema" class="ql-link shrink-0 border-b border-gray-200 py-3 pr-4 text-sm font-bold uppercase tracking-widest text-zinc-400 hover:text-black transition-colors">Problema</a>
+                    <a href="#proceso" class="ql-link shrink-0 border-b border-gray-200 py-3 pr-4 text-sm font-bold uppercase tracking-widest text-zinc-400 hover:text-black transition-colors">Proceso</a>
+                    <a href="#identidad" class="ql-link shrink-0 border-b border-gray-200 py-3 pr-4 text-sm font-bold uppercase tracking-widest text-zinc-400 hover:text-black transition-colors">Identidad visual</a>
+                    <a href="#producto" class="ql-link shrink-0 border-b border-gray-200 py-3 pr-4 text-sm font-bold uppercase tracking-widest text-zinc-400 hover:text-black transition-colors">Flujos principales</a>
+                    <a href="#resultado" class="ql-link shrink-0 border-b border-gray-200 py-3 pr-4 text-sm font-bold uppercase tracking-widest text-zinc-400 hover:text-black transition-colors">Resultado</a>
+            </nav>
+        </aside>
 
-    <p class="text-lg text-gray-800 leading-relaxed">
-        El proceso abarcó investigación de usuarios, arquitectura de información, diseño de interfaz y supervisión de implementación front-end, manteniendo un equilibrio entre usabilidad avanzada y rigores de compliance financiero.
-    </p>
+        <!-- Artículo -->
+        <article class="min-w-0 space-y-20">
 
-   
-</div>
-
-        
-    </div>
-</div>
-
-
-        <!-- 3. TABLA DE DETALLES -->
-        <div class="lg:col-span-2 flex">
-            <div class="flex flex-col justify-between w-full h-full">
-
-                <div class="space-y-6">
-                    <!-- Client -->
-                    <div class="flex justify-between items-center py-4 border-b border-gray-200">
+            <section id="resumen" class="scroll-mt-28 reveal">
+                <h2 class="text-3xl font-bold tracking-tight text-mono-90">Resumen</h2>
+                <p class="mt-4 text-lg text-gray-800 leading-relaxed">Motus Pay es un neobanco global diseñado para freelancers, profesionales remotos y pequeñas empresas que necesitan mover dinero entre países de forma frecuente.</p>
+                <div class="mt-10">
+                    <div class="flex justify-between items-center gap-6 py-4 border-b border-gray-200">
                         <p class="text-sm font-medium text-gray-500">Producto</p>
-                        <p class="text-lg font-medium text-gray-900">Motus Pay</p>
+                        <p class="text-lg font-medium text-gray-900 text-right">Motus Pay</p>
                     </div>
-
-                    <!-- Role -->
-                    <div class="flex justify-between items-center py-4 border-b border-gray-200">
+                    <div class="flex justify-between items-center gap-6 py-4 border-b border-gray-200">
                         <p class="text-sm font-medium text-gray-500">Rol</p>
-                        <p class="text-lg font-medium text-gray-900">
-                            Lead Product Designer
-                        </p>
+                        <p class="text-lg font-medium text-gray-900 text-right">Lead Product Designer</p>
                     </div>
-
-                    <!-- Scope -->
-                    <div class="flex justify-between items-center py-4 border-b border-gray-200">
+                    <div class="flex justify-between items-center gap-6 py-4 border-b border-gray-200">
                         <p class="text-sm font-medium text-gray-500">Alcance</p>
-                        <p class="text-lg font-medium text-gray-900">
-                            UX/UI · Sistema de diseño · Supervisión front-end
-                        </p>
+                        <p class="text-lg font-medium text-gray-900 text-right">UX/UI · Sistema de diseño · Supervisión front-end</p>
                     </div>
-
-                    <!-- Deliverables -->
-                    <div class="flex justify-between items-center py-4 border-b border-gray-200">
+                    <div class="flex justify-between items-center gap-6 py-4 border-b border-gray-200">
                         <p class="text-sm font-medium text-gray-500">Entregables</p>
-                        <p class="text-lg font-medium text-gray-900">
-                            User research · Flujos · UI · Prototipos interactivos
-                        </p>
+                        <p class="text-lg font-medium text-gray-900 text-right">User research · Flujos · UI · Prototipos interactivos</p>
                     </div>
-
-                   
                 </div>
+            </section>
 
-                <!-- Visual balance spacer -->
-                <div class="h-[72px]"></div>
-            </div>
-        </div>
+            <section id="problema" class="scroll-mt-28 reveal">
+                <h2 class="text-3xl font-bold tracking-tight text-mono-90">Problema</h2>
+                <p class="mt-4 text-lg text-gray-800 leading-relaxed">El proyecto aborda la complejidad, falta de transparencia y tiempos prolongados de los pagos internacionales tradicionales. El enfoque se centró en crear una experiencia unificada donde los usuarios puedan gestionar múltiples monedas, visualizar costos claramente y completar transacciones en segundos.</p>
+            </section>
 
-    </div>
-</section>
+            <section id="proceso" class="scroll-mt-28 reveal">
+                <h2 class="text-3xl font-bold tracking-tight text-mono-90">Proceso</h2>
+                <p class="mt-4 text-lg text-gray-800 leading-relaxed">El proceso abarcó investigación de usuarios, arquitectura de información, diseño de interfaz y supervisión de implementación front-end, manteniendo un equilibrio entre usabilidad avanzada y rigores de compliance financiero.</p>
+            </section>
 
-
-
-<!-- ========================= -->
-<!-- 4. GALERÍA DE IMÁGENES - Parte 1: Definición visual -->
-<!-- ========================= -->
-<section class="w-full mb-10">
-    <div class="container mx-auto">
+            <section id="identidad" class="scroll-mt-28 reveal">
+    <div>
 
         <!-- Section Intro -->
         <div class="max-w-2xl ">
-            <h3 class="text-2xl font-medium mb-4">Definición de identidad y sistema visual</h3>
+            <h2 class="text-3xl font-bold tracking-tight text-mono-90 mb-4">Identidad y sistema visual</h2>
             <p class="text-md text-zinc-600">
                 Exploración de direcciones visuales para la marca, evaluando legibilidad, escalabilidad y adecuación al sector fintech. La selección final priorizó claridad, confianza y modernidad.
             </p>
@@ -305,26 +323,26 @@
                                 <!-- Visual container -->
                                 <div class="relative mt-6 bg-slate-200 rounded-xl overflow-hidden py-20">
                                     <!-- Grid de apps -->
-                                    <div class="flex items-center justify-center gap-8 px-6">
+                                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 px-6">
                                         <img
                                             src="img/portafolio/motus/01-a.svg"
                                             alt="App screen 1"
-                                            class="w-[300px] rounded-xl"
+                                            class="w-full rounded-xl"
                                         />
                                         <img
                                             src="img/portafolio/motus/02-a.svg"
                                             alt="App screen 2"
-                                            class="w-[300px] rounded-xl"
+                                            class="w-full rounded-xl"
                                         />
                                         <img
                                             src="img/portafolio/motus/03-a.svg"
                                             alt="App screen 3"
-                                            class="w-[300px] rounded-xl"
+                                            class="w-full rounded-xl"
                                         />
                                         <img
                                             src="img/portafolio/motus/04-a.svg"
                                             alt="App screen 4"
-                                            class="w-[300px] rounded-xl"
+                                            class="w-full rounded-xl"
                                         />
                                     </div>
                                 </div>
@@ -335,11 +353,8 @@
     </div>
 </section>
 
-
-                    <!-- ========================= -->
-                    <!-- 5. GALERÍA DE IMÁGENES - Parte 2: Flujos principales -->
-                    <!-- ========================= -->
-                    <section class="container mx-auto mt-20">
+            <section id="producto" class="scroll-mt-28 reveal">
+                        <h2 class="text-3xl font-bold tracking-tight text-mono-90 mb-8">Flujos principales</h2>
                         <div class="space-y-6 md:space-y-8">
                             <!-- Dashboard principal -->
                            <!-- Dashboard principal -->
@@ -373,7 +388,7 @@
             <img
                 src="img/portafolio/motus/01.svg"
                 alt="Dashboard principal con jerarquía clara de información"
-                class="w-[1250px] rounded-xl"
+                class="w-full max-w-[1250px] rounded-xl"
             />
         </div>
     </div>
@@ -412,7 +427,7 @@
                                         <img
                                             src="img/portafolio/motus/02.svg"
                                             alt="Interfaz de transferencia con validación en tiempo real"
-                                            class="w-[1250px] rounded-xl"
+                                            class="w-full max-w-[1250px] rounded-xl"
                                         />
                                     </div>
                                 </div>
@@ -451,7 +466,7 @@
                                         <img
                                             src="img/portafolio/motus/03.svg"
                                             alt="Interfaz de conversión de monedas con tipos en tiempo real"
-                                            class="w-[1250px] rounded-xl"
+                                            class="w-full max-w-[1250px] rounded-xl"
                                         />
                                     </div>
                                 </div>
@@ -462,12 +477,9 @@
                         </div>
                     </section>
 
-                    <!-- ========================= -->
-                    <!-- 6. CIERRE IMPLÍCITO DEL PROYECTO -->
-                    <!-- ========================= -->
-                    <section class="container mx-auto mt-10 ">
+            <section id="resultado" class="scroll-mt-28 reveal">
                         <div class="max-w-3xl">
-                            <h3 class="text-xl font-medium mb-4">Resultado y aprendizajes</h3>
+                            <h2 class="text-3xl font-bold tracking-tight text-mono-90 mb-4">Resultado y aprendizajes</h2>
                             <p class="text-md text-gray-800 leading-relaxed">
                                 El proyecto evolucionó desde la investigación inicial hasta un sistema de diseño completo y funcional. Las decisiones de UX/UI se enfocaron en reducir la ansiedad asociada a las transacciones financieras, sin comprometer los estándares de seguridad y compliance.
                             </p>
@@ -475,6 +487,29 @@
                         </div>
                     </section>
 
+        </article>
+    </div>
+</section>
+
+<!-- Otros proyectos -->
+<section class="container mx-auto pb-10 reveal">
+    <div class="flex items-center justify-between border-t border-gray-200 pt-16">
+        <h2 class="text-3xl font-bold tracking-tight text-mono-90">Otros proyectos</h2>
+        <a href="index.html#trabajo" class="inline-flex items-center rounded-full border border-gray-300 px-5 py-3 text-xs font-bold uppercase tracking-widest hover:bg-mono-90 hover:text-white transition-colors">Ver todos</a>
+    </div>
+    <article class="group relative cursor-pointer mt-8 max-w-xl">
+        <a href="portafolio_int_flow.html" class="absolute inset-0 z-10" aria-label="Ver proyecto FlowStride"></a>
+        <div class="text-sm font-medium text-black">
+            FlowStride™<br />
+            <span class="text-zinc-500">Fitness / tecnología</span>
+        </div>
+        <div class="relative mt-6 bg-slate-300/70 rounded-xl overflow-hidden py-16">
+            <div class="flex items-center justify-center px-6">
+                <img src="img/portafolio/proyectos/02.svg" alt="FlowStride App preview" class="w-[420px] max-w-full rounded-xl transition-transform duration-500 group-hover:scale-105" />
+            </div>
+        </div>
+    </article>
+</section>
 
                 </main>
 
@@ -527,9 +562,10 @@
                 <div class="flex flex-col">
                     <p class="text-sm text-zinc-500 font-medium">Explorar</p>
                     <nav class="flex flex-col mt-4 space-y-2">
-                        <a href="#home" class="text-sm text-black font-semibold uppercase hover:underline">Inicio</a>
-                        <a href="#projects" class="text-sm text-black font-semibold uppercase hover:underline">Proyectos</a>
-                        <a href="#about" class="text-sm text-black font-semibold uppercase hover:underline">Sobre mí</a>
+                        <a href="index.html#header" class="text-sm text-black font-semibold uppercase hover:underline">Inicio</a>
+                        <a href="index.html#trabajo" class="text-sm text-black font-semibold uppercase hover:underline">Proyectos</a>
+                        <a href="index.html#sobre-mi" class="text-sm text-black font-semibold uppercase hover:underline">Sobre mí</a>
+                        <a href="https://www.linkedin.com/in/felix-mijares-32b1782b/" target="_blank" rel="noopener noreferrer" class="text-sm text-black font-semibold uppercase hover:underline">LinkedIn</a>
                        
                     </nav>
                 </div>
@@ -537,10 +573,13 @@
 
             <!-- Services Highlight -->
             <div class="grid grid-cols-1 gap-6">
-                <p class="text-lg md:text-xl font-medium text-black  mt-6">
-                    Transformo ideas en productos listos para crecer. Desde estrategia hasta diseño, prototipado y front-end funcional, todo pensado para que tu proyecto escale.
+                <h2 class="text-2xl md:text-3xl font-normal text-black mt-6">Hablemos de tu producto.</h2>
+                <p class="text-lg text-mono-70">
+                    ¿Necesitas mejorar una experiencia, definir una nueva funcionalidad o dar consistencia a un producto que está creciendo? Cuéntame qué estás construyendo y evaluemos cómo puedo ayudarte.
                 </p>
-                
+                <a href="mailto:felixmijares311@gmail.com" class="inline-flex items-center self-start bg-gray-900 text-white px-8 py-4 rounded-full hover:bg-gray-800 transition-all duration-300">
+                    <span class="text-lg font-medium">Hablemos de tu producto</span>
+                </a>
             </div>
         </div>
     </div>
@@ -552,22 +591,11 @@
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
       
       <p class="text-zinc-500 text-sm">
-        © 2026 Felix Mijares.
+        © 2026 Felix Mijares. Todos los derechos reservados.
       </p>
 
       <!-- Social links -->
       <div class="flex gap-5 mt-4 md:mt-0">
-
-        <!-- Instagram -->
-        <a
-          href="https://instagram.com/tuusuario"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-zinc-500 hover:text-black transition"
-          aria-label="Instagram"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-instagram"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4l0 -8" /><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /><path d="M16.5 7.5v.01" /></svg>
-        </a>
 
         <!-- Dribbble -->
         <a
@@ -616,5 +644,40 @@
     });
   });
 </script>
+    
+        <script>
+            (function () {
+                var items = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+                if (!('IntersectionObserver' in window)) {
+                    items.forEach(function (el) { el.classList.add('is-visible'); });
+                } else {
+                    var io = new IntersectionObserver(function (entries) {
+                        entries.forEach(function (e) {
+                            if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+                        });
+                    }, { threshold: 0.01, rootMargin: '0px 0px -8% 0px' });
+                    items.forEach(function (el) { io.observe(el); });
+                }
+
+                // Enlaces rápidos: resalta la sección visible
+                var links = Array.prototype.slice.call(document.querySelectorAll('.ql-link'));
+                var map = {};
+                links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+                if ('IntersectionObserver' in window) {
+                    var spy = new IntersectionObserver(function (entries) {
+                        entries.forEach(function (e) {
+                            if (e.isIntersecting) {
+                                links.forEach(function (a) { a.classList.remove('is-active'); });
+                                if (map[e.target.id]) map[e.target.id].classList.add('is-active');
+                            }
+                        });
+                    }, { rootMargin: '-30% 0px -60% 0px' });
+                    Object.keys(map).forEach(function (id) {
+                        var sec = document.getElementById(id);
+                        if (sec) spy.observe(sec);
+                    });
+                }
+            })();
+        </script>
     </body>
 </html>
